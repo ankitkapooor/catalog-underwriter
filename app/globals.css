@@ -1,0 +1,139 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.2rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.35rem;
+}
+
+:root {
+  --background: #f4f1e9;
+  --foreground: #17201f;
+  --paper: #faf8f2;
+  --ink: #17201f;
+  --card: #faf8f2;
+  --card-foreground: #17201f;
+  --popover: #faf8f2;
+  --popover-foreground: #17201f;
+  --primary: #17201f;
+  --primary-foreground: #faf8f2;
+  --secondary: #e7e2d6;
+  --secondary-foreground: #17201f;
+  --muted: #e7e2d6;
+  --muted-foreground: #68706d;
+  --accent: #b9482d;
+  --accent-foreground: #ffffff;
+  --positive: #356a4d;
+  --negative: #9a3428;
+  --destructive: #9a3428;
+  --border: #c8c3b7;
+  --input: #c8c3b7;
+  --ring: #b9482d;
+  --chart-1: #b9482d;
+  --chart-2: #356a4d;
+  --chart-3: #d6a74a;
+  --chart-4: #6e7d88;
+  --chart-5: #17201f;
+  --radius: 0.25rem;
+}
+
+.dark {
+  --background: #111817;
+  --foreground: #f4f1e9;
+  --paper: #17201f;
+  --ink: #f4f1e9;
+  --card: #1c2725;
+  --card-foreground: #f4f1e9;
+  --popover: #1c2725;
+  --popover-foreground: #f4f1e9;
+  --primary: #f4f1e9;
+  --primary-foreground: #17201f;
+  --secondary: #293633;
+  --secondary-foreground: #f4f1e9;
+  --muted: #293633;
+  --muted-foreground: #abb4b0;
+  --accent: #e36f4f;
+  --accent-foreground: #111817;
+  --positive: #78aa8b;
+  --negative: #f28a78;
+  --destructive: #f28a78;
+  --border: #3a4845;
+  --input: #3a4845;
+  --ring: #e36f4f;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply bg-background font-sans text-foreground;
+  }
+
+  body {
+    @apply min-h-screen bg-background text-foreground antialiased;
+    font-size: 1rem;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 24%, transparent);
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs font-semibold uppercase tracking-[0.13em] text-muted-foreground;
+  }
+
+  .financial-value {
+    @apply font-display text-[clamp(3.8rem,8vw,7rem)] leading-none font-semibold tracking-[-0.06em];
+  }
+}

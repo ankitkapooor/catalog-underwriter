@@ -1,0 +1,54 @@
+[
+  {
+    "artist": "Bruce Springsteen",
+    "buyer": "Sony Music Group / Sony Music Publishing with Eldridge",
+    "transactionYear": 2021,
+    "reportedValue": 500000000,
+    "rightsIncluded": ["masters", "publishing"],
+    "reportedMultiple": null,
+    "sourceUrl": "https://www.sonymusic.com/sonymusic/smg-announces-acquisition-of-bruce-springsteens-music/",
+    "priceSourceUrl": "https://www.theguardian.com/music/2021/dec/16/bruce-springsteen-sells-entire-back-catalogue-of-music-to-sony-for-500m-report",
+    "notes": "Entire recorded-music and songwriting catalogs. Price was reported by media, not disclosed by the buyer.",
+    "comparability": "context only",
+    "confidence": "medium"
+  },
+  {
+    "artist": "Bob Dylan",
+    "buyer": "Universal Music Publishing Group",
+    "transactionYear": 2020,
+    "reportedValue": 300000000,
+    "rightsIncluded": ["publishing"],
+    "reportedMultiple": null,
+    "sourceUrl": "https://www.theguardian.com/business/2020/dec/07/bob-dylan-sells-publishing-universal-music",
+    "priceSourceUrl": "https://www.theguardian.com/business/2020/dec/07/bob-dylan-sells-publishing-universal-music",
+    "notes": "Publishing catalog of more than 600 songs. Reported price is a lower-bound media estimate; transaction terms were private.",
+    "comparability": "context only",
+    "confidence": "medium"
+  },
+  {
+    "artist": "Justin Timberlake",
+    "buyer": "Hipgnosis Songs Capital / Blackstone",
+    "transactionYear": 2022,
+    "reportedValue": 100000000,
+    "rightsIncluded": ["publishing", "writer share", "publisher share"],
+    "reportedMultiple": null,
+    "sourceUrl": "https://test.hipgnosissongs.com/wp-content/uploads/2023/07/Justin-Timberlake-FINAL.pdf",
+    "priceSourceUrl": "https://www.theguardian.com/culture/2022/may/26/justin-timberlake-sells-song-catalogue-dollars-100m-hipgnosis-songs-capital-blackstone",
+    "notes": "Songwriting interests and administration rights; masters were not included. Price was reported by media.",
+    "comparability": "partially comparable",
+    "confidence": "medium"
+  },
+  {
+    "artist": "Neil Young",
+    "buyer": "Hipgnosis Songs Fund",
+    "transactionYear": 2021,
+    "reportedValue": null,
+    "rightsIncluded": ["50% publishing interest"],
+    "reportedMultiple": null,
+    "sourceUrl": "https://www.hipgnosissongs.com/wp-content/uploads/2021/08/210106-Neil-Young-v11_vf.-pdf.pdf",
+    "priceSourceUrl": null,
+    "notes": "50% worldwide copyright and income interest in 1,180 compositions. Price was not disclosed.",
+    "comparability": "context only",
+    "confidence": "high"
+  }
+]
