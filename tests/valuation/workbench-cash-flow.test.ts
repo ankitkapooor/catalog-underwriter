@@ -18,7 +18,32 @@ test('the workbench does not silently substitute the former $1M fallback', async
   assert.match(source, /normalizedCashFlow:[\s\S]*Number\.NaN/);
   assert.match(
     source,
-    /Automatic economic cash-flow estimate not yet available from[\s\S]*sufficient public evidence\./,
+    /no dollar[\s\S]*estimate is fabricated from cumulative API metrics/,
+  );
+});
+
+test('live lookups lead with the API evidence instead of an unavailable valuation', async () => {
+  const source = await workbenchSource();
+
+  assert.match(source, /Public API evidence loaded/);
+  assert.match(source, /MusicBrainz release groups/);
+  assert.match(source, /Last\.fm top tracks/);
+  assert.match(source, /matched YouTube uploads/);
+  assert.match(
+    source,
+    /defaultValue=\{catalog\.isStoredDemo \? 'underwrite' : 'evidence'\}/,
+  );
+});
+
+test('back-to-search controls use hard navigation', async () => {
+  const source = await workbenchSource();
+  const hardNavigationLinks = source.match(/data-hard-navigation="true"/g);
+
+  assert.equal(hardNavigationLinks?.length, 2);
+  assert.match(source, /window\.location\.assign\('\/'\)/);
+  assert.doesNotMatch(
+    source,
+    /<Link[\s\S]{0,160}aria-label="Back to search"/,
   );
 });
 

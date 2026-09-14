@@ -180,12 +180,14 @@ function CatalogError({ message }: { message: string }) {
           This public record could not be completed.
         </h1>
         <p className="mt-4 leading-7 text-muted-foreground">{message}</p>
-        <Link
+        <button
+          type="button"
+          data-hard-navigation="true"
+          onClick={() => window.location.assign('/')}
           className="mt-6 inline-flex items-center gap-2 font-semibold underline underline-offset-4"
-          href="/"
         >
           <ArrowLeft className="size-4" /> Return to artist search
-        </Link>
+        </button>
       </div>
     </main>
   );
@@ -367,6 +369,17 @@ export function UnderwritingWorkbench({
     (peak, track) => Math.max(peak, track.lastFmListeners ?? 0),
     0,
   );
+  const publicEvidenceSummary = [
+    catalog.releases.length
+      ? `${catalog.releases.length} MusicBrainz release groups`
+      : null,
+    observedDemandTracks.length
+      ? `${observedDemandTracks.length} Last.fm top tracks`
+      : null,
+    catalog.youtubeVideos.length
+      ? `${catalog.youtubeVideos.length} matched YouTube uploads`
+      : null,
+  ].filter((item): item is string => Boolean(item));
   const currentYear = new Date().getUTCFullYear();
   const changeCashFlowMode = (checked: boolean) => {
     if (!checked && catalog.publicCashFlowEstimate) {
@@ -398,13 +411,15 @@ export function UnderwritingWorkbench({
       <header className="sticky top-0 z-30 border-b border-ink/15 bg-paper/95 backdrop-blur-sm">
         <div className="mx-auto flex min-h-16 max-w-[1600px] items-center justify-between gap-4 px-4 sm:px-7">
           <div className="flex min-w-0 items-center gap-4">
-            <Link
+            <button
+              type="button"
+              data-hard-navigation="true"
               aria-label="Back to search"
-              href="/"
+              onClick={() => window.location.assign('/')}
               className="grid size-9 shrink-0 place-items-center border border-ink/20 transition-colors hover:bg-secondary"
             >
               <ArrowLeft className="size-4" />
-            </Link>
+            </button>
             <div className="min-w-0">
               <p className="truncate font-display text-lg font-semibold">
                 {catalog.artist.name}
@@ -484,24 +499,43 @@ export function UnderwritingWorkbench({
           </div>
         )}
 
-        {!hasCashFlow && (
-          <div
-            role="alert"
-            className="mt-5 border-l-4 border-accent bg-accent/8 p-5 text-sm leading-6"
+        {!catalog.isStoredDemo && (
+          <section
+            aria-live="polite"
+            className={`mt-5 border-l-4 p-5 text-sm leading-6 ${
+              publicEvidenceSummary.length
+                ? 'border-positive bg-positive/8'
+                : 'border-accent bg-accent/8'
+            }`}
           >
-            <p className="eyebrow text-accent">Annual economics unavailable</p>
+            <p
+              className={`eyebrow ${
+                publicEvidenceSummary.length ? 'text-positive' : 'text-accent'
+              }`}
+            >
+              {publicEvidenceSummary.length
+                ? 'Public API evidence loaded'
+                : 'Artist identity resolved'}
+            </p>
             <p className="mt-2 font-display text-2xl font-semibold">
-              Automatic economic cash-flow estimate not yet available from
-              sufficient public evidence.
+              {publicEvidenceSummary.length
+                ? publicEvidenceSummary.join(' · ')
+                : 'No release or demand observations were returned for this identity.'}
             </p>
             <p className="mt-2 text-muted-foreground">
-              Enter a known or hypothetical annual cash flow in the assumptions
-              panel to continue.
+              MusicBrainz, Last.fm, and YouTube populate the Evidence room with
+              catalog chronology, cumulative demand, and concentration signals.
+              They do not provide annual royalty statements, so no dollar
+              estimate is fabricated from cumulative API metrics. Enter a known
+              or hypothetical annual cash flow to run the valuation.
             </p>
-          </div>
+          </section>
         )}
 
-        <Tabs defaultValue="underwrite" className="mt-6">
+        <Tabs
+          defaultValue={catalog.isStoredDemo ? 'underwrite' : 'evidence'}
+          className="mt-6"
+        >
           <TabsList
             variant="line"
             className="w-full justify-start gap-3 overflow-x-auto border-b border-ink/15 pb-2"
@@ -683,9 +717,10 @@ export function UnderwritingWorkbench({
                     </>
                   ) : (
                     <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                      Automatic economic cash-flow estimate not yet available
-                      from sufficient public evidence. Enter a known or
-                      hypothetical annual cash flow to continue.
+                      Not calculated from public APIs. Last.fm and YouTube
+                      provide cumulative demand signals, not annual royalty cash
+                      flow. Enter a known or hypothetical annual cash flow to
+                      continue.
                     </p>
                   )}
                 </div>
@@ -981,7 +1016,7 @@ export function UnderwritingWorkbench({
                   {useKnownCashFlow
                     ? 'User-entered cash flow is the valuation base. Catalog analytics remain available.'
                     : (catalog.publicCashFlowEstimate?.note ??
-                      'No defensible public cash-flow estimate is available. Enable Known cash flow to proceed.')}
+                      'The APIs populated the Evidence room, but they do not expose annual royalty cash flow. Enable Known cash flow to proceed.')}
                 </p>
                 <NumericAssumption
                   label="Normalized annual cash flow"
@@ -1345,11 +1380,11 @@ export function UnderwritingWorkbench({
                   <p className="mt-2 font-display text-2xl font-semibold">
                     {catalog.publicCashFlowEstimate
                       ? `${money(catalog.publicCashFlowEstimate.low)}–${money(catalog.publicCashFlowEstimate.high)}`
-                      : 'Unavailable'}
+                      : 'Not inferred'}
                   </p>
                   <p className="mt-2 text-xs leading-5 text-muted-foreground">
                     {catalog.publicCashFlowEstimate?.note ??
-                      'Automatic economic cash-flow estimate not yet available from sufficient public evidence.'}
+                      'Cumulative public demand metrics cannot establish annual royalty cash flow. Use verified financials or an explicit analyst assumption.'}
                   </p>
                 </div>
                 <div className="border-b border-ink/15 py-4">

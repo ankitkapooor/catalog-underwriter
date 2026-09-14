@@ -9,6 +9,14 @@ import type { TrackEvidence } from '@/types/catalog';
 const MUSICBRAINZ_ID =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
+function providerFailureDetail(provider: 'Last.fm' | 'YouTube', error: unknown) {
+  const reason =
+    error instanceof Error && /returned \d{3}/.test(error.message)
+      ? error.message
+      : `${provider} request failed`;
+  return `${reason}. The MusicBrainz catalog still loaded; no replacement data was fabricated.`;
+}
+
 export async function GET(
   request: Request,
   context: { params: Promise<{ id: string }> },
@@ -79,14 +87,13 @@ export async function GET(
             ? `${lastFmSignals.length} Last.fm track observations support relative demand analysis.`
             : 'Last.fm returned no top-track observations.';
         }
-      } catch {
+      } catch (error) {
         const performanceCoverage = catalog.coverage.find(
           (item) => item.label === 'Public performance',
         );
         if (performanceCoverage) {
           performanceCoverage.level = 'Unavailable';
-          performanceCoverage.detail =
-            'Last.fm was unavailable. The catalog still loads from MusicBrainz; no replacement data was fabricated.';
+          performanceCoverage.detail = providerFailureDetail('Last.fm', error);
         }
       }
     }
@@ -108,11 +115,10 @@ export async function GET(
             ? `${catalog.youtubeVideos.length} likely official uploads provide cumulative-view evidence.`
             : 'No official uploads passed conservative artist and channel matching.';
         }
-      } catch {
+      } catch (error) {
         if (youtubeCoverage) {
           youtubeCoverage.level = 'Unavailable';
-          youtubeCoverage.detail =
-            'YouTube was unavailable. No fan-upload totals or replacement data were fabricated.';
+          youtubeCoverage.detail = providerFailureDetail('YouTube', error);
         }
       }
     }
