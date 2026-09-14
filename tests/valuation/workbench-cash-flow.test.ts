@@ -16,7 +16,10 @@ test('the workbench does not silently substitute the former $1M fallback', async
     /publicCashFlowEstimate\?\.midpoint\s*\?\?\s*1_000_000/,
   );
   assert.match(source, /normalizedCashFlow:[\s\S]*Number\.NaN/);
-  assert.match(source, /Automatic cash-flow estimate unavailable/);
+  assert.match(
+    source,
+    /Automatic economic cash-flow estimate not yet available from[\s\S]*sufficient public evidence\./,
+  );
 });
 
 test('known or hypothetical cash flow remains an explicit user input', async () => {
@@ -27,7 +30,7 @@ test('known or hypothetical cash flow remains an explicit user input', async () 
   assert.match(source, /event\.target\.value === ''\s*\? Number\.NaN/);
 });
 
-test('the stored Kendrick demonstration range remains unchanged', async () => {
+test('the stored Kendrick demonstration range is an explicit analyst assumption', async () => {
   const source = await readFile(
     new URL('../../data/demo-catalog.ts', import.meta.url),
     'utf8',
@@ -37,4 +40,16 @@ test('the stored Kendrick demonstration range remains unchanged', async () => {
   assert.match(source, /midpoint: 6_200_000/);
   assert.match(source, /high: 7_100_000/);
   assert.match(source, /methodologyVersion: 'public-underwrite-1\.0\.0'/);
+  assert.match(source, /Stored analyst scenario/);
+  assert.match(source, /Not derived from Last\.fm or MusicBrainz/);
+});
+
+test('the live artist route never invokes the legacy public cash-flow estimator', async () => {
+  const source = await readFile(
+    new URL('../../app/api/artists/[id]/route.ts', import.meta.url),
+    'utf8',
+  );
+
+  assert.doesNotMatch(source, /estimatePublicCashFlow/);
+  assert.match(source, /catalog\.publicCashFlowEstimate = null/);
 });

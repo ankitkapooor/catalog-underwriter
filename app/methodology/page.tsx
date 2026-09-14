@@ -10,12 +10,12 @@ const sections = [
   {
     number: '01',
     title: 'What the model collects',
-    body: 'MusicBrainz provides canonical artist identity, release groups, dates, types, and genre metadata. An optional server-side Last.fm adapter supplies top-track scrobbles and listener counts for relative-demand analysis. A stored demonstration snapshot keeps the core experience available when a provider is down.',
+    body: 'MusicBrainz provides catalog evidence: canonical artist identity, release groups, dates, types, and genre metadata. Last.fm supplies cumulative scrobbles and listener counts as demand evidence. When configured, YouTube supplies cumulative views for conservatively matched official music videos, official audio, and artist-topic uploads.',
   },
   {
     number: '02',
     title: 'What remains unavailable',
-    body: 'Royalty statements, private ownership contracts, platform-level revenue, recoupment positions, negotiated distribution terms, and buyer bids are generally not public. The application labels those fields as unknown or user assumptions; it never treats missing information as zero.',
+    body: 'Royalty statements, private ownership contracts, annual platform consumption, recoupment positions, negotiated distribution terms, and buyer bids are generally not public. The application labels those fields as unknown or user assumptions; it never treats missing information as zero and never annualizes cumulative observations silently.',
   },
   {
     number: '03',
@@ -24,38 +24,38 @@ const sections = [
   },
   {
     number: '04',
-    title: 'Public performance',
-    body: 'Performance sources remain separate dimensions. Last.fm observations are used to estimate relative track concentration—not as a per-play royalty rate and not as a substitute for Spotify, YouTube, or royalty-accounting data.',
+    title: 'Observed consumption',
+    body: 'Last.fm observations support relative artist scale, track concentration, breadth, long-tail strength, and persistence. YouTube view counts add another cumulative demand signal. Both are explicitly labeled cumulative observations; neither is an annual stream count, royalty statement, or cash-flow estimate.',
   },
   {
     number: '05',
-    title: 'Cash-flow reconstruction',
-    body: 'The stored demo presents a low–midpoint–high annual economic cash-flow range calibrated from its saved public-signal fixture. The live estimator (public-cash-flow-1.0.0) requires at least three valid top-track observations, 100,000 aggregate playcounts, 10,000 peak listeners, and one release group. It anchors $250,000 to 25 million playcounts, one million peak listeners, and 12 release groups, with playcount/listener elasticities of 0.55/0.25. Coverage uses a 25-track target and 0.55 floor; release breadth is sqrt(releases/12), bounded 0.6–1.4; age is neutral at 10 years with a 1% per-year slope, bounded 0.85–1.15. Range uncertainty starts at 0.15, adds 0.35 for missing coverage and 0.30 times top-five concentration. Base low/high multipliers are 0.80/1.25, adjusted within 0.25–0.70 and 1.40–2.50; total cash flow is bounded at $25,000/$50,000,000. These are demand proxies—not royalty rates or lifetime catalog totals. The range is inferred, not observed earnings; insufficient live evidence requires a known or hypothetical cash-flow entry.',
+    title: 'Modeled consumption',
+    body: 'The PublicConsumptionEstimate layer is reserved for defensible current annual/run-rate observations or a disclosed modeled annualization. Cumulative Last.fm and YouTube totals remain separate and cannot populate annual audio or video ranges by themselves. When annualization evidence is missing, those ranges stay unavailable.',
   },
   {
     number: '06',
-    title: 'Economic rights',
-    body: 'Master and publishing interests are weighted by the modeled revenue mix. Songwriter participation affects the publishing portion, then administration and distribution fees reduce the combined interest. Defaults are editable assumptions and never ownership claims.',
+    title: 'Economic assumptions and cash flow',
+    body: 'RightsEconomics is a separate bridge from annual consumption to estimated annual rights revenue. It models audio streaming, YouTube, publishing, and other categories separately under editable low, base, and high assumptions. It makes no fixed Spotify payout claim. Without annual consumption and complete economic assumptions, automatic cash flow stays unavailable and the user may enter a manual normalized annual cash flow.',
   },
   {
     number: '07',
-    title: 'Discounted cash flow',
-    body: 'The engine projects annual cash flow for ten explicit years. Years one through five use the near-term growth or decay rate; years six through ten use the mature rate. Each year is discounted at the base discount rate plus any user-selected concentration premium.',
+    title: 'Valuation',
+    body: 'The deterministic DCF projects annual cash flow for ten explicit years and discounts each year at the selected risk rate. A separate market approach multiplies normalized annual cash flow by an editable multiple whose starting range is derived from curated transactions with disclosed income multiples.',
   },
   {
     number: '08',
-    title: 'Terminal value',
-    body: 'The MVP uses a Gordon-growth perpetuity after year ten. Terminal growth must stay below the effective discount rate; invalid configurations are rejected. The interface separates terminal value so users can see how much of the price rests on distant assumptions.',
+    title: 'Reconciliation',
+    body: 'The interface shows DCF value, market-multiple value, and a reconciled indicative range. The range spans the selected DCF result and the transaction-derived market band; it is not a mechanical average. Rights scope and evidence quality still require underwriting judgment.',
   },
   {
     number: '09',
     title: 'Comparable transactions',
-    body: 'The repository-managed dataset links to original announcements and separate price reports when necessary. Transactions are labeled partially comparable or context only because rights scope, earnings, and private terms differ. Missing prices and multiples remain undisclosed.',
+    body: 'The repository-managed dataset links to transaction reports and labels rights scope, confidence, comparability, and disclosed income-multiple basis. Benchmarks are validation data, never targets for fitting Last.fm to sale price. Missing prices and multiples remain undisclosed.',
   },
   {
     number: '10',
     title: 'What the model cannot know',
-    body: 'This tool cannot determine actual artist income, legal ownership, contractual restrictions, future cultural relevance, or a definitive market-clearing bid. It supports an investment judgment; it does not replace diligence, legal advice, or verified financial statements.',
+    body: 'The evidence chain is kept explicit: observed consumption → modeled consumption → economic assumption → estimated cash flow → valuation. This tool cannot determine actual artist income, legal ownership, contractual restrictions, future cultural relevance, or a definitive market-clearing bid. It supports judgment; it does not replace diligence, legal advice, or verified financial statements.',
   },
 ];
 
@@ -138,6 +138,14 @@ export default function MethodologyPage() {
               rel="noreferrer"
             >
               Last.fm top tracks <ExternalLink className="size-3" />
+            </a>
+            <a
+              className="inline-flex items-center gap-1 underline underline-offset-4"
+              href="https://developers.google.com/youtube/v3/docs/videos/list"
+              target="_blank"
+              rel="noreferrer"
+            >
+              YouTube Data API <ExternalLink className="size-3" />
             </a>
             <a
               className="inline-flex items-center gap-1 underline underline-offset-4"

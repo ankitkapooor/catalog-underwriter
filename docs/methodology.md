@@ -1,6 +1,26 @@
 # Valuation methodology
 
-Catalog Underwriter converts a normalized annual cash-flow base into an indicative value with deterministic code.
+Catalog Underwriter converts a normalized annual cash-flow base into indicative values with deterministic code. It keeps five layers separate:
+
+1. **Observed consumption** — cumulative or current measurements from named public sources.
+2. **Modeled consumption** — current annual/run-rate estimates with an explicit annualization method.
+3. **Economic assumption** — editable low, base, and high effective rights-holder economics.
+4. **Estimated cash flow** — annual consumption multiplied by the selected rights economics.
+5. **Valuation** — DCF and market-multiple approaches applied to normalized annual cash flow.
+
+MusicBrainz supplies catalog evidence. Last.fm supplies cumulative demand evidence. When configured, YouTube supplies cumulative view counts for conservatively matched official videos, official audio, and artist-topic uploads. None of these sources directly supplies royalty income.
+
+## Consumption and rights economics
+
+Last.fm supports relative artist scale, track concentration, catalog breadth, long-tail strength, and demand persistence. It never directly produces dollar cash flow. Cumulative Last.fm scrobbles and YouTube views remain labeled `cumulative-observation`; they are not treated as annual revenue.
+
+`PublicConsumptionEstimate` holds annual audio-streaming-equivalent and YouTube-view ranges only when current annual/run-rate evidence or a disclosed modeled annualization is available. Missing evidence remains `null`.
+
+`RightsEconomics` models audio streaming, YouTube, publishing, and other revenue separately. Its low, base, and high assumptions are blank by default and editable by the user. It does not claim a fixed Spotify or platform payout. Automatic annual cash flow remains unavailable unless both annual consumption and the necessary rights-economic assumptions exist.
+
+## Valuation methods
+
+The DCF method:
 
 1. Apply the user-selected sync uplift to normalized catalog cash flow.
 2. Weight master and publishing economics by their share of the modeled revenue mix.
@@ -12,14 +32,16 @@ Catalog Underwriter converts a normalized annual cash-flow base into an indicati
 8. Calculate a Gordon-growth terminal value after year 10, requiring terminal growth to remain below the effective discount rate.
 9. Sum the three disclosed value components: present value of years 1–5, years 6–10, and terminal value.
 
-The implied multiple is catalog interest value divided by the normalized annual cash-flow input.
+The implied DCF multiple is catalog interest value divided by the normalized annual cash-flow input.
 
-The public estimate is the least certain layer. The stored demo uses a versioned, range-based fixture. A live catalog without sufficient evidence must use known or hypothetical cash flow; the application does not infer earnings from release counts or Last.fm scrobbles alone.
+The market method calculates normalized annual cash flow × the user-selected multiple. Initial multiple ranges are derived at runtime from the curated transaction dataset's disclosed income multiples, grouped into younger masters, mature masters, publishing, and combined masters + publishing. When a category has too few disclosed observations, the UI explicitly labels the broader cross-category proxy.
 
-## Public-demand cash-flow calibration
+The reconciled indicative range spans the selected DCF result and the transaction-derived market band. It is not a mechanical average.
 
-The live estimator is a separate, deterministic calibration layer (`public-cash-flow-1.0.0`). It aggregates absolute Last.fm top-track playcounts, peak listeners, the number of observations, release breadth, catalog age, and top-five concentration. These values are demand proxies: they are not royalty-bearing streams, direct Spotify payouts, or a lifetime catalog total.
+## Benchmark validation
 
-An estimate is withheld unless at least 3 valid tracks, 100,000 aggregate playcounts, 10,000 peak listeners, and 1 release group are available. The midpoint is anchored at $250,000 for 25,000,000 playcounts, 1,000,000 peak listeners, and 12 release groups, then scales with playcount elasticity 0.55 and listener elasticity 0.25. Coverage uses a 25-track target with a 0.55 floor. Release breadth is `sqrt(release groups / 12)`, bounded to 0.6–1.4. Age is neutral at 10 years, changes by 1% per year, and is bounded to 0.85–1.15. Uncertainty starts at 0.15, adds 0.35 times the missing-coverage factor and 0.30 times top-five concentration. Base low/high multipliers are 0.80/1.25; adjusted multipliers are bounded to 0.25–0.70 and 1.40–2.50. The output is bounded between $25,000 and $50,000,000. Every estimate stores its inputs, confidence, methodology version, and retrieval timestamp.
+Curated catalog transactions are validation evidence, not calibration targets. The benchmark framework first checks that an automatic candidate has annual-consumption evidence, then applies a deliberately broad order-of-magnitude sanity band. It never fits Last.fm activity to transaction price.
+
+The stored demo cash-flow range is an illustrative analyst assumption. A live catalog without sufficient annual evidence requires a known or hypothetical cash-flow entry.
 
 See the in-product methodology page for the evidence policy and limitations.

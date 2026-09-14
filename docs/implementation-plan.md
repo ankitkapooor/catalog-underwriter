@@ -24,4 +24,4 @@
 
 ## Initial scope decision
 
-The repository ships a complete, fixture-backed underwrite plus live public artist search and catalog metadata. Public cash-flow estimation is deliberately range-based; no private royalty income or rights ownership is claimed. Hosting, the custom domain, persistent saved snapshots, accounts, and LLM memo generation remain separate follow-on work.
+The repository ships a complete, fixture-backed underwrite plus live public artist search and catalog metadata. The former Last.fm-based public cash-flow calibration is disabled; live automatic cash flow remains unavailable until defensible annual-consumption evidence and explicit rights economics exist. Hosting, the custom domain, persistent saved snapshots, accounts, and LLM memo generation remain separate follow-on work.

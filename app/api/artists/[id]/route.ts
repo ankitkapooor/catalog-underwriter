@@ -1,7 +1,9 @@
 import { LastFmPerformanceProvider } from '@/lib/providers/lastfm';
 import { MusicBrainzCatalogProvider } from '@/lib/providers/musicbrainz';
+import type { LastFmTrackSignal } from '@/lib/providers/catalog-provider';
+import { YouTubeDataApiProvider } from '@/lib/providers/youtube';
+import { buildPublicConsumptionEstimate } from '@/lib/consumption/public-consumption';
 import { allowRequest } from '@/lib/server/rate-limit';
-import { estimatePublicCashFlow } from '@/lib/valuation/public-cash-flow';
 import type { TrackEvidence } from '@/types/catalog';
 
 const MUSICBRAINZ_ID =
@@ -34,19 +36,25 @@ export async function GET(
 
   try {
     const catalog = await new MusicBrainzCatalogProvider().getArtistCatalog(id);
+    const retrievedAt = new Date().toISOString();
+    let lastFmSignals: LastFmTrackSignal[] = [];
+    catalog.publicCashFlowEstimate = null;
     const lastFmApiKey = process.env.LASTFM_API_KEY;
 
     if (lastFmApiKey) {
       try {
-        const signals = await new LastFmPerformanceProvider(
+        lastFmSignals = await new LastFmPerformanceProvider(
           lastFmApiKey,
         ).getTopTrackSignals(catalog.artist.name);
-        const total = signals.reduce((sum, track) => sum + track.playcount, 0);
-        const retrievedAt = new Date().toISOString();
-        catalog.tracks = signals.map<TrackEvidence>((track, index) => ({
+        const total = lastFmSignals.reduce(
+          (sum, track) => sum + track.playcount,
+          0,
+        );
+        catalog.tracks = lastFmSignals.map<TrackEvidence>((track, index) => ({
           id: `lastfm-${index}`,
           title: track.name,
           demandShare: total > 0 ? (track.playcount / total) * 100 : 0,
+          observationTiming: 'cumulative-observation',
           lastFmPlaycount: track.playcount,
           lastFmListeners: track.listeners,
           observedMetric: `${track.playcount.toLocaleString('en-US')} Last.fm scrobbles`,
@@ -60,45 +68,60 @@ export async function GET(
             note: 'Used only for relative demand and concentration—not as a direct revenue measure.',
           },
         }));
-        catalog.coverage[1] = {
-          label: 'Public performance',
-          level: signals.length ? 'Moderate' : 'Unavailable',
-          detail: signals.length
-            ? `${signals.length} Last.fm track observations support relative demand analysis.`
-            : 'Last.fm returned no top-track observations.',
-        };
-
-        const startYear = catalog.activeYears?.match(/^(\d{4})/)?.[1];
-        const activeCareerYears = startYear
-          ? Math.max(0, new Date().getUTCFullYear() - Number(startYear))
-          : null;
-        const estimate = estimatePublicCashFlow({
-          topTracks: signals,
-          releaseCount: catalog.releases.length,
-          weightedCatalogAge: catalog.weightedCatalogAge.value,
-          activeCareerYears,
-          retrievedAt,
-        });
-        catalog.publicCashFlowEstimate = estimate;
-        const cashFlowCoverage = catalog.coverage.find(
-          (item) => item.label === 'Normalized cash flow',
+        const performanceCoverage = catalog.coverage.find(
+          (item) => item.label === 'Public performance',
         );
-        if (cashFlowCoverage) {
-          cashFlowCoverage.level = estimate ? 'Moderate' : 'Unavailable';
-          cashFlowCoverage.detail = estimate
-            ? `Range calibrated from ${signals.length} absolute Last.fm demand observations; confidence is ${estimate.confidence}.`
-            : 'Last.fm evidence did not meet the minimum scale and coverage thresholds for an indicative estimate.';
+        if (performanceCoverage) {
+          performanceCoverage.level = lastFmSignals.length
+            ? 'Moderate'
+            : 'Unavailable';
+          performanceCoverage.detail = lastFmSignals.length
+            ? `${lastFmSignals.length} Last.fm track observations support relative demand analysis.`
+            : 'Last.fm returned no top-track observations.';
         }
       } catch {
-        catalog.coverage[1] = {
-          label: 'Public performance',
-          level: 'Unavailable',
-          detail:
-            'Last.fm was unavailable. The catalog still loads from MusicBrainz; no replacement data was fabricated.',
-        };
-        catalog.publicCashFlowEstimate = null;
+        const performanceCoverage = catalog.coverage.find(
+          (item) => item.label === 'Public performance',
+        );
+        if (performanceCoverage) {
+          performanceCoverage.level = 'Unavailable';
+          performanceCoverage.detail =
+            'Last.fm was unavailable. The catalog still loads from MusicBrainz; no replacement data was fabricated.';
+        }
       }
     }
+
+    const youtubeApiKey = process.env.YOUTUBE_API_KEY;
+    if (youtubeApiKey) {
+      const youtubeCoverage = catalog.coverage.find(
+        (item) => item.label === 'YouTube consumption',
+      );
+      try {
+        catalog.youtubeVideos = await new YouTubeDataApiProvider(
+          youtubeApiKey,
+        ).getOfficialVideoEvidence(catalog.artist.name);
+        if (youtubeCoverage) {
+          youtubeCoverage.level = catalog.youtubeVideos.length
+            ? 'Moderate'
+            : 'Unavailable';
+          youtubeCoverage.detail = catalog.youtubeVideos.length
+            ? `${catalog.youtubeVideos.length} likely official uploads provide cumulative-view evidence.`
+            : 'No official uploads passed conservative artist and channel matching.';
+        }
+      } catch {
+        if (youtubeCoverage) {
+          youtubeCoverage.level = 'Unavailable';
+          youtubeCoverage.detail =
+            'YouTube was unavailable. No fan-upload totals or replacement data were fabricated.';
+        }
+      }
+    }
+
+    catalog.publicConsumptionEstimate = buildPublicConsumptionEstimate({
+      lastFmTracks: lastFmSignals,
+      youtubeVideos: catalog.youtubeVideos,
+      retrievedAt,
+    });
 
     return Response.json({ catalog });
   } catch (error) {

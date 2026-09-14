@@ -2,7 +2,7 @@
 
 **Underwrite a music catalog using only what the public can see.**
 
-Catalog Underwriter is an interactive public-data workbench for reconstructing a musical catalog, estimating its economic cash-flow range, and testing what a selected interest may be worth. It separates observed evidence, calculated fields, estimates, and user assumptions throughout the product.
+Catalog Underwriter is an interactive public-data workbench for reconstructing a musical catalog and testing what a selected interest may be worth. It separates observed consumption, modeled consumption, economic assumptions, estimated cash flow, and valuation throughout the product.
 
 ## Overview
 
@@ -20,9 +20,11 @@ Public evidence → explicit assumptions → deterministic cash flow → DCF →
 
 - MusicBrainz resolves ambiguous artist identities and returns public catalog structure.
 - An optional server-side Last.fm adapter adds relative track-demand evidence.
+- An optional server-side YouTube adapter adds cumulative views for conservatively matched official uploads.
 - A versioned stored snapshot makes the main demonstration reliable without live APIs.
 - Pure TypeScript functions calculate cash flow, DCF, scenarios, sensitivity, concentration, and risk diagnostics.
-- Missing data stays visible as unknown; live catalogs without sufficient evidence require a user-entered cash-flow base.
+- Missing data stays visible as unknown; live catalogs without annual-consumption evidence require a user-entered cash-flow base.
+- DCF and transaction-derived market-multiple values are shown separately and reconciled without mechanical averaging.
 
 ## Architecture
 
@@ -32,6 +34,7 @@ The application uses Vinext, React 19, TypeScript, Tailwind CSS, restyled shadcn
 
 - [MusicBrainz](https://musicbrainz.org/doc/MusicBrainz_API): artist identity, release groups, dates, types, and genres.
 - [Last.fm](https://www.last.fm/api/show/artist.getTopTracks): optional relative demand and concentration evidence only.
+- [YouTube Data API](https://developers.google.com/youtube/v3/docs/videos/list): optional cumulative official-video evidence only.
 - Repository-managed comparable transactions: each record links to an original announcement and, when different, a reported-price source.
 
 ## Valuation methodology
@@ -43,7 +46,8 @@ The engine projects ten explicit annual periods and a Gordon-growth terminal val
 - Public data cannot verify royalty income, rights ownership, recoupment, or private contract terms.
 - MusicBrainz coverage varies and its live lightweight route does not perform recording-level normalization.
 - Last.fm is a relative-demand signal, not a royalty or total-market stream count.
-- The demo cash-flow range is an explicit model estimate from a stored fixture, not a factual claim about artist earnings.
+- The demo cash-flow range is an illustrative stored analyst assumption, not a factual claim about artist earnings.
+- Last.fm and cumulative YouTube views never directly produce dollar cash flow.
 - Request throttling is process-local until production hosting adds durable edge infrastructure.
 
 ## Local development
@@ -60,7 +64,7 @@ Open `http://localhost:3000`. The stored demo works without API credentials.
 
 ## Environment variables
 
-`LASTFM_API_KEY` is optional. When present, the server retrieves Last.fm top-track signals for live artist underwrites. Secrets remain server-side and `.env.local` is ignored by Git.
+`LASTFM_API_KEY` is optional. When present, the server retrieves Last.fm top-track signals for live artist underwrites. `YOUTUBE_API_KEY` is also optional and enables likely-official cumulative video evidence. Secrets remain server-side and `.env.local` is ignored by Git.
 
 ## Testing
 

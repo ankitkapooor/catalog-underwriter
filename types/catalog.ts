@@ -38,17 +38,41 @@ export type TrackEvidence = {
   id: string;
   title: string;
   demandShare: number;
+  observationTiming: ObservationTiming;
   lastFmPlaycount?: number;
   lastFmListeners?: number;
   observedMetric?: string;
   source: SourcedValue<string>;
 };
 
-export type PublicCashFlowModelInput = {
+export type ObservationTiming =
+  | 'current-annual-run-rate'
+  | 'cumulative-observation'
+  | 'modeled-annualization';
+
+export type EvidenceLayer =
+  | 'observed-consumption'
+  | 'modeled-consumption'
+  | 'economic-assumption'
+  | 'estimated-cash-flow'
+  | 'valuation';
+
+export type ModelInput = {
   label: string;
   value: string;
   method: 'observed' | 'calculated' | 'assumption';
+  layer?: EvidenceLayer;
+  observationTiming?: ObservationTiming;
   source?: string;
+  note?: string;
+};
+
+export type PublicCashFlowModelInput = ModelInput;
+
+export type EstimateRange = {
+  low: number;
+  midpoint: number;
+  high: number;
 };
 
 export type PublicCashFlowEstimate = {
@@ -60,6 +84,39 @@ export type PublicCashFlowEstimate = {
   inputs: PublicCashFlowModelInput[];
   note: string;
   retrievedAt: string;
+};
+
+export type YouTubeVideoEvidence = {
+  videoId: string;
+  channelId: string;
+  channelTitle: string;
+  title: string;
+  viewCount: number;
+  publicationDate: string;
+  evidenceType:
+    | 'official-music-video'
+    | 'official-audio'
+    | 'artist-topic-upload';
+  matchingConfidence: Confidence;
+  observationTiming: 'cumulative-observation';
+  sourceUrl: string;
+};
+
+export type AnnualizedConsumptionEvidence = {
+  range: EstimateRange;
+  observationTiming: 'current-annual-run-rate' | 'modeled-annualization';
+  methodology: string;
+  source?: string;
+};
+
+export type PublicConsumptionEstimate = {
+  audioStreamingEquivalent: EstimateRange | null;
+  youtubeAnnualViews: EstimateRange | null;
+  confidence: Confidence;
+  inputs: ModelInput[];
+  methodologyVersion: string;
+  retrievedAt: string;
+  note: string;
 };
 
 export type CoverageItem = {
@@ -80,6 +137,8 @@ export type CatalogSnapshot = {
   recordingCount: SourcedValue<number>;
   weightedCatalogAge: SourcedValue<number>;
   tracks: TrackEvidence[];
+  youtubeVideos: YouTubeVideoEvidence[];
   coverage: CoverageItem[];
+  publicConsumptionEstimate: PublicConsumptionEstimate | null;
   publicCashFlowEstimate: PublicCashFlowEstimate | null;
 };

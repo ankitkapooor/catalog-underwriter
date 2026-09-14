@@ -15,6 +15,7 @@ const track = (
   id,
   title,
   demandShare,
+  observationTiming: 'cumulative-observation',
   observedMetric,
   source: {
     value: observedMetric,
@@ -142,6 +143,7 @@ export const demoCatalog: CatalogSnapshot = {
     track('tv-off', 'tv off', 3, 'Recent chart demand signal'),
     track('long-tail', 'Remaining catalog', 15, 'Aggregated long-tail demand'),
   ],
+  youtubeVideos: [],
   coverage: [
     {
       label: 'Release metadata',
@@ -166,12 +168,24 @@ export const demoCatalog: CatalogSnapshot = {
       detail: 'The model does not claim access to private royalty income.',
     },
     {
+      label: 'YouTube consumption',
+      level: 'Unavailable',
+      detail: 'No YouTube fixture is stored for this demonstration snapshot.',
+    },
+    {
+      label: 'Annual consumption',
+      level: 'Unavailable',
+      detail:
+        'No current annual or modeled annualized consumption evidence is stored.',
+    },
+    {
       label: 'Normalized cash flow',
       level: 'Moderate',
       detail:
-        'Stored illustrative range from versioned public-demand calibration; not observed earnings.',
+        'Stored illustrative analyst assumption; not an automatic public-evidence estimate.',
     },
   ],
+  publicConsumptionEstimate: null,
   publicCashFlowEstimate: {
     low: 4_800_000,
     midpoint: 6_200_000,
@@ -180,18 +194,18 @@ export const demoCatalog: CatalogSnapshot = {
     methodologyVersion: 'public-underwrite-1.0.0',
     inputs: [
       {
-        label: 'Stored public-demand fixture',
-        value: 'Normalized development snapshot',
-        method: 'observed',
+        label: 'Stored analyst scenario',
+        value: 'Illustrative normalized annual cash flow',
+        method: 'assumption',
         source: 'Catalog Underwriter stored fixture',
       },
       {
-        label: 'Calibration anchor',
-        value: 'Versioned public-demand model',
+        label: 'Evidence status',
+        value: 'Not derived from Last.fm or MusicBrainz',
         method: 'assumption',
       },
     ],
-    note: 'Illustrative range derived from a stored, normalized public-signal fixture and explicit calibration assumptions—not observed artist earnings or a direct platform payout.',
+    note: 'Illustrative stored analyst assumption—not observed artist earnings and not derived from Last.fm, MusicBrainz, or a direct platform payout.',
     retrievedAt,
   },
 };

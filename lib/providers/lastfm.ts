@@ -1,6 +1,6 @@
-import type { PerformanceProvider } from './catalog-provider';
+import type { LastFmProvider } from './catalog-provider';
 
-export class LastFmPerformanceProvider implements PerformanceProvider {
+export class LastFmPerformanceProvider implements LastFmProvider {
   constructor(private readonly apiKey: string) {}
 
   async getTopTrackSignals(artistName: string) {

@@ -12,6 +12,7 @@ import {
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 
 import transactions from '@/data/catalog-transactions.json';
+import { defaultRightsEconomicsAssumptions } from '@/config/rights-economics';
 import { defaultValuationAssumptions } from '@/config/valuation-defaults';
 import { breakTheDeal, type RiskDiagnostic } from '@/lib/valuation/diagnostics';
 import { calculateConcentration } from '@/lib/valuation/concentration';
@@ -20,6 +21,20 @@ import {
   type ScenarioName,
 } from '@/lib/valuation/scenarios';
 import { buildSensitivityMatrix } from '@/lib/valuation/sensitivity';
+import {
+  calculateMarketMultipleValue,
+  deriveMarketMultipleRange,
+  MARKET_CATEGORY_LABELS,
+  reconcileValuations,
+  type MarketCategory,
+  type MarketMultipleObservation,
+} from '@/lib/valuation/market-multiple';
+import {
+  estimateRightsRevenue,
+  type EconomicsScenario,
+  type RightsEconomicsAssumptions,
+  type RightsEconomicsScenarioAssumptions,
+} from '@/lib/valuation/rights-economics';
 import type { ValuationAssumptions } from '@/lib/valuation/dcf';
 import type { CatalogSnapshot } from '@/types/catalog';
 import { Button } from '@/components/ui/button';
@@ -30,6 +45,13 @@ import {
   type ChartConfig,
 } from '@/components/ui/chart';
 import { Input } from '@/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import {
   Sheet,
   SheetContent,
@@ -57,6 +79,12 @@ const money = (value: number, digits = 1) =>
 
 const percent = (value: number, digits = 1) =>
   `${(value * 100).toFixed(digits)}%`;
+
+const marketObservations =
+  transactions as unknown as MarketMultipleObservation[];
+const initialMarketMultiple =
+  deriveMarketMultipleRange(marketObservations, 'publishing')?.midpoint ??
+  Number.NaN;
 
 function NumericAssumption({
   label,
@@ -184,6 +212,15 @@ export function UnderwritingWorkbench({
   const [useKnownCashFlow, setUseKnownCashFlow] = useState(
     !initialCatalog?.publicCashFlowEstimate,
   );
+  const [marketCategory, setMarketCategory] =
+    useState<MarketCategory>('publishing');
+  const [selectedMarketMultiple, setSelectedMarketMultiple] = useState(
+    initialMarketMultiple,
+  );
+  const [economicsScenario, setEconomicsScenario] =
+    useState<EconomicsScenario>('base');
+  const [rightsEconomics, setRightsEconomics] =
+    useState<RightsEconomicsAssumptions>(defaultRightsEconomicsAssumptions);
   const [showDiagnostics, setShowDiagnostics] = useState(false);
 
   useEffect(() => {
@@ -250,6 +287,19 @@ export function UnderwritingWorkbench({
     () => (results.data ? buildSensitivityMatrix(assumptions) : []),
     [assumptions, results.data],
   );
+  const marketRange = useMemo(
+    () => deriveMarketMultipleRange(marketObservations, marketCategory),
+    [marketCategory],
+  );
+  const rightsRevenueEstimate = useMemo(
+    () =>
+      estimateRightsRevenue(
+        catalog?.publicConsumptionEstimate ?? null,
+        rightsEconomics,
+        economicsScenario,
+      ),
+    [catalog, economicsScenario, rightsEconomics],
+  );
   const diagnostics = useMemo<RiskDiagnostic[]>(
     () =>
       results.data
@@ -282,6 +332,21 @@ export function UnderwritingWorkbench({
 
   const active = results.data?.[selectedScenario];
   const hasCashFlow = Number.isFinite(assumptions.normalizedCashFlow);
+  const marketValue =
+    hasCashFlow && Number.isFinite(selectedMarketMultiple)
+      ? calculateMarketMultipleValue(
+          assumptions.normalizedCashFlow,
+          selectedMarketMultiple,
+        )
+      : null;
+  const reconciliation =
+    active && hasCashFlow && marketRange
+      ? reconcileValuations(
+          active.catalogValue,
+          assumptions.normalizedCashFlow,
+          marketRange,
+        )
+      : null;
   const update = <K extends keyof ValuationAssumptions>(
     key: K,
     value: ValuationAssumptions[K],
@@ -308,6 +373,24 @@ export function UnderwritingWorkbench({
       update('normalizedCashFlow', catalog.publicCashFlowEstimate.midpoint);
     }
     setUseKnownCashFlow(checked);
+  };
+  const updateRightsEconomics = (
+    key: keyof RightsEconomicsScenarioAssumptions,
+    value: number,
+  ) =>
+    setRightsEconomics((current) => ({
+      ...current,
+      [economicsScenario]: {
+        ...current[economicsScenario],
+        [key]: Number.isFinite(value) ? value : null,
+      },
+    }));
+  const changeMarketCategory = (category: MarketCategory) => {
+    setMarketCategory(category);
+    setSelectedMarketMultiple(
+      deriveMarketMultipleRange(marketObservations, category)?.midpoint ??
+        Number.NaN,
+    );
   };
 
   return (
@@ -406,11 +489,10 @@ export function UnderwritingWorkbench({
             role="alert"
             className="mt-5 border-l-4 border-accent bg-accent/8 p-5 text-sm leading-6"
           >
-            <p className="eyebrow text-accent">
-              Automatic cash-flow estimate unavailable
-            </p>
+            <p className="eyebrow text-accent">Annual economics unavailable</p>
             <p className="mt-2 font-display text-2xl font-semibold">
-              Public evidence is insufficient to estimate normalized cash flow.
+              Automatic economic cash-flow estimate not yet available from
+              sufficient public evidence.
             </p>
             <p className="mt-2 text-muted-foreground">
               Enter a known or hypothetical annual cash flow in the assumptions
@@ -487,7 +569,7 @@ export function UnderwritingWorkbench({
                     </div>
                   ))}
                 </div>
-                <div className="mt-8 grid gap-5 sm:grid-cols-2">
+                <div className="mt-8 grid gap-5 sm:grid-cols-3">
                   <div className="border-t-2 border-ink pt-4">
                     <div className="flex items-center justify-between gap-3">
                       <p className="eyebrow">Observed · public demand</p>
@@ -528,34 +610,84 @@ export function UnderwritingWorkbench({
                       </p>
                     )}
                     <p className="mt-3 text-xs leading-5 text-muted-foreground">
-                      Scrobbles and listeners are demand proxies, not
-                      royalty-bearing streams or direct platform payouts.
+                      Cumulative observation. Scrobbles and listeners are demand
+                      proxies, not royalty-bearing streams or direct platform
+                      payouts.
                     </p>
                   </div>
                   <div className="border-t-2 border-ink pt-4">
-                    <p className="eyebrow">Estimated · normalized cash flow</p>
-                    {catalog.publicCashFlowEstimate ? (
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="eyebrow">Observed · official video</p>
+                      <span className="font-mono text-[10px] uppercase text-accent">
+                        YouTube
+                      </span>
+                    </div>
+                    {catalog.youtubeVideos.length ? (
                       <>
                         <p className="mt-2 font-display text-2xl font-semibold">
-                          {money(catalog.publicCashFlowEstimate.low)}–
-                          {money(catalog.publicCashFlowEstimate.high)}
+                          {catalog.youtubeVideos
+                            .reduce((sum, video) => sum + video.viewCount, 0)
+                            .toLocaleString('en-US')}
                         </p>
                         <p className="mt-1 text-sm text-muted-foreground">
-                          Base: {money(catalog.publicCashFlowEstimate.midpoint)}{' '}
-                          · {catalog.publicCashFlowEstimate.confidence}{' '}
-                          confidence
-                        </p>
-                        <p className="mt-3 text-xs leading-5 text-muted-foreground">
-                          {catalog.publicCashFlowEstimate.note}
+                          {catalog.youtubeVideos.length} conservatively matched
+                          uploads
                         </p>
                       </>
                     ) : (
                       <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                        Automatic cash-flow estimate unavailable. Enter a known
-                        or hypothetical annual cash flow to continue.
+                        No official-video evidence is available.
+                      </p>
+                    )}
+                    <p className="mt-3 text-xs leading-5 text-muted-foreground">
+                      Cumulative observation. Fan uploads are excluded and no
+                      annual run rate is inferred.
+                    </p>
+                  </div>
+                  <div className="border-t-2 border-ink pt-4">
+                    <p className="eyebrow">Modeled · annual consumption</p>
+                    {catalog.publicConsumptionEstimate
+                      ?.audioStreamingEquivalent ||
+                    catalog.publicConsumptionEstimate?.youtubeAnnualViews ? (
+                      <>
+                        <p className="mt-2 font-display text-2xl font-semibold">
+                          Annual range available
+                        </p>
+                        <p className="mt-3 text-xs leading-5 text-muted-foreground">
+                          {catalog.publicConsumptionEstimate.note}
+                        </p>
+                      </>
+                    ) : (
+                      <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                        No current annual/run-rate observation or disclosed
+                        modeled annualization is available.
                       </p>
                     )}
                   </div>
+                </div>
+                <div className="mt-5 border-t-2 border-ink pt-4">
+                  <p className="eyebrow">Estimated · normalized cash flow</p>
+                  {catalog.publicCashFlowEstimate ? (
+                    <>
+                      <p className="mt-2 font-display text-2xl font-semibold">
+                        {money(catalog.publicCashFlowEstimate.low)}–
+                        {money(catalog.publicCashFlowEstimate.high)}
+                      </p>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        Base: {money(catalog.publicCashFlowEstimate.midpoint)} ·{' '}
+                        {catalog.publicCashFlowEstimate.confidence} confidence
+                      </p>
+                      <p className="mt-3 text-xs leading-5 text-muted-foreground">
+                        {catalog.publicCashFlowEstimate.note}
+                      </p>
+                    </>
+                  ) : (
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                      Automatic economic cash-flow estimate not yet available
+                      from sufficient public evidence. Enter a known or
+                      hypothetical annual cash flow to continue.
+                    </p>
+                  )}
                 </div>
                 <h2 className="mt-8 border-b border-ink/20 pb-3 font-display text-2xl font-semibold">
                   Catalog chronology
@@ -679,9 +811,153 @@ export function UnderwritingWorkbench({
                           </div>
                         ),
                       )}
+                      {catalog.publicConsumptionEstimate?.inputs.map(
+                        (input) => (
+                          <div
+                            className="border-t border-ink/20 pt-4"
+                            key={`${input.label}-${input.value}`}
+                          >
+                            <p className="eyebrow">{input.label}</p>
+                            <p className="mt-2 font-semibold">{input.value}</p>
+                            <dl className="mt-3 grid grid-cols-[90px_1fr] gap-y-2 text-sm">
+                              <dt className="text-muted-foreground">Layer</dt>
+                              <dd>{input.layer ?? 'observed-consumption'}</dd>
+                              <dt className="text-muted-foreground">Timing</dt>
+                              <dd>{input.observationTiming ?? 'Unknown'}</dd>
+                              <dt className="text-muted-foreground">Method</dt>
+                              <dd>{input.method}</dd>
+                            </dl>
+                            {input.note && (
+                              <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                                {input.note}
+                              </p>
+                            )}
+                            {input.source?.startsWith('http') ? (
+                              <a
+                                className="mt-3 inline-flex items-center gap-1 text-sm underline underline-offset-4"
+                                href={input.source}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
+                                Open source <ExternalLink className="size-3" />
+                              </a>
+                            ) : input.source ? (
+                              <p className="mt-3 text-sm text-muted-foreground">
+                                Source: {input.source}
+                              </p>
+                            ) : null}
+                          </div>
+                        ),
+                      )}
                     </div>
                   </SheetContent>
                 </Sheet>
+                <div className="mt-7 border-t-2 border-ink pt-4">
+                  <p className="eyebrow">Rights economics</p>
+                  <h3 className="mt-1 font-display text-2xl font-semibold">
+                    Annual consumption → rights revenue
+                  </h3>
+                  <p className="mt-2 text-xs leading-5 text-muted-foreground">
+                    Editable scenario assumptions stay separate from observed
+                    demand. Blank values do not become implied payouts.
+                  </p>
+                  <Select
+                    value={economicsScenario}
+                    onValueChange={(value) =>
+                      setEconomicsScenario(value as EconomicsScenario)
+                    }
+                  >
+                    <SelectTrigger className="mt-4 h-10 w-full rounded-none border-ink/25 bg-paper">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {(['low', 'base', 'high'] as EconomicsScenario[]).map(
+                        (scenario) => (
+                          <SelectItem key={scenario} value={scenario}>
+                            {scenario[0].toUpperCase() + scenario.slice(1)}
+                          </SelectItem>
+                        ),
+                      )}
+                    </SelectContent>
+                  </Select>
+                  <NumericAssumption
+                    label="Audio effective rights economics"
+                    value={
+                      rightsEconomics[economicsScenario]
+                        .audioEffectiveRightsRevenuePerThousand ?? Number.NaN
+                    }
+                    onChange={(value) =>
+                      updateRightsEconomics(
+                        'audioEffectiveRightsRevenuePerThousand',
+                        value,
+                      )
+                    }
+                    suffix="$ / 1k"
+                    min={0}
+                    step={0.01}
+                  />
+                  <NumericAssumption
+                    label="YouTube effective rights economics"
+                    value={
+                      rightsEconomics[economicsScenario]
+                        .youtubeEffectiveRightsRevenuePerThousand ?? Number.NaN
+                    }
+                    onChange={(value) =>
+                      updateRightsEconomics(
+                        'youtubeEffectiveRightsRevenuePerThousand',
+                        value,
+                      )
+                    }
+                    suffix="$ / 1k"
+                    min={0}
+                    step={0.01}
+                  />
+                  <NumericAssumption
+                    label="Publishing share of recorded revenue"
+                    value={
+                      (rightsEconomics[economicsScenario]
+                        .publishingRevenueAsShareOfRecorded ?? Number.NaN) * 100
+                    }
+                    onChange={(value) =>
+                      updateRightsEconomics(
+                        'publishingRevenueAsShareOfRecorded',
+                        value / 100,
+                      )
+                    }
+                    suffix="%"
+                    min={0}
+                  />
+                  <NumericAssumption
+                    label="Other share of recorded revenue"
+                    value={
+                      (rightsEconomics[economicsScenario]
+                        .otherRevenueAsShareOfRecorded ?? Number.NaN) * 100
+                    }
+                    onChange={(value) =>
+                      updateRightsEconomics(
+                        'otherRevenueAsShareOfRecorded',
+                        value / 100,
+                      )
+                    }
+                    suffix="%"
+                    min={0}
+                  />
+                  <div className="mt-4 border-y border-ink/15 py-4">
+                    <p className="eyebrow">Estimated annual rights revenue</p>
+                    <p className="mt-2 font-display text-2xl font-semibold">
+                      {rightsRevenueEstimate
+                        ? money(
+                            rightsRevenueEstimate.normalizedAnnualRightsRevenue,
+                          )
+                        : 'Unavailable'}
+                    </p>
+                    <p className="mt-2 text-xs leading-5 text-muted-foreground">
+                      {rightsRevenueEstimate
+                        ? `Audio ${money(rightsRevenueEstimate.audioStreaming)} · YouTube ${money(rightsRevenueEstimate.youtube)} · Publishing ${money(rightsRevenueEstimate.publishing)} · Other ${money(rightsRevenueEstimate.other)}`
+                        : 'Requires annual-consumption evidence and all assumptions for the selected scenario.'}
+                    </p>
+                  </div>
+                </div>
               </aside>
             </div>
           </TabsContent>
@@ -703,7 +979,7 @@ export function UnderwritingWorkbench({
                 </div>
                 <p className="border-y border-ink/12 py-3 text-xs leading-5 text-muted-foreground">
                   {useKnownCashFlow
-                    ? 'User-entered cash flow overrides the public estimate. Catalog analytics remain available.'
+                    ? 'User-entered cash flow is the valuation base. Catalog analytics remain available.'
                     : (catalog.publicCashFlowEstimate?.note ??
                       'No defensible public cash-flow estimate is available. Enable Known cash flow to proceed.')}
                 </p>
@@ -784,6 +1060,45 @@ export function UnderwritingWorkbench({
                 <p className="eyebrow mt-5 border-b border-ink/20 pb-2 text-foreground">
                   Capital assumptions
                 </p>
+                <div className="block border-b border-ink/12 py-3 text-sm">
+                  <span className="mb-1.5 flex items-center justify-between gap-3">
+                    Market category
+                    <span className="font-mono text-xs text-muted-foreground">
+                      Transaction set
+                    </span>
+                  </span>
+                  <Select
+                    value={marketCategory}
+                    onValueChange={(value) =>
+                      changeMarketCategory(value as MarketCategory)
+                    }
+                  >
+                    <SelectTrigger className="h-10 w-full rounded-none border-ink/25 bg-paper">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {(
+                        Object.keys(MARKET_CATEGORY_LABELS) as MarketCategory[]
+                      ).map((category) => (
+                        <SelectItem key={category} value={category}>
+                          {MARKET_CATEGORY_LABELS[category]}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <NumericAssumption
+                  label="Selected market multiple"
+                  value={selectedMarketMultiple}
+                  onChange={setSelectedMarketMultiple}
+                  suffix="×"
+                  min={0.1}
+                />
+                <p className="border-b border-ink/12 py-3 text-xs leading-5 text-muted-foreground">
+                  {marketRange
+                    ? `${marketRange.low.toFixed(2)}×–${marketRange.high.toFixed(2)}× from ${marketRange.sampleSize} ${marketRange.basis}.`
+                    : 'No disclosed transaction multiples are available.'}
+                </p>
                 <NumericAssumption
                   label="Discount rate"
                   value={assumptions.discountRate * 100}
@@ -813,13 +1128,32 @@ export function UnderwritingWorkbench({
               <section className="min-w-0">
                 <div className="border-y-2 border-ink bg-paper px-4 py-7 sm:px-7">
                   <div className="flex flex-wrap items-start justify-between gap-6">
-                    <div>
-                      <p className="eyebrow">
-                        Indicative catalog interest value
-                      </p>
-                      <p className="financial-value mt-3">
-                        {active ? money(active.catalogValue) : '—'}
-                      </p>
+                    <div className="grid flex-1 gap-px bg-ink/15 sm:grid-cols-3">
+                      <div className="bg-paper p-4">
+                        <p className="eyebrow">DCF value</p>
+                        <p className="mt-2 font-display text-3xl font-semibold">
+                          {active ? money(active.catalogValue) : '—'}
+                        </p>
+                      </div>
+                      <div className="bg-paper p-4">
+                        <p className="eyebrow">Market multiple value</p>
+                        <p className="mt-2 font-display text-3xl font-semibold">
+                          {marketValue == null ? '—' : money(marketValue)}
+                        </p>
+                        <p className="mt-1 font-mono text-xs text-muted-foreground">
+                          {Number.isFinite(selectedMarketMultiple)
+                            ? `${selectedMarketMultiple.toFixed(2)}× selected`
+                            : 'Select a multiple'}
+                        </p>
+                      </div>
+                      <div className="bg-paper p-4">
+                        <p className="eyebrow">Reconciled indicative range</p>
+                        <p className="mt-2 font-display text-3xl font-semibold">
+                          {reconciliation
+                            ? `${money(reconciliation.low)}–${money(reconciliation.high)}`
+                            : '—'}
+                        </p>
+                      </div>
                     </div>
                     <div
                       className="flex border border-ink/20"
@@ -840,6 +1174,11 @@ export function UnderwritingWorkbench({
                       )}
                     </div>
                   </div>
+                  {reconciliation && (
+                    <p className="mt-4 max-w-3xl text-xs leading-5 text-muted-foreground">
+                      {reconciliation.method}
+                    </p>
+                  )}
                   {results.data && (
                     <div className="mt-8 grid grid-cols-3 gap-px border-y border-ink/15 bg-ink/15">
                       {(['bear', 'base', 'bull'] as ScenarioName[]).map(
@@ -1002,7 +1341,7 @@ export function UnderwritingWorkbench({
                   Underwriting context
                 </p>
                 <div className="border-y border-ink/15 py-4">
-                  <p className="eyebrow">Public estimate range</p>
+                  <p className="eyebrow">Automatic economic cash flow</p>
                   <p className="mt-2 font-display text-2xl font-semibold">
                     {catalog.publicCashFlowEstimate
                       ? `${money(catalog.publicCashFlowEstimate.low)}–${money(catalog.publicCashFlowEstimate.high)}`
@@ -1010,7 +1349,7 @@ export function UnderwritingWorkbench({
                   </p>
                   <p className="mt-2 text-xs leading-5 text-muted-foreground">
                     {catalog.publicCashFlowEstimate?.note ??
-                      'No earnings level was inferred from catalog metadata alone.'}
+                      'Automatic economic cash-flow estimate not yet available from sufficient public evidence.'}
                   </p>
                 </div>
                 <div className="border-b border-ink/15 py-4">
@@ -1229,8 +1568,9 @@ export function UnderwritingWorkbench({
               </h2>
               <p className="mt-3 leading-7 text-muted-foreground">
                 Reported prices are context, not automatic valuation multiples.
-                Rights scope and earnings disclosure differ materially across
-                transactions.
+                Starting multiple ranges use only transactions with disclosed
+                income multiples. Rights scope and earnings definitions still
+                differ materially.
               </p>
             </div>
             <div className="mt-7 overflow-x-auto border-y border-ink/20">
@@ -1240,6 +1580,7 @@ export function UnderwritingWorkbench({
                     <th className="px-3 py-4">Artist</th>
                     <th className="px-3 py-4">Year</th>
                     <th className="px-3 py-4">Reported price</th>
+                    <th className="px-3 py-4">Reported multiple</th>
                     <th className="px-3 py-4">Rights</th>
                     <th className="px-3 py-4">Use</th>
                     <th className="px-3 py-4">Source</th>
@@ -1247,7 +1588,9 @@ export function UnderwritingWorkbench({
                 </thead>
                 <tbody className="divide-y divide-ink/12">
                   {transactions.map((transaction) => (
-                    <tr key={transaction.artist}>
+                    <tr
+                      key={`${transaction.artist}-${transaction.transactionYear}-${transaction.buyer}`}
+                    >
                       <td className="px-3 py-5">
                         <span className="font-semibold">
                           {transaction.artist}
@@ -1263,6 +1606,16 @@ export function UnderwritingWorkbench({
                         {transaction.reportedValue
                           ? money(transaction.reportedValue, 0)
                           : 'Undisclosed'}
+                      </td>
+                      <td className="px-3 py-5 font-mono">
+                        {transaction.reportedMultiple
+                          ? `${transaction.reportedMultiple.toFixed(2)}×`
+                          : 'Undisclosed'}
+                        {transaction.multipleBasis && (
+                          <span className="mt-1 block max-w-40 text-xs leading-5 text-muted-foreground">
+                            {transaction.multipleBasis}
+                          </span>
+                        )}
                       </td>
                       <td className="px-3 py-5">
                         {transaction.rightsIncluded.join(', ')}

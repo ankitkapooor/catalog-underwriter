@@ -17,7 +17,8 @@ Pure TypeScript financial core
 
 Server provider layer
   ├─ MusicBrainz (identity, releases, genres)
-  └─ Last.fm, optional (relative track demand only)
+  ├─ Last.fm, optional (relative track demand only)
+  └─ YouTube Data API, optional (cumulative likely-official views only)
 
 Repository data
   ├─ stored demo snapshot
@@ -28,7 +29,7 @@ Repository data
 
 The React components render and edit structured data. They never implement finance calculations. Provider adapters return the application-owned catalog model so external response shapes do not leak into the financial engine.
 
-The demo snapshot and every external field preserve provenance, retrieval time, confidence, and method. Live requests continue with partial data when Last.fm is unavailable. The application never substitutes fake values for missing evidence.
+The demo snapshot and every external field preserve provenance, retrieval time, confidence, method, and observation timing where applicable. Live requests continue with partial data when Last.fm or YouTube is unavailable. The application never substitutes fake values for missing evidence and never converts cumulative demand signals directly into cash flow.
 
 ## Runtime
 

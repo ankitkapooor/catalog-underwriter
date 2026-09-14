@@ -4,7 +4,7 @@ import type {
   CatalogSnapshot,
 } from '@/types/catalog';
 
-import type { CatalogProvider } from './catalog-provider';
+import type { MusicBrainzProvider } from './catalog-provider';
 
 const BASE_URL = 'https://musicbrainz.org/ws/2';
 const MUSICBRAINZ_HEADERS = {
@@ -132,7 +132,7 @@ const toSearchResult = (artist: MusicBrainzArtist): ArtistSearchResult => ({
   score: artist.score ?? 0,
 });
 
-export class MusicBrainzCatalogProvider implements CatalogProvider {
+export class MusicBrainzCatalogProvider implements MusicBrainzProvider {
   async searchArtist(query: string) {
     const url = `${BASE_URL}/artist?query=${encodeURIComponent(query)}&fmt=json&limit=8`;
     const data = await fetchMusicBrainz<{ artists: MusicBrainzArtist[] }>(url);
@@ -197,6 +197,7 @@ export class MusicBrainzCatalogProvider implements CatalogProvider {
         method: 'calculated',
       },
       tracks: [],
+      youtubeVideos: [],
       coverage: [
         {
           label: 'Release metadata',
@@ -222,12 +223,25 @@ export class MusicBrainzCatalogProvider implements CatalogProvider {
             'Enter known or hypothetical normalized annual cash flow to underwrite this catalog.',
         },
         {
+          label: 'YouTube consumption',
+          level: 'Unavailable',
+          detail:
+            'Configure YOUTUBE_API_KEY to add cumulative official-video evidence.',
+        },
+        {
+          label: 'Annual consumption',
+          level: 'Unavailable',
+          detail:
+            'No current annual or modeled annualized consumption evidence is available.',
+        },
+        {
           label: 'Normalized cash flow',
           level: 'Unavailable',
           detail:
-            'Automatic estimation requires absolute public-demand evidence from a performance provider.',
+            'Automatic economic cash-flow estimation is disabled without annual consumption and explicit rights economics.',
         },
       ],
+      publicConsumptionEstimate: null,
       publicCashFlowEstimate: null,
     };
   }
