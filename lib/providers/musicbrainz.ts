@@ -7,10 +7,62 @@ import type {
 import type { CatalogProvider } from './catalog-provider';
 
 const BASE_URL = 'https://musicbrainz.org/ws/2';
-const HEADERS = {
+const MUSICBRAINZ_HEADERS = {
   Accept: 'application/json',
   'User-Agent': 'CatalogUnderwriter/1.0 (catalog.ankitkapoor.me)',
 };
+const MIN_REQUEST_INTERVAL_MS = 1_100;
+const RETRY_DELAYS_MS = [1_500, 3_000, 6_000] as const;
+const MAX_RETRIES = RETRY_DELAYS_MS.length;
+
+type Sleep = (milliseconds: number) => Promise<void>;
+type MusicBrainzRequestOptions = { sleep?: Sleep };
+
+const sleep: Sleep = (milliseconds) =>
+  new Promise((resolve) => setTimeout(resolve, milliseconds));
+
+// Every network attempt, including retries, passes through this queue. Keeping
+// the queue at module scope makes the throttle global to all provider calls in
+// this runtime instead of creating a separate timer for each request.
+let requestQueue: Promise<void> = Promise.resolve();
+let lastRequestStartedAt = 0;
+
+function enqueueMusicBrainzRequest<T>(
+  request: () => Promise<T>,
+  wait: Sleep,
+): Promise<T> {
+  const next = requestQueue.then(async () => {
+    const elapsed = Date.now() - lastRequestStartedAt;
+    const waitForThrottle = Math.max(0, MIN_REQUEST_INTERVAL_MS - elapsed);
+    if (waitForThrottle > 0) await wait(waitForThrottle);
+    lastRequestStartedAt = Date.now();
+    return request();
+  });
+
+  // A failed request must not permanently poison the queue for later calls.
+  requestQueue = next.then(
+    () => undefined,
+    () => undefined,
+  );
+  return next;
+}
+
+function retryAfterMilliseconds(value: string | null): number {
+  if (!value) return 0;
+  const seconds = Number(value);
+  if (Number.isFinite(seconds)) return Math.max(0, seconds * 1_000);
+  const retryAt = Date.parse(value);
+  return Number.isNaN(retryAt) ? 0 : Math.max(0, retryAt - Date.now());
+}
+
+function exhaustedError(status: number): Error {
+  if (status === 503 || status === 429) {
+    return new Error(
+      'MusicBrainz is temporarily rate-limiting or unavailable. Please try again shortly.',
+    );
+  }
+  return new Error(`MusicBrainz returned ${status}.`);
+}
 
 type MusicBrainzArtist = {
   id: string;
@@ -31,17 +83,43 @@ type MusicBrainzArtist = {
   }>;
 };
 
-async function fetchJson<T>(url: string): Promise<T> {
-  const response = await fetch(url, {
-    headers: HEADERS,
-    next: { revalidate: 86_400 },
-  } as RequestInit & { next: { revalidate: number } });
-  if (!response.ok) {
-    throw new Error(
-      `MusicBrainz returned ${response.status}. Try again after its public service recovers.`,
+export async function fetchMusicBrainz<T>(
+  url: string,
+  options: MusicBrainzRequestOptions = {},
+): Promise<T> {
+  const wait = options.sleep ?? sleep;
+
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt += 1) {
+    const response = await enqueueMusicBrainzRequest(
+      () =>
+        fetch(url, {
+          headers: MUSICBRAINZ_HEADERS,
+          next: { revalidate: 86_400 },
+        } as RequestInit & { next: { revalidate: number } }),
+      wait,
     );
+
+    if (response.ok) return response.json() as Promise<T>;
+
+    const retryable = response.status === 503 || response.status === 429;
+    if (!retryable || attempt === MAX_RETRIES) {
+      throw exhaustedError(response.status);
+    }
+
+    const calculatedDelay = RETRY_DELAYS_MS[attempt];
+    const retryAfter = retryAfterMilliseconds(
+      response.headers.get('Retry-After'),
+    );
+    await wait(Math.max(calculatedDelay, retryAfter));
   }
-  return response.json() as Promise<T>;
+
+  throw new Error('MusicBrainz request failed unexpectedly.');
+}
+
+/** Reset only for isolated unit tests; production callers should never use it. */
+export function resetMusicBrainzThrottleForTests() {
+  requestQueue = Promise.resolve();
+  lastRequestStartedAt = 0;
 }
 
 const toSearchResult = (artist: MusicBrainzArtist): ArtistSearchResult => ({
@@ -57,13 +135,13 @@ const toSearchResult = (artist: MusicBrainzArtist): ArtistSearchResult => ({
 export class MusicBrainzCatalogProvider implements CatalogProvider {
   async searchArtist(query: string) {
     const url = `${BASE_URL}/artist?query=${encodeURIComponent(query)}&fmt=json&limit=8`;
-    const data = await fetchJson<{ artists: MusicBrainzArtist[] }>(url);
+    const data = await fetchMusicBrainz<{ artists: MusicBrainzArtist[] }>(url);
     return data.artists.map(toSearchResult);
   }
 
   async getArtistCatalog(id: string): Promise<CatalogSnapshot> {
     const url = `${BASE_URL}/artist/${encodeURIComponent(id)}?inc=release-groups+genres&fmt=json`;
-    const artist = await fetchJson<MusicBrainzArtist>(url);
+    const artist = await fetchMusicBrainz<MusicBrainzArtist>(url);
     const retrievedAt = new Date().toISOString();
     const releases: CatalogRelease[] = (artist['release-groups'] ?? [])
       .map((release) => ({
@@ -109,7 +187,9 @@ export class MusicBrainzCatalogProvider implements CatalogProvider {
         note: 'Recording-level normalization is unavailable in this lightweight live lookup; unknown is not treated as zero.',
       },
       weightedCatalogAge: {
-        value: Number(weightedCatalogAge.toFixed(1)),
+        value: datedReleases.length
+          ? Number(weightedCatalogAge.toFixed(1))
+          : null,
         source: 'Catalog Underwriter from MusicBrainz release-group dates',
         sourceUrl: `https://musicbrainz.org/artist/${id}`,
         retrievedAt,
@@ -140,6 +220,12 @@ export class MusicBrainzCatalogProvider implements CatalogProvider {
           level: 'Not public',
           detail:
             'Enter known or hypothetical normalized annual cash flow to underwrite this catalog.',
+        },
+        {
+          label: 'Normalized cash flow',
+          level: 'Unavailable',
+          detail:
+            'Automatic estimation requires absolute public-demand evidence from a performance provider.',
         },
       ],
       publicCashFlowEstimate: null,

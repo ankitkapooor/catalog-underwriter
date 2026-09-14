@@ -1,6 +1,7 @@
 import { LastFmPerformanceProvider } from '@/lib/providers/lastfm';
 import { MusicBrainzCatalogProvider } from '@/lib/providers/musicbrainz';
 import { allowRequest } from '@/lib/server/rate-limit';
+import { estimatePublicCashFlow } from '@/lib/valuation/public-cash-flow';
 import type { TrackEvidence } from '@/types/catalog';
 
 const MUSICBRAINZ_ID =
@@ -46,6 +47,8 @@ export async function GET(
           id: `lastfm-${index}`,
           title: track.name,
           demandShare: total > 0 ? (track.playcount / total) * 100 : 0,
+          lastFmPlaycount: track.playcount,
+          lastFmListeners: track.listeners,
           observedMetric: `${track.playcount.toLocaleString('en-US')} Last.fm scrobbles`,
           source: {
             value: `${track.playcount} scrobbles; ${track.listeners} listeners`,
@@ -64,6 +67,28 @@ export async function GET(
             ? `${signals.length} Last.fm track observations support relative demand analysis.`
             : 'Last.fm returned no top-track observations.',
         };
+
+        const startYear = catalog.activeYears?.match(/^(\d{4})/)?.[1];
+        const activeCareerYears = startYear
+          ? Math.max(0, new Date().getUTCFullYear() - Number(startYear))
+          : null;
+        const estimate = estimatePublicCashFlow({
+          topTracks: signals,
+          releaseCount: catalog.releases.length,
+          weightedCatalogAge: catalog.weightedCatalogAge.value,
+          activeCareerYears,
+          retrievedAt,
+        });
+        catalog.publicCashFlowEstimate = estimate;
+        const cashFlowCoverage = catalog.coverage.find(
+          (item) => item.label === 'Normalized cash flow',
+        );
+        if (cashFlowCoverage) {
+          cashFlowCoverage.level = estimate ? 'Moderate' : 'Unavailable';
+          cashFlowCoverage.detail = estimate
+            ? `Range calibrated from ${signals.length} absolute Last.fm demand observations; confidence is ${estimate.confidence}.`
+            : 'Last.fm evidence did not meet the minimum scale and coverage thresholds for an indicative estimate.';
+        }
       } catch {
         catalog.coverage[1] = {
           label: 'Public performance',
@@ -71,6 +96,7 @@ export async function GET(
           detail:
             'Last.fm was unavailable. The catalog still loads from MusicBrainz; no replacement data was fabricated.',
         };
+        catalog.publicCashFlowEstimate = null;
       }
     }
 

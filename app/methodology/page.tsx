@@ -30,7 +30,7 @@ const sections = [
   {
     number: '05',
     title: 'Cash-flow reconstruction',
-    body: 'The stored demo presents a low–midpoint–high annual economic cash-flow range calibrated from its saved public-signal fixture. The range is an inferred operating base, not observed earnings. For live artists without sufficient performance inputs, the product requires a known or hypothetical cash-flow entry rather than inventing one.',
+    body: 'The stored demo presents a low–midpoint–high annual economic cash-flow range calibrated from its saved public-signal fixture. The live estimator (public-cash-flow-1.0.0) requires at least three valid top-track observations, 100,000 aggregate playcounts, 10,000 peak listeners, and one release group. It anchors $250,000 to 25 million playcounts, one million peak listeners, and 12 release groups, with playcount/listener elasticities of 0.55/0.25. Coverage uses a 25-track target and 0.55 floor; release breadth is sqrt(releases/12), bounded 0.6–1.4; age is neutral at 10 years with a 1% per-year slope, bounded 0.85–1.15. Range uncertainty starts at 0.15, adds 0.35 for missing coverage and 0.30 times top-five concentration. Base low/high multipliers are 0.80/1.25, adjusted within 0.25–0.70 and 1.40–2.50; total cash flow is bounded at $25,000/$50,000,000. These are demand proxies—not royalty rates or lifetime catalog totals. The range is inferred, not observed earnings; insufficient live evidence requires a known or hypothetical cash-flow entry.',
   },
   {
     number: '06',

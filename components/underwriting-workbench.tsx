@@ -95,7 +95,13 @@ function NumericAssumption({
           min={min}
           max={max}
           disabled={disabled}
-          onChange={(event) => onChange(Number(event.target.value))}
+          onChange={(event) =>
+            onChange(
+              event.target.value === ''
+                ? Number.NaN
+                : Number(event.target.value),
+            )
+          }
           className="h-9 rounded-none border-0 bg-transparent font-mono shadow-none focus-visible:ring-1"
         />
         <span className="pr-3 font-mono text-xs text-muted-foreground">
@@ -171,7 +177,7 @@ export function UnderwritingWorkbench({
   const [assumptions, setAssumptions] = useState<ValuationAssumptions>({
     ...defaultValuationAssumptions,
     normalizedCashFlow:
-      initialCatalog?.publicCashFlowEstimate?.midpoint ?? 1_000_000,
+      initialCatalog?.publicCashFlowEstimate?.midpoint ?? Number.NaN,
   });
   const [selectedScenario, setSelectedScenario] =
     useState<ScenarioName>('base');
@@ -200,7 +206,7 @@ export function UnderwritingWorkbench({
         setAssumptions((current) => ({
           ...current,
           normalizedCashFlow:
-            nextCatalog.publicCashFlowEstimate?.midpoint ?? 1_000_000,
+            nextCatalog.publicCashFlowEstimate?.midpoint ?? Number.NaN,
         }));
       })
       .catch((error: unknown) => {
@@ -217,6 +223,9 @@ export function UnderwritingWorkbench({
   }, [artistId, initialCatalog]);
 
   const results = useMemo(() => {
+    if (!Number.isFinite(assumptions.normalizedCashFlow)) {
+      return { data: null, error: '' };
+    }
     try {
       return { data: calculateScenarios(assumptions), error: '' };
     } catch (error) {
@@ -272,6 +281,7 @@ export function UnderwritingWorkbench({
   if (!catalog) return <LoadingCatalog />;
 
   const active = results.data?.[selectedScenario];
+  const hasCashFlow = Number.isFinite(assumptions.normalizedCashFlow);
   const update = <K extends keyof ValuationAssumptions>(
     key: K,
     value: ValuationAssumptions[K],
@@ -279,6 +289,19 @@ export function UnderwritingWorkbench({
   const datedReleases = catalog.releases
     .filter((release) => release.year)
     .slice(0, 8);
+  const observedDemandTracks = catalog.tracks.filter(
+    (track) =>
+      Number.isFinite(track.lastFmPlaycount) &&
+      Number.isFinite(track.lastFmListeners),
+  );
+  const observedPlaycountTotal = observedDemandTracks.reduce(
+    (sum, track) => sum + (track.lastFmPlaycount ?? 0),
+    0,
+  );
+  const observedPeakListeners = observedDemandTracks.reduce(
+    (peak, track) => Math.max(peak, track.lastFmListeners ?? 0),
+    0,
+  );
   const currentYear = new Date().getUTCFullYear();
   const changeCashFlowMode = (checked: boolean) => {
     if (!checked && catalog.publicCashFlowEstimate) {
@@ -378,6 +401,24 @@ export function UnderwritingWorkbench({
           </div>
         )}
 
+        {!hasCashFlow && (
+          <div
+            role="alert"
+            className="mt-5 border-l-4 border-accent bg-accent/8 p-5 text-sm leading-6"
+          >
+            <p className="eyebrow text-accent">
+              Automatic cash-flow estimate unavailable
+            </p>
+            <p className="mt-2 font-display text-2xl font-semibold">
+              Public evidence is insufficient to estimate normalized cash flow.
+            </p>
+            <p className="mt-2 text-muted-foreground">
+              Enter a known or hypothetical annual cash flow in the assumptions
+              panel to continue.
+            </p>
+          </div>
+        )}
+
         <Tabs defaultValue="underwrite" className="mt-6">
           <TabsList
             variant="line"
@@ -415,22 +456,22 @@ export function UnderwritingWorkbench({
                 <div className="grid grid-cols-2 gap-px border-y border-ink/15 bg-ink/15 sm:grid-cols-4">
                   {[
                     [
-                      'Recordings',
+                      'Calculated recordings',
                       catalog.recordingCount.value?.toLocaleString() ??
                         'Unknown',
                     ],
                     [
-                      'Release groups',
+                      'Observed releases',
                       catalog.releases.length.toLocaleString(),
                     ],
                     [
-                      'Weighted age',
+                      'Calculated weighted age',
                       catalog.weightedCatalogAge.value
                         ? `${catalog.weightedCatalogAge.value} yrs`
                         : 'Unknown',
                     ],
                     [
-                      'Top-10 share',
+                      'Calculated top-10 share',
                       catalog.tracks.length
                         ? percent(concentration.topTenShare, 0)
                         : 'Unknown',
@@ -445,6 +486,76 @@ export function UnderwritingWorkbench({
                       </p>
                     </div>
                   ))}
+                </div>
+                <div className="mt-8 grid gap-5 sm:grid-cols-2">
+                  <div className="border-t-2 border-ink pt-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="eyebrow">Observed · public demand</p>
+                      <span className="font-mono text-[10px] uppercase text-accent">
+                        Last.fm
+                      </span>
+                    </div>
+                    {observedDemandTracks.length ? (
+                      <dl className="mt-3 space-y-2 text-sm">
+                        <div className="flex justify-between gap-3">
+                          <dt className="text-muted-foreground">
+                            Top-track scrobbles
+                          </dt>
+                          <dd className="font-mono">
+                            {observedPlaycountTotal.toLocaleString('en-US')}
+                          </dd>
+                        </div>
+                        <div className="flex justify-between gap-3">
+                          <dt className="text-muted-foreground">
+                            Peak listeners
+                          </dt>
+                          <dd className="font-mono">
+                            {observedPeakListeners.toLocaleString('en-US')}
+                          </dd>
+                        </div>
+                        <div className="flex justify-between gap-3">
+                          <dt className="text-muted-foreground">
+                            Tracks observed
+                          </dt>
+                          <dd className="font-mono">
+                            {observedDemandTracks.length}
+                          </dd>
+                        </div>
+                      </dl>
+                    ) : (
+                      <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                        No absolute Last.fm demand observations are available.
+                      </p>
+                    )}
+                    <p className="mt-3 text-xs leading-5 text-muted-foreground">
+                      Scrobbles and listeners are demand proxies, not
+                      royalty-bearing streams or direct platform payouts.
+                    </p>
+                  </div>
+                  <div className="border-t-2 border-ink pt-4">
+                    <p className="eyebrow">Estimated · normalized cash flow</p>
+                    {catalog.publicCashFlowEstimate ? (
+                      <>
+                        <p className="mt-2 font-display text-2xl font-semibold">
+                          {money(catalog.publicCashFlowEstimate.low)}–
+                          {money(catalog.publicCashFlowEstimate.high)}
+                        </p>
+                        <p className="mt-1 text-sm text-muted-foreground">
+                          Base: {money(catalog.publicCashFlowEstimate.midpoint)}{' '}
+                          · {catalog.publicCashFlowEstimate.confidence}{' '}
+                          confidence
+                        </p>
+                        <p className="mt-3 text-xs leading-5 text-muted-foreground">
+                          {catalog.publicCashFlowEstimate.note}
+                        </p>
+                      </>
+                    ) : (
+                      <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                        Automatic cash-flow estimate unavailable. Enter a known
+                        or hypothetical annual cash flow to continue.
+                      </p>
+                    )}
+                  </div>
                 </div>
                 <h2 className="mt-8 border-b border-ink/20 pb-3 font-display text-2xl font-semibold">
                   Catalog chronology
@@ -720,6 +831,7 @@ export function UnderwritingWorkbench({
                             key={scenario}
                             type="button"
                             onClick={() => setSelectedScenario(scenario)}
+                            disabled={!results.data}
                             className={`px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] transition-colors ${selectedScenario === scenario ? 'bg-ink text-paper' : 'hover:bg-secondary'}`}
                           >
                             {scenario}
@@ -736,6 +848,7 @@ export function UnderwritingWorkbench({
                             className={`bg-background px-3 py-4 text-left ${selectedScenario === scenario ? 'shadow-[inset_0_-3px_0_var(--accent)]' : ''}`}
                             key={scenario}
                             onClick={() => setSelectedScenario(scenario)}
+                            disabled={!results.data}
                           >
                             <span className="eyebrow">{scenario}</span>
                             <span className="mt-1 block font-display text-2xl font-semibold">
@@ -762,66 +875,78 @@ export function UnderwritingWorkbench({
                       $M
                     </span>
                   </div>
-                  <ChartContainer
-                    config={chartConfig}
-                    className="mt-5 h-[310px] w-full aspect-auto"
-                    aria-label="Bear, base, and bull annual cash-flow forecast chart"
-                  >
-                    <LineChart
-                      data={chartData}
-                      margin={{ left: 0, right: 10, top: 10, bottom: 0 }}
+                  {results.data ? (
+                    <ChartContainer
+                      config={chartConfig}
+                      className="mt-5 h-[310px] w-full aspect-auto"
+                      aria-label="Bear, base, and bull annual cash-flow forecast chart"
                     >
-                      <CartesianGrid vertical={false} strokeDasharray="2 4" />
-                      <XAxis dataKey="year" tickLine={false} axisLine={false} />
-                      <YAxis tickLine={false} axisLine={false} width={36} />
-                      <ChartTooltip content={<ChartTooltipContent />} />
-                      <Line
-                        dataKey="bear"
-                        type="monotone"
-                        stroke="var(--color-bear)"
-                        strokeWidth={1.5}
-                        dot={false}
-                        strokeDasharray="4 4"
-                      />
-                      <Line
-                        dataKey="base"
-                        type="monotone"
-                        stroke="var(--color-base)"
-                        strokeWidth={2.5}
-                        dot={false}
-                      />
-                      <Line
-                        dataKey="bull"
-                        type="monotone"
-                        stroke="var(--color-bull)"
-                        strokeWidth={1.5}
-                        dot={false}
-                      />
-                    </LineChart>
-                  </ChartContainer>
-                  <table className="sr-only">
-                    <caption>
-                      Projected annual economic cash flow in millions
-                    </caption>
-                    <thead>
-                      <tr>
-                        <th>Year</th>
-                        <th>Bear</th>
-                        <th>Base</th>
-                        <th>Bull</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {chartData.map((item) => (
-                        <tr key={item.year}>
-                          <th>{item.year}</th>
-                          <td>{item.bear}</td>
-                          <td>{item.base}</td>
-                          <td>{item.bull}</td>
+                      <LineChart
+                        data={chartData}
+                        margin={{ left: 0, right: 10, top: 10, bottom: 0 }}
+                      >
+                        <CartesianGrid vertical={false} strokeDasharray="2 4" />
+                        <XAxis
+                          dataKey="year"
+                          tickLine={false}
+                          axisLine={false}
+                        />
+                        <YAxis tickLine={false} axisLine={false} width={36} />
+                        <ChartTooltip content={<ChartTooltipContent />} />
+                        <Line
+                          dataKey="bear"
+                          type="monotone"
+                          stroke="var(--color-bear)"
+                          strokeWidth={1.5}
+                          dot={false}
+                          strokeDasharray="4 4"
+                        />
+                        <Line
+                          dataKey="base"
+                          type="monotone"
+                          stroke="var(--color-base)"
+                          strokeWidth={2.5}
+                          dot={false}
+                        />
+                        <Line
+                          dataKey="bull"
+                          type="monotone"
+                          stroke="var(--color-bull)"
+                          strokeWidth={1.5}
+                          dot={false}
+                        />
+                      </LineChart>
+                    </ChartContainer>
+                  ) : (
+                    <div className="mt-5 border border-ink/20 p-6 text-sm text-muted-foreground">
+                      Forecast will appear after a cash-flow base is entered.
+                    </div>
+                  )}
+                  {results.data && (
+                    <table className="sr-only">
+                      <caption>
+                        Projected annual economic cash flow in millions
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th>Year</th>
+                          <th>Bear</th>
+                          <th>Base</th>
+                          <th>Bull</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {chartData.map((item) => (
+                          <tr key={item.year}>
+                            <th>{item.year}</th>
+                            <td>{item.bear}</td>
+                            <td>{item.base}</td>
+                            <td>{item.bull}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  )}
                 </div>
 
                 {active && (
@@ -927,68 +1052,75 @@ export function UnderwritingWorkbench({
                     How fragile is the price?
                   </h2>
                 </div>
-                <div className="mt-5 overflow-x-auto">
-                  <table className="w-full min-w-[680px] border-collapse text-center text-sm">
-                    <caption className="sr-only">
-                      Catalog value sensitivity by discount rate and terminal
-                      growth
-                    </caption>
-                    <thead>
-                      <tr>
-                        <th className="p-3 text-left font-mono text-xs text-muted-foreground">
-                          Discount ↓ / terminal →
-                        </th>
-                        {[-0.04, -0.03, -0.02, -0.01, 0, 0.01].map((rate) => (
-                          <th className="p-3 font-mono text-xs" key={rate}>
-                            {percent(rate, 0)}
+                {results.data ? (
+                  <div className="mt-5 overflow-x-auto">
+                    <table className="w-full min-w-[680px] border-collapse text-center text-sm">
+                      <caption className="sr-only">
+                        Catalog value sensitivity by discount rate and terminal
+                        growth
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th className="p-3 text-left font-mono text-xs text-muted-foreground">
+                            Discount ↓ / terminal →
                           </th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {sensitivity.map((row) => (
-                        <tr
-                          className="border-t border-ink/12"
-                          key={row[0]?.discountRate}
-                        >
-                          {row.map((cell, index) =>
-                            index === 0 ? (
-                              <th
-                                className="p-3 text-left font-mono"
-                                key={cell.terminalGrowthRate}
-                              >
-                                {percent(cell.discountRate, 0)}
-                              </th>
-                            ) : null,
-                          )}
-                          {row.map((cell) => {
-                            const isCurrent =
-                              Math.abs(
-                                cell.discountRate - assumptions.discountRate,
-                              ) < 0.006 &&
-                              Math.abs(
-                                cell.terminalGrowthRate -
-                                  assumptions.terminalGrowthRate,
-                              ) < 0.006;
-                            return (
-                              <td
-                                key={cell.terminalGrowthRate}
-                                className={`border-l border-ink/8 p-3 font-mono ${isCurrent ? 'bg-accent text-white' : 'hover:bg-secondary'}`}
-                                title={
-                                  cell.value
-                                    ? `${money(cell.value)} · ${cell.impliedMultiple?.toFixed(1)}×`
-                                    : 'Invalid configuration'
-                                }
-                              >
-                                {cell.value ? money(cell.value, 0) : '—'}
-                              </td>
-                            );
-                          })}
+                          {[-0.04, -0.03, -0.02, -0.01, 0, 0.01].map((rate) => (
+                            <th className="p-3 font-mono text-xs" key={rate}>
+                              {percent(rate, 0)}
+                            </th>
+                          ))}
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                      </thead>
+                      <tbody>
+                        {sensitivity.map((row) => (
+                          <tr
+                            className="border-t border-ink/12"
+                            key={row[0]?.discountRate}
+                          >
+                            {row.map((cell, index) =>
+                              index === 0 ? (
+                                <th
+                                  className="p-3 text-left font-mono"
+                                  key={cell.terminalGrowthRate}
+                                >
+                                  {percent(cell.discountRate, 0)}
+                                </th>
+                              ) : null,
+                            )}
+                            {row.map((cell) => {
+                              const isCurrent =
+                                Math.abs(
+                                  cell.discountRate - assumptions.discountRate,
+                                ) < 0.006 &&
+                                Math.abs(
+                                  cell.terminalGrowthRate -
+                                    assumptions.terminalGrowthRate,
+                                ) < 0.006;
+                              return (
+                                <td
+                                  key={cell.terminalGrowthRate}
+                                  className={`border-l border-ink/8 p-3 font-mono ${isCurrent ? 'bg-accent text-white' : 'hover:bg-secondary'}`}
+                                  title={
+                                    cell.value
+                                      ? `${money(cell.value)} · ${cell.impliedMultiple?.toFixed(1)}×`
+                                      : 'Invalid configuration'
+                                  }
+                                >
+                                  {cell.value ? money(cell.value, 0) : '—'}
+                                </td>
+                              );
+                            })}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : (
+                  <p className="mt-5 border-l-4 border-accent bg-accent/8 p-4 text-sm leading-6">
+                    Enter a known or hypothetical annual cash flow before
+                    reviewing DCF sensitivity.
+                  </p>
+                )}
               </section>
 
               <section>
@@ -1060,6 +1192,7 @@ export function UnderwritingWorkbench({
                 </div>
                 <Button
                   onClick={() => setShowDiagnostics(true)}
+                  disabled={!results.data}
                   className="h-12 shrink-0 rounded-none bg-negative px-5 text-white hover:bg-ink"
                 >
                   <ShieldAlert /> Run diagnostics

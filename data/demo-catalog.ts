@@ -165,12 +165,33 @@ export const demoCatalog: CatalogSnapshot = {
       level: 'Not public',
       detail: 'The model does not claim access to private royalty income.',
     },
+    {
+      label: 'Normalized cash flow',
+      level: 'Moderate',
+      detail:
+        'Stored illustrative range from versioned public-demand calibration; not observed earnings.',
+    },
   ],
   publicCashFlowEstimate: {
     low: 4_800_000,
     midpoint: 6_200_000,
     high: 7_100_000,
+    confidence: 'low',
     methodologyVersion: 'public-underwrite-1.0.0',
-    note: 'Illustrative range derived from a stored, normalized public-signal fixture and explicit calibration assumptions—not observed artist earnings.',
+    inputs: [
+      {
+        label: 'Stored public-demand fixture',
+        value: 'Normalized development snapshot',
+        method: 'observed',
+        source: 'Catalog Underwriter stored fixture',
+      },
+      {
+        label: 'Calibration anchor',
+        value: 'Versioned public-demand model',
+        method: 'assumption',
+      },
+    ],
+    note: 'Illustrative range derived from a stored, normalized public-signal fixture and explicit calibration assumptions—not observed artist earnings or a direct platform payout.',
+    retrievedAt,
   },
 };

@@ -38,8 +38,28 @@ export type TrackEvidence = {
   id: string;
   title: string;
   demandShare: number;
+  lastFmPlaycount?: number;
+  lastFmListeners?: number;
   observedMetric?: string;
   source: SourcedValue<string>;
+};
+
+export type PublicCashFlowModelInput = {
+  label: string;
+  value: string;
+  method: 'observed' | 'calculated' | 'assumption';
+  source?: string;
+};
+
+export type PublicCashFlowEstimate = {
+  low: number;
+  midpoint: number;
+  high: number;
+  confidence: Confidence;
+  methodologyVersion: string;
+  inputs: PublicCashFlowModelInput[];
+  note: string;
+  retrievedAt: string;
 };
 
 export type CoverageItem = {
@@ -61,11 +81,5 @@ export type CatalogSnapshot = {
   weightedCatalogAge: SourcedValue<number>;
   tracks: TrackEvidence[];
   coverage: CoverageItem[];
-  publicCashFlowEstimate: {
-    low: number;
-    midpoint: number;
-    high: number;
-    methodologyVersion: string;
-    note: string;
-  } | null;
+  publicCashFlowEstimate: PublicCashFlowEstimate | null;
 };
