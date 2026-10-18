@@ -7,7 +7,22 @@ import { demoCatalog } from '@/data/demo-catalog';
 import { calculateConcentration } from '@/lib/valuation/concentration';
 import { calculateScenarios } from '@/lib/valuation/scenarios';
 
-const scenarios = calculateScenarios(defaultValuationAssumptions);
+// The homepage values the stored demo exactly as the demo underwrite does:
+// its modeled cash flow under the default valuation assumptions.
+function storedDemoCashFlow() {
+  const estimate = demoCatalog.publicCashFlowEstimate;
+  if (!estimate) {
+    throw new Error(
+      'The stored demo snapshot must produce a modeled cash flow.',
+    );
+  }
+  return estimate;
+}
+const demoCashFlow = storedDemoCashFlow();
+const scenarios = calculateScenarios({
+  ...defaultValuationAssumptions,
+  normalizedCashFlow: demoCashFlow.midpoint,
+});
 const concentration = calculateConcentration(
   demoCatalog.tracks.map((track) => track.demandShare),
 );
@@ -18,14 +33,23 @@ const money = (value: number) =>
     notation: 'compact',
     maximumFractionDigits: 1,
   }).format(value);
+const evidenceDate = new Date(demoCatalog.retrievedAt).toLocaleDateString(
+  'en-GB',
+  { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' },
+);
 const evidence = [
+  ['Modeled annual cash flow', money(demoCashFlow.midpoint)],
   [
-    'Identified recordings',
-    demoCatalog.recordingCount.value?.toString() ?? 'Unknown',
+    'Official recordings',
+    demoCatalog.recordingCount.value?.toLocaleString('en-US') ?? 'Unknown',
   ],
-  ['Weighted catalog age', `${demoCatalog.weightedCatalogAge.value} yrs`],
+  [
+    'Weighted catalog age',
+    demoCatalog.weightedCatalogAge.value == null
+      ? 'Unknown'
+      : `${demoCatalog.weightedCatalogAge.value} yrs`,
+  ],
   ['Top-10 concentration', `${Math.round(concentration.topTenShare * 100)}%`],
-  ['Evidence coverage', 'Moderate'],
 ];
 
 export default function Home() {
@@ -88,7 +112,7 @@ export default function Home() {
             </h2>
           </div>
           <p className="hidden font-mono text-xs uppercase tracking-[0.12em] text-muted-foreground sm:block">
-            Evidence as of 14 Sep 2026
+            Evidence as of {evidenceDate}
           </p>
         </div>
 
@@ -103,6 +127,12 @@ export default function Home() {
                 Base case
               </span>
             </div>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">
+              DCF on a modeled annual cash flow of{' '}
+              {money(demoCashFlow.midpoint)} (range {money(demoCashFlow.low)}–
+              {money(demoCashFlow.high)}), estimated from Last.fm and YouTube
+              demand with default payout rates.
+            </p>
             <div className="mt-7 grid grid-cols-3 gap-px border-y border-ink/15 bg-ink/15">
               {[
                 ['Bear', money(scenarios.bear.catalogValue)],

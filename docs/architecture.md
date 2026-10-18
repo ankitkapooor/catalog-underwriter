@@ -21,7 +21,7 @@ Server provider layer
   └─ YouTube Data API, optional (cumulative likely-official views only)
 
 Repository data
-  ├─ stored demo snapshot
+  ├─ stored demo evidence (modeled at runtime)
   └─ cited comparable transactions
 ```
 

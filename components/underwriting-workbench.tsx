@@ -233,11 +233,11 @@ export function UnderwritingWorkbench({
     useState<RightsEconomicsAssumptions>(defaultRightsEconomicsAssumptions);
   const [showDiagnostics, setShowDiagnostics] = useState(false);
 
-  // Live estimates follow edits to the rights economics; the stored demo keeps
-  // its analyst range.
+  // Modeled estimates, live or from the stored demo evidence, follow edits to
+  // the rights economics.
   const cashFlowEstimate = useMemo(
     () =>
-      catalog && !catalog.isStoredDemo
+      catalog?.publicConsumptionEstimate
         ? buildModeledCashFlowEstimate(
             catalog.publicConsumptionEstimate,
             rightsEconomics,
@@ -499,11 +499,7 @@ export function UnderwritingWorkbench({
             <div className="grid grid-cols-3 gap-6 sm:gap-10">
               <div>
                 <p className="eyebrow">
-                  {!usingModeledCashFlow
-                    ? 'Cash flow'
-                    : catalog.isStoredDemo
-                      ? 'Stored cash flow'
-                      : 'Modeled cash flow'}
+                  {usingModeledCashFlow ? 'Modeled cash flow' : 'Cash flow'}
                 </p>
                 <p className="mt-1 font-display text-2xl font-semibold">
                   {money(assumptions.normalizedCashFlow)}
@@ -534,55 +530,60 @@ export function UnderwritingWorkbench({
           </div>
         )}
 
-        {!catalog.isStoredDemo && (
-          <section
-            aria-live="polite"
-            className={`mt-5 border-l-4 p-5 text-sm leading-6 ${
-              publicEvidenceSummary.length
-                ? 'border-positive bg-positive/8'
-                : 'border-accent bg-accent/8'
+        <section
+          aria-live="polite"
+          className={`mt-5 border-l-4 p-5 text-sm leading-6 ${
+            publicEvidenceSummary.length
+              ? 'border-positive bg-positive/8'
+              : 'border-accent bg-accent/8'
+          }`}
+        >
+          <p
+            className={`eyebrow ${
+              publicEvidenceSummary.length ? 'text-positive' : 'text-accent'
             }`}
           >
-            <p
-              className={`eyebrow ${
-                publicEvidenceSummary.length ? 'text-positive' : 'text-accent'
-              }`}
-            >
-              {publicEvidenceSummary.length
-                ? 'Public API evidence loaded'
-                : 'Artist identity resolved'}
+            {!publicEvidenceSummary.length
+              ? 'Artist identity resolved'
+              : catalog.isStoredDemo
+                ? `Stored public evidence · ${new Date(
+                    catalog.retrievedAt,
+                  ).toLocaleDateString('en-GB', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric',
+                    timeZone: 'UTC',
+                  })}`
+                : 'Public API evidence loaded'}
+          </p>
+          <p className="mt-2 font-display text-2xl font-semibold">
+            {publicEvidenceSummary.length
+              ? publicEvidenceSummary.join(' · ')
+              : 'No release or demand observations were returned for this identity.'}
+          </p>
+          {cashFlowEstimate ? (
+            <p className="mt-2 text-muted-foreground">
+              The valuation starts from a{' '}
+              <strong className="font-semibold text-foreground">
+                modeled annual cash flow of {money(cashFlowEstimate.low)}–
+                {money(cashFlowEstimate.high)} (base{' '}
+                {money(cashFlowEstimate.midpoint)})
+              </strong>
+              . Yearly listening is estimated from Last.fm listeners and YouTube
+              views, then multiplied by default per-1,000-stream rates. It is an
+              estimate, not a royalty statement: edit the rates in the Evidence
+              room or switch to Known cash flow to enter verified figures.
             </p>
-            <p className="mt-2 font-display text-2xl font-semibold">
-              {publicEvidenceSummary.length
-                ? publicEvidenceSummary.join(' · ')
-                : 'No release or demand observations were returned for this identity.'}
+          ) : (
+            <p className="mt-2 text-muted-foreground">
+              MusicBrainz, Last.fm, and YouTube populate the Evidence room with
+              catalog chronology, cumulative demand, and concentration signals.
+              Without annual listening evidence and every payout rate, no dollar
+              estimate is fabricated from cumulative API metrics. Enter a known
+              or hypothetical annual cash flow to run the valuation.
             </p>
-            {cashFlowEstimate ? (
-              <p className="mt-2 text-muted-foreground">
-                The valuation starts from a{' '}
-                <strong className="font-semibold text-foreground">
-                  modeled annual cash flow of {money(cashFlowEstimate.low)}–
-                  {money(cashFlowEstimate.high)} (base{' '}
-                  {money(cashFlowEstimate.midpoint)})
-                </strong>
-                . Yearly listening is estimated from Last.fm listeners and
-                YouTube views, then multiplied by default per-1,000-stream
-                rates. It is an estimate, not a royalty statement: edit the
-                rates in the Evidence room or switch to Known cash flow to enter
-                verified figures.
-              </p>
-            ) : (
-              <p className="mt-2 text-muted-foreground">
-                MusicBrainz, Last.fm, and YouTube populate the Evidence room
-                with catalog chronology, cumulative demand, and concentration
-                signals. Without annual listening evidence and every payout
-                rate, no dollar estimate is fabricated from cumulative API
-                metrics. Enter a known or hypothetical annual cash flow to run
-                the valuation.
-              </p>
-            )}
-          </section>
-        )}
+          )}
+        </section>
 
         <Tabs
           defaultValue={catalog.isStoredDemo ? 'underwrite' : 'evidence'}
@@ -624,9 +625,7 @@ export function UnderwritingWorkbench({
                 <div className="grid grid-cols-2 gap-px border-y border-ink/15 bg-ink/15 sm:grid-cols-4">
                   {[
                     [
-                      catalog.isStoredDemo
-                        ? 'Calculated recordings'
-                        : 'Official recordings',
+                      'Official recordings',
                       catalog.recordingCount.value?.toLocaleString() ??
                         'Unknown',
                     ],
@@ -783,10 +782,7 @@ export function UnderwritingWorkbench({
                   </div>
                 </div>
                 <div className="mt-5 border-t-2 border-ink pt-4">
-                  <p className="eyebrow">
-                    {catalog.isStoredDemo ? 'Estimated' : 'Modeled'} ·
-                    normalized cash flow
-                  </p>
+                  <p className="eyebrow">Modeled · normalized cash flow</p>
                   {cashFlowEstimate ? (
                     <>
                       <p className="mt-2 font-display text-2xl font-semibold">
@@ -1091,9 +1087,7 @@ export function UnderwritingWorkbench({
                     <p className="eyebrow">Operating mode</p>
                     <p className="mt-1 font-semibold">
                       {usingModeledCashFlow
-                        ? catalog.isStoredDemo
-                          ? 'Stored estimate'
-                          : 'Modeled cash flow'
+                        ? 'Modeled cash flow'
                         : 'Known cash flow'}
                     </p>
                   </div>
@@ -1126,13 +1120,7 @@ export function UnderwritingWorkbench({
                   step={0.1}
                   min={0}
                   disabled={usingModeledCashFlow}
-                  tag={
-                    usingModeledCashFlow
-                      ? catalog.isStoredDemo
-                        ? 'Stored'
-                        : 'Modeled'
-                      : 'Assumption'
-                  }
+                  tag={usingModeledCashFlow ? 'Modeled' : 'Assumption'}
                 />
                 <p className="eyebrow mt-5 border-b border-ink/20 pb-2 text-foreground">
                   What are you buying?
@@ -1276,11 +1264,9 @@ export function UnderwritingWorkbench({
                         </p>
                         {active && (
                           <p className="mt-1 font-mono text-xs text-muted-foreground">
-                            {!usingModeledCashFlow
-                              ? 'On entered cash flow'
-                              : catalog.isStoredDemo
-                                ? 'On stored cash flow'
-                                : 'On modeled cash flow'}
+                            {usingModeledCashFlow
+                              ? 'On modeled cash flow'
+                              : 'On entered cash flow'}
                           </p>
                         )}
                       </div>
@@ -1490,10 +1476,7 @@ export function UnderwritingWorkbench({
                   Underwriting context
                 </p>
                 <div className="border-y border-ink/15 py-4">
-                  <p className="eyebrow">
-                    {catalog.isStoredDemo ? 'Stored' : 'Modeled'} economic cash
-                    flow
-                  </p>
+                  <p className="eyebrow">Modeled economic cash flow</p>
                   <p className="mt-2 font-display text-2xl font-semibold">
                     {cashFlowEstimate
                       ? `${money(cashFlowEstimate.low)}–${money(cashFlowEstimate.high)}`

@@ -3,14 +3,11 @@ import { MusicBrainzCatalogProvider } from '@/lib/providers/musicbrainz';
 import type { LastFmTrackSignal } from '@/lib/providers/catalog-provider';
 import { YouTubeDataApiProvider } from '@/lib/providers/youtube';
 import {
-  annualizeLastFmAudio,
-  annualizeYouTubeViews,
-} from '@/lib/consumption/annualization';
-import { buildPublicConsumptionEstimate } from '@/lib/consumption/public-consumption';
+  lastFmTrackEvidence,
+  modelPublicEconomics,
+} from '@/lib/consumption/public-evidence';
 import { allowRequest } from '@/lib/server/rate-limit';
-import { buildModeledCashFlowEstimate } from '@/lib/valuation/public-cash-flow';
 import { defaultRightsEconomicsAssumptions } from '@/config/rights-economics';
-import type { TrackEvidence } from '@/types/catalog';
 
 const MUSICBRAINZ_ID =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -62,28 +59,7 @@ export async function GET(
         lastFmSignals = await new LastFmPerformanceProvider(
           lastFmApiKey,
         ).getTopTrackSignals(catalog.artist.name, catalog.artist.musicBrainzId);
-        const total = lastFmSignals.reduce(
-          (sum, track) => sum + track.playcount,
-          0,
-        );
-        catalog.tracks = lastFmSignals.map<TrackEvidence>((track, index) => ({
-          id: `lastfm-${index}`,
-          title: track.name,
-          demandShare: total > 0 ? (track.playcount / total) * 100 : 0,
-          observationTiming: 'cumulative-observation',
-          lastFmPlaycount: track.playcount,
-          lastFmListeners: track.listeners,
-          observedMetric: `${track.playcount.toLocaleString('en-US')} Last.fm scrobbles`,
-          source: {
-            value: `${track.playcount} scrobbles; ${track.listeners} listeners`,
-            source: 'Last.fm artist top tracks',
-            sourceUrl: track.sourceUrl,
-            retrievedAt,
-            confidence: 'medium',
-            method: 'observed',
-            note: 'Used only for relative demand and concentration—not as a direct revenue measure.',
-          },
-        }));
+        catalog.tracks = lastFmTrackEvidence(lastFmSignals, retrievedAt);
         const performanceCoverage = catalog.coverage.find(
           (item) => item.label === 'Public performance',
         );
@@ -131,22 +107,21 @@ export async function GET(
       }
     }
 
-    const audioAnnualization = annualizeLastFmAudio(lastFmSignals);
-    const youtubeAnnualization = annualizeYouTubeViews(
-      catalog.youtubeVideos,
-      retrievedAt,
-    );
-    catalog.publicConsumptionEstimate = buildPublicConsumptionEstimate({
-      lastFmTracks: lastFmSignals,
-      youtubeVideos: catalog.youtubeVideos,
+    const {
       audioAnnualization,
       youtubeAnnualization,
-      retrievedAt,
-    });
-    catalog.publicCashFlowEstimate = buildModeledCashFlowEstimate(
-      catalog.publicConsumptionEstimate,
+      publicConsumptionEstimate,
+      publicCashFlowEstimate,
+    } = modelPublicEconomics(
+      {
+        lastFmTracks: lastFmSignals,
+        youtubeVideos: catalog.youtubeVideos,
+        retrievedAt,
+      },
       defaultRightsEconomicsAssumptions,
     );
+    catalog.publicConsumptionEstimate = publicConsumptionEstimate;
+    catalog.publicCashFlowEstimate = publicCashFlowEstimate;
 
     const annualCoverage = catalog.coverage.find(
       (item) => item.label === 'Annual consumption',

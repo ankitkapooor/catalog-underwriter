@@ -54,6 +54,6 @@ The reconciled indicative range spans the selected DCF result and the transactio
 
 Curated catalog transactions are validation evidence, not calibration targets. The benchmark framework first checks that an automatic candidate has annual-consumption evidence, then applies a deliberately broad order-of-magnitude sanity band. It never fits Last.fm activity to transaction price; the annualization is calibrated against public stream counts instead.
 
-The stored demo cash-flow range is an illustrative analyst assumption. A live catalog without Last.fm or YouTube evidence has no annual consumption and still requires a known or hypothetical cash-flow entry.
+The stored Kendrick Lamar demo keeps the raw public evidence from a live lookup (releases, Last.fm top tracks, matched YouTube uploads, recording count) and runs it through the same annualization and rights economics, so the homepage value always matches the current model. A live catalog without Last.fm or YouTube evidence has no annual consumption and still requires a known or hypothetical cash-flow entry.
 
 See the in-product methodology page for the evidence policy and limitations.

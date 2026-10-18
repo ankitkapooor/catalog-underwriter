@@ -1,0 +1,4158 @@
+{
+  "retrievedAt": "2026-10-18T22:28:06.203Z",
+  "source": "https://catalog.ankitkapoor.me/api/artists/381086ea-f511-4aba-bdf9-71c753dc5077",
+  "artist": {
+    "musicBrainzId": "381086ea-f511-4aba-bdf9-71c753dc5077",
+    "name": "Kendrick Lamar",
+    "sortName": "Lamar, Kendrick",
+    "country": "US",
+    "disambiguation": "",
+    "type": "Person",
+    "score": 0
+  },
+  "genres": [
+    "hip hop",
+    "conscious hip hop",
+    "jazz rap",
+    "west coast hip hop"
+  ],
+  "releases": [
+    {
+      "id": "b322ebb2-c8d7-45b4-84ff-81e519afbb26",
+      "title": "Good Flirts",
+      "year": 2026,
+      "primaryType": "Other",
+      "secondaryTypes": []
+    },
+    {
+      "id": "3aa72a62-0842-4e2b-b44b-99840480ae6f",
+      "title": "luther",
+      "year": 2025,
+      "primaryType": "Other",
+      "secondaryTypes": []
+    },
+    {
+      "id": "b06bf845-6e77-47be-8003-8e4bf8ecfbce",
+      "title": "Super Bowl LIX Halftime Show",
+      "year": 2025,
+      "primaryType": "Broadcast",
+      "secondaryTypes": [
+        "Live"
+      ]
+    },
+    {
+      "id": "d7a3720e-f84b-4f1c-b4d9-f24e72235fba",
+      "title": "Chains & Whips",
+      "year": 2025,
+      "primaryType": "Other",
+      "secondaryTypes": []
+    },
+    {
+      "id": "30067d1b-d45e-4a6b-8b36-7d553425cd2f",
+      "title": "Watch the Party Die",
+      "year": 2024,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "32cb822c-a14e-49ce-a169-f209c5f31e0f",
+      "title": "GNX",
+      "year": 2024,
+      "primaryType": "Album",
+      "secondaryTypes": []
+    },
+    {
+      "id": "3f429571-4b49-4625-8cc3-de2b6ae2bc18",
+      "title": "6:16 in LA",
+      "year": 2024,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "564b9cea-cde5-46b5-bc66-2eb707920ee1",
+      "title": "Not Like Us",
+      "year": 2024,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "7c255aa4-3e1e-46c0-858c-431c185c1ba7",
+      "title": "meet the grahams",
+      "year": 2024,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "9b7669e5-172c-4420-aee4-2a5c659cee3c",
+      "title": "euphoria",
+      "year": 2024,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "50481773-b84b-4596-b246-f0f597bfa3d7",
+      "title": "squabble up",
+      "year": 2024,
+      "primaryType": "Other",
+      "secondaryTypes": []
+    },
+    {
+      "id": "5cd89311-85b4-461d-9f6a-14608cc7f07f",
+      "title": "The Hillbillies",
+      "year": 2023,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "f7db73c8-0354-445f-81ec-55b1c51e05bd",
+      "title": "AMERICA HAS A PROBLEM",
+      "year": 2023,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Remix"
+      ]
+    },
+    {
+      "id": "8c52430b-9df0-4ed6-9806-88f12b21cfa0",
+      "title": "money trees (sped up version)",
+      "year": 2023,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Remix"
+      ]
+    },
+    {
+      "id": "1714d9f7-07ff-484a-a449-f60e1bdf2c4d",
+      "title": "N95",
+      "year": 2022,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "45f94a71-03c9-460d-b7a6-01822311e677",
+      "title": "The Steppers Tour (live from Paris)",
+      "year": 2022,
+      "primaryType": "EP",
+      "secondaryTypes": [
+        "Live"
+      ]
+    },
+    {
+      "id": "6bd70eee-bd46-4738-851a-f50c19d8d6db",
+      "title": "Mr. Morale & the Big Steppers",
+      "year": 2022,
+      "primaryType": "Album",
+      "secondaryTypes": []
+    },
+    {
+      "id": "a9e22926-2265-48e5-a402-2f26ce3d5ce7",
+      "title": "Rich Spirit",
+      "year": 2022,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "f8b154ec-1f40-4d30-9b63-ab09d91a6578",
+      "title": "The Heart, Part 5",
+      "year": 2022,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "627f2b6f-3b36-40b2-9cfd-3f6fc8bfdcca",
+      "title": "Count Me Out",
+      "year": 2022,
+      "primaryType": "Other",
+      "secondaryTypes": []
+    },
+    {
+      "id": "884b21a1-1754-4a15-9cdc-8195fbb20b3f",
+      "title": "We Cry Together (A Short Film)",
+      "year": 2022,
+      "primaryType": "Other",
+      "secondaryTypes": [
+        "Live"
+      ]
+    },
+    {
+      "id": "196b4d88-1543-4c00-9be4-703001fb00d3",
+      "title": "family ties",
+      "year": 2021,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "7516d8de-4289-45c8-8e41-09c7f0325b7c",
+      "title": "Look Over Your Shoulder",
+      "year": 2020,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "0f410409-91d4-40c2-bd83-0e555422a5dc",
+      "title": "Hair Down",
+      "year": 2019,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "0af84a93-af4b-4dc1-9e6d-f21bea920872",
+      "title": "Tints",
+      "year": 2018,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "1db069f4-4e1f-486e-9637-1cdff704e87d",
+      "title": "Pray for Me",
+      "year": 2018,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Soundtrack"
+      ]
+    },
+    {
+      "id": "4e317e28-e6b2-46d7-81f7-306e349b3dd4",
+      "title": "Black Panther: The Album (Music From and Inspired By)",
+      "year": 2018,
+      "primaryType": "Album",
+      "secondaryTypes": [
+        "Soundtrack"
+      ]
+    },
+    {
+      "id": "54a6a323-9474-49ec-8101-86e67dad7365",
+      "title": "The Mantra",
+      "year": 2018,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "7a730f27-5e7c-45f3-9180-7b98ba312fb2",
+      "title": "Dedication",
+      "year": 2018,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "952ea029-b751-4487-87b5-cc8b8f30511f",
+      "title": "King’s Dead",
+      "year": 2018,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Soundtrack"
+      ]
+    },
+    {
+      "id": "a30a790a-2449-45cc-8f27-0fb1974495f9",
+      "title": "All the Stars",
+      "year": 2018,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Soundtrack"
+      ]
+    },
+    {
+      "id": "9cdecd52-bdf1-40fc-b660-35354edc81ec",
+      "title": "Doves in the Wind",
+      "year": 2018,
+      "primaryType": "Other",
+      "secondaryTypes": []
+    },
+    {
+      "id": "440822f5-218b-418c-9a62-8fcadceaea34",
+      "title": "Mask Off (remix)",
+      "year": 2017,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Remix"
+      ]
+    },
+    {
+      "id": "601dedeb-e8c3-456e-94bf-70234a242003",
+      "title": "The Heart, Part 4",
+      "year": 2017,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "6985c51b-7c0c-4339-8001-0cad8114aa58",
+      "title": "HUMBLE.",
+      "year": 2017,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "8f7a384b-cdd8-4a69-ab8a-5debda7dd8b4",
+      "title": "HUMBLE. (Skrillex remix)",
+      "year": 2017,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Remix"
+      ]
+    },
+    {
+      "id": "9865c74a-186b-4b6b-bd78-c91e6e950a02",
+      "title": "Don't Wanna Know (Fareoh remix)",
+      "year": 2017,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Remix"
+      ]
+    },
+    {
+      "id": "adca40ed-aba2-46c3-8389-22c2afd83c6c",
+      "title": "Don't Wanna Know (Total Ape remix)",
+      "year": 2017,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Remix"
+      ]
+    },
+    {
+      "id": "b88655ba-7469-48b8-a296-b9011ab73ef3",
+      "title": "DAMN.",
+      "year": 2017,
+      "primaryType": "Album",
+      "secondaryTypes": []
+    },
+    {
+      "id": "d26c4840-6ae8-44b6-92f1-b934a1a3cd3d",
+      "title": "Don't Wanna Know (BRAVVO remix)",
+      "year": 2017,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Remix"
+      ]
+    },
+    {
+      "id": "f04e4174-fcb1-49c8-8e01-92cf31d95b5e",
+      "title": "Don't Don't Do It!",
+      "year": 2017,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "f685934d-4af1-4075-9836-c67065cfc15f",
+      "title": "New Freezer",
+      "year": 2017,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "045795db-0b4d-4ab8-9872-76c1079b03ce",
+      "title": "LOYALTY.",
+      "year": 2017,
+      "primaryType": "Other",
+      "secondaryTypes": []
+    },
+    {
+      "id": "72545484-ff73-46f1-9d5c-5bd102d18477",
+      "title": "DNA.",
+      "year": 2017,
+      "primaryType": "Other",
+      "secondaryTypes": []
+    },
+    {
+      "id": "9c9924c6-0f90-4504-b8b2-aed7fdbb9dc8",
+      "title": "ELEMENT.",
+      "year": 2017,
+      "primaryType": "Other",
+      "secondaryTypes": []
+    },
+    {
+      "id": "fee2f050-89cb-4556-bba2-116fc1b57937",
+      "title": "LOVE.",
+      "year": 2017,
+      "primaryType": "Other",
+      "secondaryTypes": []
+    },
+    {
+      "id": "4e44335c-3f2b-4874-a6c3-71b5e65f75d5",
+      "title": "untitled unmastered.",
+      "year": 2016,
+      "primaryType": "Album",
+      "secondaryTypes": [
+        "Compilation"
+      ]
+    },
+    {
+      "id": "68d40905-82f7-4004-bb0a-4acbf8f7e013",
+      "title": "Don't Wanna Know",
+      "year": 2016,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "954426fb-0d24-43ca-8772-b0e73809eec4",
+      "title": "untitled 07 l levitate",
+      "year": 2016,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "b66b6244-5ae0-4ea8-8ad1-853f0b7a5475",
+      "title": "Really Doe",
+      "year": 2016,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "bb564bec-37c4-4ff3-aef3-45fc89dd8d8e",
+      "title": "The Greatest (KDA remix)",
+      "year": 2016,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Remix"
+      ]
+    },
+    {
+      "id": "cc15b9a3-3f2c-47c2-b207-266fb2951875",
+      "title": "The Greatest",
+      "year": 2016,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "d12e46d1-6709-469d-a7ba-e54b5144551a",
+      "title": "Don't Wanna Know (Ryan Riback remix)",
+      "year": 2016,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Remix"
+      ]
+    },
+    {
+      "id": "1fcdbea9-2659-4dd8-b267-02b5659b0cb2",
+      "title": "God Is Gangsta",
+      "year": 2016,
+      "primaryType": "Other",
+      "secondaryTypes": []
+    },
+    {
+      "id": "16aad3d2-aad0-480a-90db-03dcc3766e4a",
+      "title": "Alright",
+      "year": 2015,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "22b3c1d0-62c6-4448-863b-d42de0cbc175",
+      "title": "Thuggin' (remix)",
+      "year": 2015,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Remix"
+      ]
+    },
+    {
+      "id": "2e0d2336-b335-4ff9-b211-ee6c03b50857",
+      "title": "Heaven Help Dem",
+      "year": 2015,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "30dd1f5c-af6b-4cc2-bd51-7c8aa5fab272",
+      "title": "Swimming Pools (Drank) (Black Hippy remix)",
+      "year": 2015,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Remix"
+      ]
+    },
+    {
+      "id": "6740c2ae-8d7b-4a0e-9ea3-c2a6df4b4340",
+      "title": "These Walls",
+      "year": 2015,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "7cd65d8b-461b-4822-bb55-6d228d46eb95",
+      "title": "County Building Blues",
+      "year": 2015,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "d9103c72-3807-4378-9ce7-b6f3e8fdd547",
+      "title": "To Pimp a Butterfly",
+      "year": 2015,
+      "primaryType": "Album",
+      "secondaryTypes": []
+    },
+    {
+      "id": "edc718c1-162a-4b51-aa82-ef02a8b7348b",
+      "title": "Bad Blood",
+      "year": 2015,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Remix"
+      ]
+    },
+    {
+      "id": "f6271826-9571-4a34-a0bc-ce37d711a9ed",
+      "title": "The Blacker the Berry",
+      "year": 2015,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "413bc0cd-7bd7-4e37-92d6-40521c447cc8",
+      "title": "For Free? (interlude)",
+      "year": 2015,
+      "primaryType": "Other",
+      "secondaryTypes": []
+    },
+    {
+      "id": "a2315b4b-80c4-47f5-8f03-5b5a76dfd209",
+      "title": "King Kunta",
+      "year": 2015,
+      "primaryType": "Other",
+      "secondaryTypes": []
+    },
+    {
+      "id": "11b714d1-9a96-431e-ae54-13275dba70b3",
+      "title": "i",
+      "year": 2014,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "4bf79639-6b42-4f0b-86c6-7b13c031b728",
+      "title": "For the Girlfriends",
+      "year": 2014,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "4e673944-ce73-451a-b44b-2656d853d34d",
+      "title": "Radioactive",
+      "year": 2014,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Remix"
+      ]
+    },
+    {
+      "id": "6307b8a2-c198-41e2-98a7-2b4aec0eb12c",
+      "title": "It’s On Again",
+      "year": 2014,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Soundtrack"
+      ]
+    },
+    {
+      "id": "ad43d778-6dff-40d0-b832-3e9216c9324f",
+      "title": "Never Catch Me",
+      "year": 2014,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "e0f2901e-0dff-497c-b517-301872b1e1f3",
+      "title": "Pay for It",
+      "year": 2014,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "f40cf097-e02f-472b-8049-20b45469cf6a",
+      "title": "i (Live on SNL)",
+      "year": 2014,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Live"
+      ]
+    },
+    {
+      "id": "bf23214c-002d-4275-b25f-dc495bce45aa",
+      "title": "Sing About Me, I’m Dying of Thirst, Part 1",
+      "year": 2014,
+      "primaryType": "Other",
+      "secondaryTypes": []
+    },
+    {
+      "id": "10c252c6-b694-47ad-b60b-556115ec9205",
+      "title": "Bitch, Don’t Kill My Vibe (remix)",
+      "year": 2013,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Remix"
+      ]
+    },
+    {
+      "id": "2139b81f-7aac-417c-8e4a-2471255f0854",
+      "title": "Nosetalgia",
+      "year": 2013,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "2ba4f8a6-77d0-4b3f-8885-2bc7ae57de5a",
+      "title": "We Up",
+      "year": 2013,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "32dcd754-b6e4-4e15-9f74-333af3bab3dd",
+      "title": "Collard Greens",
+      "year": 2013,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "3d6b9a8d-0c8a-44f2-9519-42dbf6143fa0",
+      "title": "3 Minutes of Watts",
+      "year": 2013,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "532dd0d5-ea39-4919-b0c3-0d3c8a0614f6",
+      "title": "Control",
+      "year": 2013,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "5957a1f4-6ab5-4804-bfb3-ae8aaad688ce",
+      "title": "Looks Good With Trouble",
+      "year": 2013,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "7b2e7550-52e8-4066-9555-515ee6136d4c",
+      "title": "Fragile",
+      "year": 2013,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "7c582611-da4f-4cd6-9a64-8cbed5bc05a5",
+      "title": "YOLO",
+      "year": 2013,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "863a999f-39f6-48d7-a92d-af03f9ff123e",
+      "title": "Two Presidents",
+      "year": 2013,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "91305976-56a1-4868-858d-6aeba1fcb625",
+      "title": "Bitch, Don’t Kill My Vibe (remix)",
+      "year": 2013,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Remix"
+      ]
+    },
+    {
+      "id": "a9ce57bb-63f7-48d4-a067-b7a669d31dbf",
+      "title": "Bitch, Don’t Kill My Vibe",
+      "year": 2013,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "fda1cf4b-e673-4a23-ac90-9b7237a260d7",
+      "title": "Memories Back Then",
+      "year": 2013,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "c73e51db-b6d7-4e12-9a9d-5e78b8e7af0d",
+      "title": "Backseat Freestyle",
+      "year": 2013,
+      "primaryType": "Other",
+      "secondaryTypes": []
+    },
+    {
+      "id": "12aa1430-3669-451d-8802-3ca22a280f15",
+      "title": "ILLuminate",
+      "year": 2012,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "27ab08a1-6b1f-494a-a366-c001739e31c3",
+      "title": "Push Thru",
+      "year": 2012,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "29aa40a5-3630-4bbe-b5e8-30490bb181cc",
+      "title": "Swimming Pools (Drank)",
+      "year": 2012,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "44e73dec-5d21-419d-b7b4-a2a8ff308fe1",
+      "title": "Let Us Move On",
+      "year": 2012,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "499c19c8-0dab-4824-884b-6191d145e95b",
+      "title": "good kid, m.A.A.d city",
+      "year": 2012,
+      "primaryType": "Album",
+      "secondaryTypes": []
+    },
+    {
+      "id": "4e2dcae6-d5fd-47c3-8be2-4b70d3ee9971",
+      "title": "The Jig Is Up (Dump’n)",
+      "year": 2012,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "77f31747-5b7a-42da-95b6-07d7a160272a",
+      "title": "Fuckin’ Problems",
+      "year": 2012,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "810d5a88-69e6-42d8-902d-80d57b03429b",
+      "title": "The Recipe",
+      "year": 2012,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "8cec8272-bdc6-48b2-b05f-fe0045df7ba8",
+      "title": "The Heart, Pt. 3 (Will You Let It Die?)",
+      "year": 2012,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "a0bba15d-86fc-43be-b09b-20ecd9c943c2",
+      "title": "B‐Boyz",
+      "year": 2012,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "c3916bc2-fa38-4f86-9f22-54bba0c031e1",
+      "title": "Westside, Right on Time",
+      "year": 2012,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "dd19e8dc-960e-4bc8-bcbe-015f1a9f2d02",
+      "title": "Cartoon & Cereal",
+      "year": 2012,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "ed190e67-f0f0-4214-a6c3-0b4a7033e31a",
+      "title": "Collect Calls",
+      "year": 2012,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "f0bcfcbe-b19d-4a23-a135-58b5538467ec",
+      "title": "Poetic Justice",
+      "year": 2012,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "517a5e56-383c-4ec1-9b5c-258956fb8d18",
+      "title": "Moscato",
+      "year": 2011,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "54f44656-6a64-45ae-bd0c-38e1b2fe3f0b",
+      "title": "My People",
+      "year": 2011,
+      "primaryType": "Single",
+      "secondaryTypes": [
+        "Soundtrack"
+      ]
+    },
+    {
+      "id": "63e51eaa-52db-4ad4-b455-c2c443ba4cab",
+      "title": "Vanity Slave, Pt. 2",
+      "year": 2011,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "6ae221b9-e898-447d-9d95-e60848d52170",
+      "title": "Sex With Society",
+      "year": 2011,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "7a9b9bbc-19e0-4af2-8a56-e2cb51d769ae",
+      "title": "HiiiPoWeR",
+      "year": 2011,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "84c5124c-8bda-4645-9b1d-aeaed301a6d7",
+      "title": "Hol’ Up",
+      "year": 2011,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "a04e7bda-b8fa-46c3-aaa2-6a13426c427c",
+      "title": "Hood Gone Love It",
+      "year": 2011,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "ceccd668-a928-4041-a3c3-99a5ce880de9",
+      "title": "Section.80",
+      "year": 2011,
+      "primaryType": "Album",
+      "secondaryTypes": []
+    },
+    {
+      "id": "d755eff8-8eb9-43e1-8c33-da0f1367ec01",
+      "title": "Ronald Reagan Era",
+      "year": 2011,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "d8ec74ad-7ecf-48b8-bac1-9e25a9e53661",
+      "title": "Rapper Shit",
+      "year": 2011,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "0557d657-55e1-4e73-a5b9-29923ea63f61",
+      "title": "6’7’ Freestyle",
+      "year": 2010,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "a6422c32-6f71-45a1-ad76-4128aec73184",
+      "title": "Look Out for Detox",
+      "year": 2010,
+      "primaryType": "Single",
+      "secondaryTypes": []
+    },
+    {
+      "id": "b972d088-9ef2-4386-991f-baad5a873837",
+      "title": "Overly Dedicated",
+      "year": 2010,
+      "primaryType": "Album",
+      "secondaryTypes": [
+        "Mixtape/Street"
+      ]
+    },
+    {
+      "id": "9b17bca1-9ef4-41c2-aaab-300e7d000db6",
+      "title": "The Heart, Part 1",
+      "year": 2010,
+      "primaryType": "Other",
+      "secondaryTypes": []
+    },
+    {
+      "id": "ac98e81d-0a8c-4b36-9bad-ee829ee2d21e",
+      "title": "She Needs Me (remix) (ringtone)",
+      "year": 2010,
+      "primaryType": "Other",
+      "secondaryTypes": [
+        "Remix"
+      ]
+    },
+    {
+      "id": "116048e0-0dee-4299-badd-0fcb9928aa31",
+      "title": "C4",
+      "year": 2009,
+      "primaryType": "Album",
+      "secondaryTypes": [
+        "Mixtape/Street"
+      ]
+    },
+    {
+      "id": "3846827d-6120-4feb-b057-9b9e922daeab",
+      "title": "Kendrick Lamar",
+      "year": 2009,
+      "primaryType": "EP",
+      "secondaryTypes": []
+    },
+    {
+      "id": "76987bdb-989b-4f6a-a47e-ef300f7a28d3",
+      "title": "No Sleep Til NYC",
+      "year": 2007,
+      "primaryType": "Album",
+      "secondaryTypes": [
+        "Mixtape/Street"
+      ]
+    },
+    {
+      "id": "cec2a006-95c1-4d76-bd0e-31fa002163a3",
+      "title": "Training Day",
+      "year": 2005,
+      "primaryType": "Album",
+      "secondaryTypes": [
+        "Mixtape/Street"
+      ]
+    }
+  ],
+  "officialRecordingCount": 779,
+  "weightedCatalogAge": 10.3,
+  "lastFmTracks": [
+    {
+      "name": "HUMBLE.",
+      "playcount": 32387446,
+      "listeners": 2349821,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/HUMBLE."
+    },
+    {
+      "name": "Money Trees",
+      "playcount": 36542268,
+      "listeners": 2208118,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Money+Trees"
+    },
+    {
+      "name": "Not Like Us",
+      "playcount": 31134997,
+      "listeners": 2004963,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Not+Like+Us"
+    },
+    {
+      "name": "Alright",
+      "playcount": 32625717,
+      "listeners": 1944094,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Alright"
+    },
+    {
+      "name": "PRIDE.",
+      "playcount": 34166750,
+      "listeners": 1883753,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/PRIDE."
+    },
+    {
+      "name": "All the Stars (with SZA)",
+      "playcount": 26550139,
+      "listeners": 1850891,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/All+the+Stars+(with+SZA)"
+    },
+    {
+      "name": "DNA.",
+      "playcount": 25592391,
+      "listeners": 1799202,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/DNA."
+    },
+    {
+      "name": "LOVE. FEAT. ZACARI.",
+      "playcount": 26496245,
+      "listeners": 1770592,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/LOVE.+FEAT.+ZACARI."
+    },
+    {
+      "name": "luther (with SZA)",
+      "playcount": 29264552,
+      "listeners": 1610111,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/luther+(with+SZA)"
+    },
+    {
+      "name": "Bitch, Don’t Kill My Vibe",
+      "playcount": 19491762,
+      "listeners": 1584596,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Bitch,+Don%E2%80%99t+Kill+My+Vibe"
+    },
+    {
+      "name": "Swimming Pools (Drank)",
+      "playcount": 15646355,
+      "listeners": 1571250,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Swimming+Pools+(Drank)"
+    },
+    {
+      "name": "King Kunta",
+      "playcount": 20065915,
+      "listeners": 1445440,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/King+Kunta"
+    },
+    {
+      "name": "LOYALTY. FEAT. RIHANNA.",
+      "playcount": 16396678,
+      "listeners": 1353749,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/LOYALTY.+FEAT.+RIHANNA."
+    },
+    {
+      "name": "tv off (feat. Lefty Gunplay)",
+      "playcount": 18091483,
+      "listeners": 1313429,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/tv+off+(feat.+Lefty+Gunplay)"
+    },
+    {
+      "name": "N95",
+      "playcount": 20427328,
+      "listeners": 1273300,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/N95"
+    },
+    {
+      "name": "United in Grief",
+      "playcount": 14988339,
+      "listeners": 1263189,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/United+in+Grief"
+    },
+    {
+      "name": "Poetic Justice",
+      "playcount": 13518869,
+      "listeners": 1239279,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Poetic+Justice"
+    },
+    {
+      "name": "m.A.A.d city",
+      "playcount": 15412754,
+      "listeners": 1232204,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/m.A.A.d+city"
+    },
+    {
+      "name": "Backseat Freestyle",
+      "playcount": 14216707,
+      "listeners": 1211639,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Backseat+Freestyle"
+    },
+    {
+      "name": "squabble up",
+      "playcount": 15465490,
+      "listeners": 1207905,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/squabble+up"
+    },
+    {
+      "name": "All the Stars (with SZA) - From \"Black Panther: The Album\"",
+      "playcount": 8381752,
+      "listeners": 1158830,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/All+the+Stars+(with+SZA)+-+From+%22Black+Panther:+The+Album%22"
+    },
+    {
+      "name": "Swimming Pools (Drank) - Extended Version",
+      "playcount": 11388298,
+      "listeners": 1141335,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Swimming+Pools+(Drank)+-+Extended+Version"
+    },
+    {
+      "name": "A.D.H.D",
+      "playcount": 13708586,
+      "listeners": 1131969,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/A.D.H.D"
+    },
+    {
+      "name": "Wesley's Theory",
+      "playcount": 15660836,
+      "listeners": 1120234,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Wesley%27s+Theory"
+    },
+    {
+      "name": "euphoria",
+      "playcount": 16138236,
+      "listeners": 1111927,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/euphoria"
+    },
+    {
+      "name": "i",
+      "playcount": 12734304,
+      "listeners": 1104407,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/i"
+    },
+    {
+      "name": "DUCKWORTH.",
+      "playcount": 14289480,
+      "listeners": 1073568,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/DUCKWORTH."
+    },
+    {
+      "name": "Die Hard",
+      "playcount": 16287328,
+      "listeners": 1072445,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Die+Hard"
+    },
+    {
+      "name": "ELEMENT.",
+      "playcount": 12710008,
+      "listeners": 1070615,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/ELEMENT."
+    },
+    {
+      "name": "Count Me Out",
+      "playcount": 16209234,
+      "listeners": 1049252,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Count+Me+Out"
+    },
+    {
+      "name": "These Walls",
+      "playcount": 10174687,
+      "listeners": 952763,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/These+Walls"
+    },
+    {
+      "name": "Rich Spirit",
+      "playcount": 11730847,
+      "listeners": 930280,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Rich+Spirit"
+    },
+    {
+      "name": "Father Time (feat. Sampha)",
+      "playcount": 12794493,
+      "listeners": 927568,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Father+Time+(feat.+Sampha)"
+    },
+    {
+      "name": "FEEL.",
+      "playcount": 9939002,
+      "listeners": 920044,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/FEEL."
+    },
+    {
+      "name": "YAH.",
+      "playcount": 8641286,
+      "listeners": 906709,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/YAH."
+    },
+    {
+      "name": "Sing About Me, I'm Dying of Thirst",
+      "playcount": 11182563,
+      "listeners": 884320,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Sing+About+Me,+I%27m+Dying+of+Thirst"
+    },
+    {
+      "name": "good kid",
+      "playcount": 7915291,
+      "listeners": 867298,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/good+kid"
+    },
+    {
+      "name": "The Art of Peer Pressure",
+      "playcount": 7648471,
+      "listeners": 850492,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Art+of+Peer+Pressure"
+    },
+    {
+      "name": "wacced out murals",
+      "playcount": 7066078,
+      "listeners": 818085,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/wacced+out+murals"
+    },
+    {
+      "name": "XXX. FEAT. U2.",
+      "playcount": 10362360,
+      "listeners": 815719,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/XXX.+FEAT.+U2."
+    },
+    {
+      "name": "u",
+      "playcount": 7664283,
+      "listeners": 799595,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/u"
+    },
+    {
+      "name": "heart pt. 6",
+      "playcount": 8147302,
+      "listeners": 794796,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/heart+pt.+6"
+    },
+    {
+      "name": "BLOOD.",
+      "playcount": 5793592,
+      "listeners": 782122,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/BLOOD."
+    },
+    {
+      "name": "peekaboo (feat. AzChike)",
+      "playcount": 7921775,
+      "listeners": 766248,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/peekaboo+(feat.+AzChike)"
+    },
+    {
+      "name": "FEAR.",
+      "playcount": 7541497,
+      "listeners": 760474,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/FEAR."
+    },
+    {
+      "name": "Institutionalized",
+      "playcount": 6254578,
+      "listeners": 760215,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Institutionalized"
+    },
+    {
+      "name": "LUST.",
+      "playcount": 6693365,
+      "listeners": 757569,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/LUST."
+    },
+    {
+      "name": "meet the grahams",
+      "playcount": 6123972,
+      "listeners": 743878,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/meet+the+grahams"
+    },
+    {
+      "name": "The Blacker the Berry",
+      "playcount": 7310371,
+      "listeners": 741228,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Blacker+the+Berry"
+    },
+    {
+      "name": "reincarnated",
+      "playcount": 7801835,
+      "listeners": 739457,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/reincarnated"
+    },
+    {
+      "name": "man at the garden",
+      "playcount": 5509920,
+      "listeners": 734979,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/man+at+the+garden"
+    },
+    {
+      "name": "Silent Hill",
+      "playcount": 7664537,
+      "listeners": 716966,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Silent+Hill"
+    },
+    {
+      "name": "Worldwide Steppers",
+      "playcount": 5148873,
+      "listeners": 712685,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Worldwide+Steppers"
+    },
+    {
+      "name": "For Free? - Interlude",
+      "playcount": 5210992,
+      "listeners": 704024,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/For+Free%3F+-+Interlude"
+    },
+    {
+      "name": "Momma",
+      "playcount": 5545790,
+      "listeners": 703807,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Momma"
+    },
+    {
+      "name": "You Ain't Gotta Lie (Momma Said)",
+      "playcount": 5512227,
+      "listeners": 702694,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/You+Ain%27t+Gotta+Lie+(Momma+Said)"
+    },
+    {
+      "name": "Hood Politics",
+      "playcount": 5456194,
+      "listeners": 701875,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Hood+Politics"
+    },
+    {
+      "name": "hey now (feat. Dody6)",
+      "playcount": 7978412,
+      "listeners": 700359,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/hey+now+(feat.+Dody6)"
+    },
+    {
+      "name": "How Much a Dollar Cost",
+      "playcount": 5912451,
+      "listeners": 685302,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/How+Much+a+Dollar+Cost"
+    },
+    {
+      "name": "Sherane a.k.a Master Splinter’s Daughter",
+      "playcount": 4335437,
+      "listeners": 677383,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Sherane+a.k.a+Master+Splinter%E2%80%99s+Daughter"
+    },
+    {
+      "name": "Purple Hearts",
+      "playcount": 5406404,
+      "listeners": 664003,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Purple+Hearts"
+    },
+    {
+      "name": "We Cry Together",
+      "playcount": 4574730,
+      "listeners": 659757,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/We+Cry+Together"
+    },
+    {
+      "name": "Hol' Up",
+      "playcount": 5490809,
+      "listeners": 644967,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Hol%27+Up"
+    },
+    {
+      "name": "untitled 08 | 09.06.2014.",
+      "playcount": 6239237,
+      "listeners": 639707,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+08+%7C+09.06.2014."
+    },
+    {
+      "name": "HiiiPoWeR",
+      "playcount": 6133547,
+      "listeners": 637145,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/HiiiPoWeR"
+    },
+    {
+      "name": "Savior",
+      "playcount": 7497115,
+      "listeners": 636781,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Savior"
+    },
+    {
+      "name": "dodger blue (feat. wallie the sensei, siete7x, roddy ricch)",
+      "playcount": 6428742,
+      "listeners": 633892,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/dodger+blue+(feat.+wallie+the+sensei,+siete7x,+roddy+ricch)"
+    },
+    {
+      "name": "GOD.",
+      "playcount": 4780073,
+      "listeners": 625030,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/GOD."
+    },
+    {
+      "name": "The Recipe - Bonus Track",
+      "playcount": 5751814,
+      "listeners": 608046,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Recipe+-+Bonus+Track"
+    },
+    {
+      "name": "The Heart Part 5",
+      "playcount": 7134795,
+      "listeners": 606540,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Heart+Part+5"
+    },
+    {
+      "name": "Complexion (A Zulu Love)",
+      "playcount": 4303174,
+      "listeners": 596359,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Complexion+(A+Zulu+Love)"
+    },
+    {
+      "name": "gloria (with SZA)",
+      "playcount": 5271114,
+      "listeners": 587099,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/gloria+(with+SZA)"
+    },
+    {
+      "name": "Mirror",
+      "playcount": 6682453,
+      "listeners": 583852,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Mirror"
+    },
+    {
+      "name": "Rigamortus",
+      "playcount": 5809737,
+      "listeners": 583071,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Rigamortus"
+    },
+    {
+      "name": "For Sale? - Interlude",
+      "playcount": 3868027,
+      "listeners": 577060,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/For+Sale%3F+-+Interlude"
+    },
+    {
+      "name": "Real",
+      "playcount": 4358170,
+      "listeners": 572153,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Real"
+    },
+    {
+      "name": "Rich - Interlude",
+      "playcount": 4501565,
+      "listeners": 571683,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Rich+-+Interlude"
+    },
+    {
+      "name": "Mr. Morale",
+      "playcount": 5226710,
+      "listeners": 558246,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Mr.+Morale"
+    },
+    {
+      "name": "Compton",
+      "playcount": 3786281,
+      "listeners": 551682,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Compton"
+    },
+    {
+      "name": "Crown",
+      "playcount": 3907667,
+      "listeners": 550655,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Crown"
+    },
+    {
+      "name": "Chapter Six",
+      "playcount": 4041899,
+      "listeners": 543079,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Chapter+Six"
+    },
+    {
+      "name": "Now Or Never - Bonus Track",
+      "playcount": 5143777,
+      "listeners": 542504,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Now+Or+Never+-+Bonus+Track"
+    },
+    {
+      "name": "Auntie Diaries",
+      "playcount": 3647665,
+      "listeners": 532912,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Auntie+Diaries"
+    },
+    {
+      "name": "Mortal Man",
+      "playcount": 3628678,
+      "listeners": 532634,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Mortal+Man"
+    },
+    {
+      "name": "untitled 02 | 06.23.2014.",
+      "playcount": 4994882,
+      "listeners": 505859,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+02+%7C+06.23.2014."
+    },
+    {
+      "name": "Savior - Interlude",
+      "playcount": 3515656,
+      "listeners": 494973,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Savior+-+Interlude"
+    },
+    {
+      "name": "untitled 06 | 06.30.2014.",
+      "playcount": 3439399,
+      "listeners": 469591,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+06+%7C+06.30.2014."
+    },
+    {
+      "name": "Bitch, Don’t Kill My Vibe - Remix",
+      "playcount": 2827012,
+      "listeners": 462957,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Bitch,+Don%E2%80%99t+Kill+My+Vibe+-+Remix"
+    },
+    {
+      "name": "gnx (feat. hitta j3, youngthreat, peysoh)",
+      "playcount": 3160353,
+      "listeners": 462493,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/gnx+(feat.+hitta+j3,+youngthreat,+peysoh)"
+    },
+    {
+      "name": "Mother I Sober (feat. Beth Gibbons of Portishead)",
+      "playcount": 2969782,
+      "listeners": 460027,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Mother+I+Sober+(feat.+Beth+Gibbons+of+Portishead)"
+    },
+    {
+      "name": "luther",
+      "playcount": 1370488,
+      "listeners": 435847,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/luther"
+    },
+    {
+      "name": "Blow My High (Members Only)",
+      "playcount": 3270853,
+      "listeners": 410034,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Blow+My+High+(Members+Only)"
+    },
+    {
+      "name": "Big Shot (with Travis Scott)",
+      "playcount": 2776534,
+      "listeners": 397263,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Big+Shot+(with+Travis+Scott)"
+    },
+    {
+      "name": "untitled 05 | 09.21.2014.",
+      "playcount": 3175745,
+      "listeners": 378711,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+05+%7C+09.21.2014."
+    },
+    {
+      "name": "untitled 03 | 05.28.2013.",
+      "playcount": 2549688,
+      "listeners": 374990,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+03+%7C+05.28.2013."
+    },
+    {
+      "name": "Ronald Reagan Era",
+      "playcount": 2655885,
+      "listeners": 372889,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Ronald+Reagan+Era"
+    },
+    {
+      "name": "F*ck Your Ethnicity",
+      "playcount": 2542514,
+      "listeners": 357463,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/F%2Ack+Your+Ethnicity"
+    },
+    {
+      "name": "tv off",
+      "playcount": 1072692,
+      "listeners": 346844,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/tv+off"
+    },
+    {
+      "name": "Tammy's Song (Her Evils)",
+      "playcount": 1784392,
+      "listeners": 344680,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Tammy%27s+Song+(Her+Evils)"
+    },
+    {
+      "name": "hey now",
+      "playcount": 825564,
+      "listeners": 340274,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/hey+now"
+    },
+    {
+      "name": "untitled 07 | 2014 - 2016",
+      "playcount": 1757233,
+      "listeners": 313348,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+07+%7C+2014+-+2016"
+    },
+    {
+      "name": "dodger blue",
+      "playcount": 747027,
+      "listeners": 307407,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/dodger+blue"
+    },
+    {
+      "name": "peekaboo",
+      "playcount": 698177,
+      "listeners": 301716,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/peekaboo"
+    },
+    {
+      "name": "Black Boy Fly - Bonus Track",
+      "playcount": 1505910,
+      "listeners": 294009,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Black+Boy+Fly+-+Bonus+Track"
+    },
+    {
+      "name": "Chapter Ten",
+      "playcount": 5353416,
+      "listeners": 292508,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Chapter+Ten"
+    },
+    {
+      "name": "Poe Mans Dreams (His Vice) (feat. GLC)",
+      "playcount": 2280437,
+      "listeners": 289354,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Poe+Mans+Dreams+(His+Vice)+(feat.+GLC)"
+    },
+    {
+      "name": "Ignorance Is Bliss",
+      "playcount": 1361464,
+      "listeners": 277887,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Ignorance+Is+Bliss"
+    },
+    {
+      "name": "Black Panther",
+      "playcount": 1213025,
+      "listeners": 275972,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Black+Panther"
+    },
+    {
+      "name": "gnx",
+      "playcount": 581318,
+      "listeners": 273289,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/gnx"
+    },
+    {
+      "name": "gloria",
+      "playcount": 597058,
+      "listeners": 268887,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/gloria"
+    },
+    {
+      "name": "untitled 01 | 08.19.2014.",
+      "playcount": 1273577,
+      "listeners": 267568,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+01+%7C+08.19.2014."
+    },
+    {
+      "name": "untitled 04 | 08.14.2014.",
+      "playcount": 1285561,
+      "listeners": 259576,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+04+%7C+08.14.2014."
+    },
+    {
+      "name": "Keisha's Song (Her Pain) (feat. Ashtro Bot)",
+      "playcount": 1448846,
+      "listeners": 210724,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Keisha%27s+Song+(Her+Pain)+(feat.+Ashtro+Bot)"
+    },
+    {
+      "name": "Kush & Corinthians (feat. BJ The Chicago Kid)",
+      "playcount": 1310333,
+      "listeners": 210127,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Kush+&+Corinthians+(feat.+BJ+The+Chicago+Kid)"
+    },
+    {
+      "name": "No Make-Up (Her Vice) (feat. Colin Munroe)",
+      "playcount": 1095224,
+      "listeners": 198938,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/No+Make-Up+(Her+Vice)+(feat.+Colin+Munroe)"
+    },
+    {
+      "name": "She Needs Me (Remix)",
+      "playcount": 1191156,
+      "listeners": 197039,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/She+Needs+Me+(Remix)"
+    },
+    {
+      "name": "Average Joe",
+      "playcount": 725557,
+      "listeners": 190962,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Average+Joe"
+    },
+    {
+      "name": "Money Trees (feat. Jay Rock)",
+      "playcount": 1979832,
+      "listeners": 189598,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Money+Trees+(feat.+Jay+Rock)"
+    },
+    {
+      "name": "Ab-Souls Outro (feat. Ab-Soul)",
+      "playcount": 799983,
+      "listeners": 176845,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Ab-Souls+Outro+(feat.+Ab-Soul)"
+    },
+    {
+      "name": "untitled 07 | levitate",
+      "playcount": 1058771,
+      "listeners": 176193,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+07+%7C+levitate"
+    },
+    {
+      "name": "Growing Apart (To Get Closer)",
+      "playcount": 715870,
+      "listeners": 163278,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Growing+Apart+(To+Get+Closer)"
+    },
+    {
+      "name": "m.A.A.d city (feat. MC Eiht)",
+      "playcount": 1501617,
+      "listeners": 156132,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/m.A.A.d+city+(feat.+MC+Eiht)"
+    },
+    {
+      "name": "P&P 1.5",
+      "playcount": 826648,
+      "listeners": 155772,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/P&P+1.5"
+    },
+    {
+      "name": "Poetic Justice (feat. Drake)",
+      "playcount": 1381660,
+      "listeners": 154210,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Poetic+Justice+(feat.+Drake)"
+    },
+    {
+      "name": "The Heart Part 4",
+      "playcount": 1169718,
+      "listeners": 152178,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Heart+Part+4"
+    },
+    {
+      "name": "H.O.C",
+      "playcount": 576433,
+      "listeners": 149539,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/H.O.C"
+    },
+    {
+      "name": "The Recipe (Black Hippy Remix) - Bonus Track",
+      "playcount": 813562,
+      "listeners": 141849,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Recipe+(Black+Hippy+Remix)+-+Bonus+Track"
+    },
+    {
+      "name": "Opposites Attract (Tomorrow W/O Her)",
+      "playcount": 857224,
+      "listeners": 138704,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Opposites+Attract+(Tomorrow+W%2FO+Her)"
+    },
+    {
+      "name": "Barbed Wire",
+      "playcount": 990147,
+      "listeners": 136242,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Barbed+Wire"
+    },
+    {
+      "name": "Cut You Off (To Grow Closer)",
+      "playcount": 565752,
+      "listeners": 135605,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Cut+You+Off+(To+Grow+Closer)"
+    },
+    {
+      "name": "Swimming Pools (Drank) (extended version)",
+      "playcount": 1240227,
+      "listeners": 130756,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Swimming+Pools+(Drank)+(extended+version)"
+    },
+    {
+      "name": "For Free? (interlude)",
+      "playcount": 838910,
+      "listeners": 127456,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/For+Free%3F+(interlude)"
+    },
+    {
+      "name": "Bitch, Don’t Kill My Vibe - International Remix / Explicit Version",
+      "playcount": 479422,
+      "listeners": 124150,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Bitch,+Don%E2%80%99t+Kill+My+Vibe+-+International+Remix+%2F+Explicit+Version"
+    },
+    {
+      "name": "dodger blue (feat. wallie the sensei, roddy ricch, siete7x)",
+      "playcount": 245542,
+      "listeners": 121887,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/dodger+blue+(feat.+wallie+the+sensei,+roddy+ricch,+siete7x)"
+    },
+    {
+      "name": "Alien Girl (Today W/ Her)",
+      "playcount": 710573,
+      "listeners": 115906,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Alien+Girl+(Today+W%2F+Her)"
+    },
+    {
+      "name": "R.O.T.C (Interlude)",
+      "playcount": 437387,
+      "listeners": 109232,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/R.O.T.C+(Interlude)"
+    },
+    {
+      "name": "dodger blue (feat. wallie the sensei, siete7x, roddy ricch))",
+      "playcount": 212653,
+      "listeners": 109076,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/dodger+blue+(feat.+wallie+the+sensei,+siete7x,+roddy+ricch))"
+    },
+    {
+      "name": "For Sale? (interlude)",
+      "playcount": 677248,
+      "listeners": 108601,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/For+Sale%3F+(interlude)"
+    },
+    {
+      "name": "Michael Jordan",
+      "playcount": 448753,
+      "listeners": 106022,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Michael+Jordan"
+    },
+    {
+      "name": "Compton (feat. Dr. Dre)",
+      "playcount": 664151,
+      "listeners": 105883,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Compton+(feat.+Dr.+Dre)"
+    },
+    {
+      "name": "gloria (feat. SZA)",
+      "playcount": 204152,
+      "listeners": 105872,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/gloria+(feat.+SZA)"
+    },
+    {
+      "name": "County Building Blues",
+      "playcount": 638272,
+      "listeners": 104220,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/County+Building+Blues"
+    },
+    {
+      "name": "Super Bowl LIX Halftime Show - Live",
+      "playcount": 527033,
+      "listeners": 99549,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Super+Bowl+LIX+Halftime+Show+-+Live"
+    },
+    {
+      "name": "The Spiteful Chant",
+      "playcount": 457914,
+      "listeners": 98736,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Spiteful+Chant"
+    },
+    {
+      "name": "Wesley's Theory (feat. George Clinton & Thundercat)",
+      "playcount": 879679,
+      "listeners": 97516,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Wesley%27s+Theory+(feat.+George+Clinton+&+Thundercat)"
+    },
+    {
+      "name": "The Recipe",
+      "playcount": 458924,
+      "listeners": 91329,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Recipe"
+    },
+    {
+      "name": "No Make-Up (Her Vice)",
+      "playcount": 350647,
+      "listeners": 89803,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/No+Make-Up+(Her+Vice)"
+    },
+    {
+      "name": "These Walls (feat. Bilal, Anna Wise & Thundercat)",
+      "playcount": 676924,
+      "listeners": 87240,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/These+Walls+(feat.+Bilal,+Anna+Wise+&+Thundercat)"
+    },
+    {
+      "name": "Fuck Your Ethnicity",
+      "playcount": 586657,
+      "listeners": 86811,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Fuck+Your+Ethnicity"
+    },
+    {
+      "name": "Poe Mans Dreams (His Vice)",
+      "playcount": 328405,
+      "listeners": 82979,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Poe+Mans+Dreams+(His+Vice)"
+    },
+    {
+      "name": "Institutionalized (feat. Bilal, Anna Wise & Snoop Dogg)",
+      "playcount": 596296,
+      "listeners": 82948,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Institutionalized+(feat.+Bilal,+Anna+Wise+&+Snoop+Dogg)"
+    },
+    {
+      "name": "All the Stars",
+      "playcount": 370039,
+      "listeners": 80030,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/All+the+Stars"
+    },
+    {
+      "name": "How Much a Dollar Cost (feat. James Fauntleroy & Ronald Isley)",
+      "playcount": 511701,
+      "listeners": 74922,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/How+Much+a+Dollar+Cost+(feat.+James+Fauntleroy+&+Ronald+Isley)"
+    },
+    {
+      "name": "Keisha's Song (Her Pain)",
+      "playcount": 290213,
+      "listeners": 74432,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Keisha%27s+Song+(Her+Pain)"
+    },
+    {
+      "name": "LOVE.",
+      "playcount": 365907,
+      "listeners": 73400,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/LOVE."
+    },
+    {
+      "name": "Kush & Corinthians",
+      "playcount": 254394,
+      "listeners": 69631,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Kush+&+Corinthians"
+    },
+    {
+      "name": "LOYALTY. (FEAT. RIHANNA.)",
+      "playcount": 590085,
+      "listeners": 66673,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/LOYALTY.+(FEAT.+RIHANNA.)"
+    },
+    {
+      "name": "Swimming Pools (Drank) [Extended Version]",
+      "playcount": 516360,
+      "listeners": 65071,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Swimming+Pools+(Drank)+%5BExtended+Version%5D"
+    },
+    {
+      "name": "Bitch, Don't Kill My Vibe",
+      "playcount": 746781,
+      "listeners": 64716,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Bitch,+Don%27t+Kill+My+Vibe"
+    },
+    {
+      "name": "Black Boy Fly (Bonus Track)",
+      "playcount": 359197,
+      "listeners": 64147,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Black+Boy+Fly+(Bonus+Track)"
+    },
+    {
+      "name": "Backstreet Freestyle",
+      "playcount": 659895,
+      "listeners": 60832,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Backstreet+Freestyle"
+    },
+    {
+      "name": "LOVE. (FEAT. ZACARI.)",
+      "playcount": 561563,
+      "listeners": 59500,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/LOVE.+(FEAT.+ZACARI.)"
+    },
+    {
+      "name": "Real (feat. Anna Wise)",
+      "playcount": 342489,
+      "listeners": 57503,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Real+(feat.+Anna+Wise)"
+    },
+    {
+      "name": "Bitch, Dant Kill My Vibe",
+      "playcount": 541585,
+      "listeners": 54055,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Bitch,+Dant+Kill+My+Vibe"
+    },
+    {
+      "name": "Sherane A.K.A. Master Splinters Daughter",
+      "playcount": 360910,
+      "listeners": 53032,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Sherane+A.K.A.+Master+Splinters+Daughter"
+    },
+    {
+      "name": "Black Boy Fly",
+      "playcount": 282357,
+      "listeners": 52606,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Black+Boy+Fly"
+    },
+    {
+      "name": "Ab-Souls Outro",
+      "playcount": 160336,
+      "listeners": 52552,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Ab-Souls+Outro"
+    },
+    {
+      "name": "LOYALTY.",
+      "playcount": 225401,
+      "listeners": 50473,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/LOYALTY."
+    },
+    {
+      "name": "Real (feat. Anna Wise of Sonnymoon)",
+      "playcount": 305188,
+      "listeners": 49733,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Real+(feat.+Anna+Wise+of+Sonnymoon)"
+    },
+    {
+      "name": "Complexion (A Zulu Love) [feat. Rapsody]",
+      "playcount": 310383,
+      "listeners": 48247,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Complexion+(A+Zulu+Love)+%5Bfeat.+Rapsody%5D"
+    },
+    {
+      "name": "XXX. (FEAT. U2.)",
+      "playcount": 388353,
+      "listeners": 47893,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/XXX.+(FEAT.+U2.)"
+    },
+    {
+      "name": "untitled 02 06.23.2014.",
+      "playcount": 231199,
+      "listeners": 47833,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+02+06.23.2014."
+    },
+    {
+      "name": "Sing About Me, Im Dying of Thirst",
+      "playcount": 350903,
+      "listeners": 46872,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Sing+About+Me,+Im+Dying+of+Thirst"
+    },
+    {
+      "name": "untitled 03 05.28.2013.",
+      "playcount": 164789,
+      "listeners": 42408,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+03+05.28.2013."
+    },
+    {
+      "name": "LOVE. (feat. Zacari)",
+      "playcount": 323897,
+      "listeners": 42276,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/LOVE.+(feat.+Zacari)"
+    },
+    {
+      "name": "Rich (Interlude)",
+      "playcount": 243062,
+      "listeners": 40951,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Rich+(Interlude)"
+    },
+    {
+      "name": "untitled 01 08.19.2014.",
+      "playcount": 120726,
+      "listeners": 40942,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+01+08.19.2014."
+    },
+    {
+      "name": "Alien Girl (Today W/Her)",
+      "playcount": 87898,
+      "listeners": 40641,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Alien+Girl+(Today+W%2FHer)"
+    },
+    {
+      "name": "The Recipe (Feat. Dr Dre) (Bonus Track)",
+      "playcount": 299796,
+      "listeners": 40086,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Recipe+(Feat.+Dr+Dre)+(Bonus+Track)"
+    },
+    {
+      "name": "Savior (Interlude)",
+      "playcount": 244068,
+      "listeners": 37423,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Savior+(Interlude)"
+    },
+    {
+      "name": "The Spiteful Chant (feat. ScHoolboy Q)",
+      "playcount": 315175,
+      "listeners": 36757,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Spiteful+Chant+(feat.+ScHoolboy+Q)"
+    },
+    {
+      "name": "Now Or Never (Feat. Mary J. Blige) (Bonus Track)",
+      "playcount": 212892,
+      "listeners": 36486,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Now+Or+Never+(Feat.+Mary+J.+Blige)+(Bonus+Track)"
+    },
+    {
+      "name": "untitled 06 06.30.2014.",
+      "playcount": 138624,
+      "listeners": 36359,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+06+06.30.2014."
+    },
+    {
+      "name": "Rigamortis",
+      "playcount": 192330,
+      "listeners": 36275,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Rigamortis"
+    },
+    {
+      "name": "untitled 04 08.14.2014.",
+      "playcount": 114350,
+      "listeners": 35979,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+04+08.14.2014."
+    },
+    {
+      "name": "Cartoon",
+      "playcount": 181761,
+      "listeners": 35972,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Cartoon"
+    },
+    {
+      "name": "untitled 05 09.21.2014.",
+      "playcount": 126352,
+      "listeners": 34497,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+05+09.21.2014."
+    },
+    {
+      "name": "untitled 08 09.06.2014.",
+      "playcount": 143936,
+      "listeners": 34082,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+08+09.06.2014."
+    },
+    {
+      "name": "untitled 07 2014 - 2016",
+      "playcount": 119871,
+      "listeners": 33437,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+07+2014+-+2016"
+    },
+    {
+      "name": "The Recipe (feat. Dr. Dre)",
+      "playcount": 271463,
+      "listeners": 33006,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Recipe+(feat.+Dr.+Dre)"
+    },
+    {
+      "name": "untitled 02 l 06.23.2014.",
+      "playcount": 255710,
+      "listeners": 32709,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+02+l+06.23.2014."
+    },
+    {
+      "name": "LOYALTY. (feat. Rihanna)",
+      "playcount": 212717,
+      "listeners": 32219,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/LOYALTY.+(feat.+Rihanna)"
+    },
+    {
+      "name": "Sherane a.k.a Master Splinter's Daughter",
+      "playcount": 213965,
+      "listeners": 30784,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Sherane+a.k.a+Master+Splinter%27s+Daughter"
+    },
+    {
+      "name": "The Recipe (feat. Dr. Dre) [Bonus Track]",
+      "playcount": 226775,
+      "listeners": 28717,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Recipe+(feat.+Dr.+Dre)+%5BBonus+Track%5D"
+    },
+    {
+      "name": "Sherane a.k.a. Master Splinter’s Daughter",
+      "playcount": 155795,
+      "listeners": 28251,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Sherane+a.k.a.+Master+Splinter%E2%80%99s+Daughter"
+    },
+    {
+      "name": "XXX. (feat. U2)",
+      "playcount": 218527,
+      "listeners": 28175,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/XXX.+(feat.+U2)"
+    },
+    {
+      "name": "For Free?",
+      "playcount": 106134,
+      "listeners": 27235,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/For+Free%3F"
+    },
+    {
+      "name": "XXX.",
+      "playcount": 159901,
+      "listeners": 27226,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/XXX."
+    },
+    {
+      "name": "untitled 03 l 05.28.2013.",
+      "playcount": 166487,
+      "listeners": 27010,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+03+l+05.28.2013."
+    },
+    {
+      "name": "untitled 08 l 09.06.2014.",
+      "playcount": 188502,
+      "listeners": 25992,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+08+l+09.06.2014."
+    },
+    {
+      "name": "untitled 05 l 09.21.2014.",
+      "playcount": 183376,
+      "listeners": 25721,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+05+l+09.21.2014."
+    },
+    {
+      "name": "Swimming Pools (Drank) - Black Hippy Remix",
+      "playcount": 90467,
+      "listeners": 25383,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Swimming+Pools+(Drank)+-+Black+Hippy+Remix"
+    },
+    {
+      "name": "untitled 06 l 06.30.2014.",
+      "playcount": 164504,
+      "listeners": 25232,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+06+l+06.30.2014."
+    },
+    {
+      "name": "Swimming Pools (Drank) [Bonus Track]",
+      "playcount": 171769,
+      "listeners": 24957,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Swimming+Pools+(Drank)+%5BBonus+Track%5D"
+    },
+    {
+      "name": "Now or Never (feat. Mary J. Blige) [Bonus Track]",
+      "playcount": 174937,
+      "listeners": 24751,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Now+or+Never+(feat.+Mary+J.+Blige)+%5BBonus+Track%5D"
+    },
+    {
+      "name": "Now or Never",
+      "playcount": 103434,
+      "listeners": 24453,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Now+or+Never"
+    },
+    {
+      "name": "Mother I Sober (feat. Beth Gibbons)",
+      "playcount": 142902,
+      "listeners": 24336,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Mother+I+Sober+(feat.+Beth+Gibbons)"
+    },
+    {
+      "name": "I Do This (Remix)",
+      "playcount": 52297,
+      "listeners": 24228,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/I+Do+This+(Remix)"
+    },
+    {
+      "name": "untitled 01 l 08.19.2014.",
+      "playcount": 116122,
+      "listeners": 23816,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+01+l+08.19.2014."
+    },
+    {
+      "name": "Swimming Pools (Drank) - Extended Explicit Version",
+      "playcount": 94105,
+      "listeners": 23751,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Swimming+Pools+(Drank)+-+Extended+Explicit+Version"
+    },
+    {
+      "name": "untitled 04 l 08.14.2014.",
+      "playcount": 118189,
+      "listeners": 23703,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+04+l+08.14.2014."
+    },
+    {
+      "name": "untitled 07 l 2014 - 2016",
+      "playcount": 121999,
+      "listeners": 23638,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+07+l+2014+-+2016"
+    },
+    {
+      "name": "Complexion (A Zulu Love) (feat. Rapsody)",
+      "playcount": 111623,
+      "listeners": 22707,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Complexion+(A+Zulu+Love)+(feat.+Rapsody)"
+    },
+    {
+      "name": "Now or Never (feat. Mary J. Blige)",
+      "playcount": 142669,
+      "listeners": 22446,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Now+or+Never+(feat.+Mary+J.+Blige)"
+    },
+    {
+      "name": "Collect Calls (Bonus Track)",
+      "playcount": 143020,
+      "listeners": 22433,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Collect+Calls+(Bonus+Track)"
+    },
+    {
+      "name": "dodger blue (feat. Wallie the Sensei, Siete7x & Roddy Ricch)",
+      "playcount": 236364,
+      "listeners": 22164,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/dodger+blue+(feat.+Wallie+the+Sensei,+Siete7x+&+Roddy+Ricch)"
+    },
+    {
+      "name": "untitled 07 levitate",
+      "playcount": 96144,
+      "listeners": 20019,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+07+levitate"
+    },
+    {
+      "name": "Bitch, Don’t Kill My Vibe (feat. JAY Z) [Remix]",
+      "playcount": 129794,
+      "listeners": 19355,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Bitch,+Don%E2%80%99t+Kill+My+Vibe+(feat.+JAY+Z)+%5BRemix%5D"
+    },
+    {
+      "name": "For Sale?",
+      "playcount": 76913,
+      "listeners": 18607,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/For+Sale%3F"
+    },
+    {
+      "name": "gnx (feat. Hitta J3, YoungThreat & Peysoh)",
+      "playcount": 129828,
+      "listeners": 18350,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/gnx+(feat.+Hitta+J3,+YoungThreat+&+Peysoh)"
+    },
+    {
+      "name": "Celebration",
+      "playcount": 84947,
+      "listeners": 18280,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Celebration"
+    },
+    {
+      "name": "Poe Mans Dreams (His Vice) [feat. GLC]",
+      "playcount": 122959,
+      "listeners": 17794,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Poe+Mans+Dreams+(His+Vice)+%5Bfeat.+GLC%5D"
+    },
+    {
+      "name": "Blow My High",
+      "playcount": 121760,
+      "listeners": 17008,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Blow+My+High"
+    },
+    {
+      "name": "Keisha's Song (Her Pain) [feat. Ashtro Bot]",
+      "playcount": 103532,
+      "listeners": 16897,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Keisha%27s+Song+(Her+Pain)+%5Bfeat.+Ashtro+Bot%5D"
+    },
+    {
+      "name": "Sing About Me, I'm Dying Of Thirst - Part 1",
+      "playcount": 41858,
+      "listeners": 16791,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Sing+About+Me,+I%27m+Dying+Of+Thirst+-+Part+1"
+    },
+    {
+      "name": "Father Time",
+      "playcount": 101291,
+      "listeners": 16577,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Father+Time"
+    },
+    {
+      "name": "Tammy's Song",
+      "playcount": 92796,
+      "listeners": 16253,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Tammy%27s+Song"
+    },
+    {
+      "name": "No Make-Up (Her Vice) [feat. Colin Munroe]",
+      "playcount": 91835,
+      "listeners": 16225,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/No+Make-Up+(Her+Vice)+%5Bfeat.+Colin+Munroe%5D"
+    },
+    {
+      "name": "Wanna Be Heard",
+      "playcount": 73151,
+      "listeners": 16161,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Wanna+Be+Heard"
+    },
+    {
+      "name": "My People (feat. Jay Rock)",
+      "playcount": 53898,
+      "listeners": 15973,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/My+People+(feat.+Jay+Rock)"
+    },
+    {
+      "name": "Ronald Reagan Era (His Evils)",
+      "playcount": 125326,
+      "listeners": 14411,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Ronald+Reagan+Era+(His+Evils)"
+    },
+    {
+      "name": "Trip",
+      "playcount": 51919,
+      "listeners": 13233,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Trip"
+    },
+    {
+      "name": "Vanity Slaves",
+      "playcount": 50992,
+      "listeners": 13028,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Vanity+Slaves"
+    },
+    {
+      "name": "Collect Calls",
+      "playcount": 107061,
+      "listeners": 13016,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Collect+Calls"
+    },
+    {
+      "name": "DNA",
+      "playcount": 186239,
+      "listeners": 12712,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/DNA"
+    },
+    {
+      "name": "Swimming Pools",
+      "playcount": 99683,
+      "listeners": 12696,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Swimming+Pools"
+    },
+    {
+      "name": "Let Me Be Me",
+      "playcount": 52242,
+      "listeners": 12236,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Let+Me+Be+Me"
+    },
+    {
+      "name": "Duckworth",
+      "playcount": 77044,
+      "listeners": 12123,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Duckworth"
+    },
+    {
+      "name": "Night of the Living Junkies",
+      "playcount": 72461,
+      "listeners": 11981,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Night+of+the+Living+Junkies"
+    },
+    {
+      "name": "A.D.H.D.",
+      "playcount": 111348,
+      "listeners": 11851,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/A.D.H.D."
+    },
+    {
+      "name": "War Is My Love",
+      "playcount": 62265,
+      "listeners": 11419,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/War+Is+My+Love"
+    },
+    {
+      "name": "Bitch, Don't Kill My Vibe (Explicit)",
+      "playcount": 31729,
+      "listeners": 11036,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Bitch,+Don%27t+Kill+My+Vibe+(Explicit)"
+    },
+    {
+      "name": "Prayer",
+      "playcount": 156276,
+      "listeners": 10992,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Prayer"
+    },
+    {
+      "name": "Cartoon & Cereal",
+      "playcount": 106626,
+      "listeners": 10903,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Cartoon+&+Cereal"
+    },
+    {
+      "name": "The Heart, Pt. 3",
+      "playcount": 26221,
+      "listeners": 10785,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Heart,+Pt.+3"
+    },
+    {
+      "name": "Michael Jordan (feat. Schoolboy Q)",
+      "playcount": 56798,
+      "listeners": 10707,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Michael+Jordan+(feat.+Schoolboy+Q)"
+    },
+    {
+      "name": "Cut You Off",
+      "playcount": 30726,
+      "listeners": 10663,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Cut+You+Off"
+    },
+    {
+      "name": "Mother I Sober",
+      "playcount": 54418,
+      "listeners": 10433,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Mother+I+Sober"
+    },
+    {
+      "name": "Big Shot",
+      "playcount": 42481,
+      "listeners": 10329,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Big+Shot"
+    },
+    {
+      "name": "Humble",
+      "playcount": 87556,
+      "listeners": 10233,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Humble"
+    },
+    {
+      "name": "P&P 1.5 (feat. Ab-Soul)",
+      "playcount": 59440,
+      "listeners": 10113,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/P&P+1.5+(feat.+Ab-Soul)"
+    },
+    {
+      "name": "Pray For Me",
+      "playcount": 34207,
+      "listeners": 10011,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Pray+For+Me"
+    },
+    {
+      "name": "6:16 in LA",
+      "playcount": 208512,
+      "listeners": 9895,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/6:16+in+LA"
+    },
+    {
+      "name": "Barbed Wire (feat. Ash Riser)",
+      "playcount": 57405,
+      "listeners": 9756,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Barbed+Wire+(feat.+Ash+Riser)"
+    },
+    {
+      "name": "Look Out for Detox",
+      "playcount": 100011,
+      "listeners": 9545,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Look+Out+for+Detox"
+    },
+    {
+      "name": "Thank You",
+      "playcount": 21118,
+      "listeners": 9472,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Thank+You"
+    },
+    {
+      "name": "My People (feat. Jay Rock) (\"Bastards of the Party\" Original Soundtrack Version)",
+      "playcount": 39994,
+      "listeners": 9384,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/My+People+(feat.+Jay+Rock)+(%22Bastards+of+the+Party%22+Original+Soundtrack+Version)"
+    },
+    {
+      "name": "Members Only",
+      "playcount": 57060,
+      "listeners": 9350,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Members+Only"
+    },
+    {
+      "name": "Ab-Soul's Outro",
+      "playcount": 78225,
+      "listeners": 9331,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Ab-Soul%27s+Outro"
+    },
+    {
+      "name": "I Am (Interlude)",
+      "playcount": 48360,
+      "listeners": 9292,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/I+Am+(Interlude)"
+    },
+    {
+      "name": "Cloud 10",
+      "playcount": 54025,
+      "listeners": 9143,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Cloud+10"
+    },
+    {
+      "name": "Sing About Me, I’m Dying of Thirst",
+      "playcount": 58595,
+      "listeners": 8964,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Sing+About+Me,+I%E2%80%99m+Dying+of+Thirst"
+    },
+    {
+      "name": "LOVE. FT. ZACARI.",
+      "playcount": 59351,
+      "listeners": 8898,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/LOVE.+FT.+ZACARI."
+    },
+    {
+      "name": "Kendrick Lamar",
+      "playcount": 27997,
+      "listeners": 8865,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Kendrick+Lamar"
+    },
+    {
+      "name": "Swimming Pools (Drank) (Black Hippy Remix)",
+      "playcount": 51121,
+      "listeners": 8695,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Swimming+Pools+(Drank)+(Black+Hippy+Remix)"
+    },
+    {
+      "name": "Alien Girl (Today With Her)",
+      "playcount": 48698,
+      "listeners": 8678,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Alien+Girl+(Today+With+Her)"
+    },
+    {
+      "name": "Lust",
+      "playcount": 55987,
+      "listeners": 8602,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Lust"
+    },
+    {
+      "name": "LOYALTY. FT. RIHANNA.",
+      "playcount": 52900,
+      "listeners": 8363,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/LOYALTY.+FT.+RIHANNA."
+    },
+    {
+      "name": "God Is Gangsta",
+      "playcount": 19243,
+      "listeners": 8290,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/God+Is+Gangsta"
+    },
+    {
+      "name": "Cross Trainers",
+      "playcount": 16568,
+      "listeners": 8220,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Cross+Trainers"
+    },
+    {
+      "name": "Is It Love feat. Angela McCluskey",
+      "playcount": 20119,
+      "listeners": 8085,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Is+It+Love+feat.+Angela+McCluskey"
+    },
+    {
+      "name": "Fear",
+      "playcount": 52222,
+      "listeners": 8023,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Fear"
+    },
+    {
+      "name": "Rich",
+      "playcount": 28540,
+      "listeners": 7843,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Rich"
+    },
+    {
+      "name": "Bitch, Don’t Kill My Vibe (Remix)",
+      "playcount": 30178,
+      "listeners": 7798,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Bitch,+Don%E2%80%99t+Kill+My+Vibe+(Remix)"
+    },
+    {
+      "name": "Swimming Pools (Drank) - Explicit Version",
+      "playcount": 28778,
+      "listeners": 7733,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Swimming+Pools+(Drank)+-+Explicit+Version"
+    },
+    {
+      "name": "Feel",
+      "playcount": 50983,
+      "listeners": 7569,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Feel"
+    },
+    {
+      "name": "Element",
+      "playcount": 59597,
+      "listeners": 7563,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Element"
+    },
+    {
+      "name": "Poe Mans Dreams",
+      "playcount": 34279,
+      "listeners": 7483,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Poe+Mans+Dreams"
+    },
+    {
+      "name": "m.A.A.d. City (feat. MC Eiht)",
+      "playcount": 30533,
+      "listeners": 7431,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/m.A.A.d.+City+(feat.+MC+Eiht)"
+    },
+    {
+      "name": "We Cry Together - A Short Film",
+      "playcount": 12933,
+      "listeners": 7428,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/We+Cry+Together+-+A+Short+Film"
+    },
+    {
+      "name": "Pride",
+      "playcount": 57930,
+      "listeners": 7418,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Pride"
+    },
+    {
+      "name": "HiiPoWeR",
+      "playcount": 55287,
+      "listeners": 7410,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/HiiPoWeR"
+    },
+    {
+      "name": "LOYALTY. ft. Rihanna",
+      "playcount": 20117,
+      "listeners": 7250,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/LOYALTY.+ft.+Rihanna"
+    },
+    {
+      "name": "The Recipe (Bonus Track) (feat. Dr. Dre)",
+      "playcount": 37764,
+      "listeners": 7212,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Recipe+(Bonus+Track)+(feat.+Dr.+Dre)"
+    },
+    {
+      "name": "Yah",
+      "playcount": 46527,
+      "listeners": 7136,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Yah"
+    },
+    {
+      "name": "Blood",
+      "playcount": 43671,
+      "listeners": 7076,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Blood"
+    },
+    {
+      "name": "Poetic Justice (Explicit) ft. Drake",
+      "playcount": 16447,
+      "listeners": 7053,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Poetic+Justice+(Explicit)+ft.+Drake"
+    },
+    {
+      "name": "Bitch, Don’t Kill My Vibe - Remix / Explicit Version",
+      "playcount": 21941,
+      "listeners": 6954,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Bitch,+Don%E2%80%99t+Kill+My+Vibe+-+Remix+%2F+Explicit+Version"
+    },
+    {
+      "name": "She Needs Me Feat. Javonte",
+      "playcount": 19211,
+      "listeners": 6760,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/She+Needs+Me+Feat.+Javonte"
+    },
+    {
+      "name": "Sing About Me / I’m Dying of Thirst",
+      "playcount": 38259,
+      "listeners": 6613,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Sing+About+Me+%2F+I%E2%80%99m+Dying+of+Thirst"
+    },
+    {
+      "name": "All The Stars (From \"Black Panther: The Album\")",
+      "playcount": 15449,
+      "listeners": 6596,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/All+The+Stars+(From+%22Black+Panther:+The+Album%22)"
+    },
+    {
+      "name": "P&P feat. Ab Soul",
+      "playcount": 18285,
+      "listeners": 6580,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/P&P+feat.+Ab+Soul"
+    },
+    {
+      "name": "Funkmasterflex - Freestyle",
+      "playcount": 16760,
+      "listeners": 6517,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Funkmasterflex+-+Freestyle"
+    },
+    {
+      "name": "Alright - Without Skits",
+      "playcount": 19814,
+      "listeners": 6447,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Alright+-+Without+Skits"
+    },
+    {
+      "name": "The Jig Is Up - Dump'n",
+      "playcount": 19576,
+      "listeners": 6320,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Jig+Is+Up+-+Dump%27n"
+    },
+    {
+      "name": "Murder",
+      "playcount": 14184,
+      "listeners": 6305,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Murder"
+    },
+    {
+      "name": "Lyrical G",
+      "playcount": 12005,
+      "listeners": 6186,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Lyrical+G"
+    },
+    {
+      "name": "God",
+      "playcount": 44159,
+      "listeners": 6166,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/God"
+    },
+    {
+      "name": "The Recipe (Bonus Track)",
+      "playcount": 24221,
+      "listeners": 6110,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Recipe+(Bonus+Track)"
+    },
+    {
+      "name": "Higher Ground - BBC Radio Freestyle",
+      "playcount": 10911,
+      "listeners": 6097,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Higher+Ground+-+BBC+Radio+Freestyle"
+    },
+    {
+      "name": "Iam",
+      "playcount": 13389,
+      "listeners": 5978,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Iam"
+    },
+    {
+      "name": "The Heart Pt.2 ft Dash Snow",
+      "playcount": 38185,
+      "listeners": 5968,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Heart+Pt.2+ft+Dash+Snow"
+    },
+    {
+      "name": "Sherane a.k.a. Master Splinter's Daughter",
+      "playcount": 94008,
+      "listeners": 5927,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Sherane+a.k.a.+Master+Splinter%27s+Daughter"
+    },
+    {
+      "name": "XXX. FT. U2.",
+      "playcount": 36253,
+      "listeners": 5916,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/XXX.+FT.+U2."
+    },
+    {
+      "name": "Black Friday",
+      "playcount": 67299,
+      "listeners": 5898,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Black+Friday"
+    },
+    {
+      "name": "Love",
+      "playcount": 39718,
+      "listeners": 5755,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Love"
+    },
+    {
+      "name": "King's Dead",
+      "playcount": 48758,
+      "listeners": 5624,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/King%27s+Dead"
+    },
+    {
+      "name": "I Do This feat. Jay Rock",
+      "playcount": 15676,
+      "listeners": 5550,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/I+Do+This+feat.+Jay+Rock"
+    },
+    {
+      "name": "Growing Apart {To Get Closer} ft Jhene Aiko",
+      "playcount": 32933,
+      "listeners": 5473,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Growing+Apart+%7BTo+Get+Closer%7D+ft+Jhene+Aiko"
+    },
+    {
+      "name": "Loyalty",
+      "playcount": 36949,
+      "listeners": 5364,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Loyalty"
+    },
+    {
+      "name": "Money Trees (feat Jay Rock)",
+      "playcount": 51476,
+      "listeners": 5243,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Money+Trees+(feat+Jay+Rock)"
+    },
+    {
+      "name": "Swimming Pools [Drank] (Extended Version)",
+      "playcount": 55891,
+      "listeners": 5221,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Swimming+Pools+%5BDrank%5D+(Extended+Version)"
+    },
+    {
+      "name": "Watts R.i.o.t.",
+      "playcount": 9733,
+      "listeners": 5156,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Watts+R.i.o.t."
+    },
+    {
+      "name": "Kush & Corinthians (His Pain)",
+      "playcount": 26826,
+      "listeners": 5155,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Kush+&+Corinthians+(His+Pain)"
+    },
+    {
+      "name": "Poetic Justice (feat Drake)",
+      "playcount": 42400,
+      "listeners": 5049,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Poetic+Justice+(feat+Drake)"
+    },
+    {
+      "name": "The Recipe (feat. Kendrick Lamar, Schoolboy Q, Ab-Soul & Jay Rock)",
+      "playcount": 16869,
+      "listeners": 5045,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Recipe+(feat.+Kendrick+Lamar,+Schoolboy+Q,+Ab-Soul+&+Jay+Rock)"
+    },
+    {
+      "name": "P&P 1.5 ft Ab-Soul",
+      "playcount": 32803,
+      "listeners": 5034,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/P&P+1.5+ft+Ab-Soul"
+    },
+    {
+      "name": "Westside, Right On Time (feat. Young Jeezy) Prod. by Canei Finch",
+      "playcount": 39045,
+      "listeners": 5009,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Westside,+Right+On+Time+(feat.+Young+Jeezy)+Prod.+by+Canei+Finch"
+    },
+    {
+      "name": "The Recipe  Ft. Dr. Dre",
+      "playcount": 17795,
+      "listeners": 4940,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Recipe++Ft.+Dr.+Dre"
+    },
+    {
+      "name": "m.A.A.d City (feat MC Eiht)",
+      "playcount": 46500,
+      "listeners": 4885,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/m.A.A.d+City+(feat+MC+Eiht)"
+    },
+    {
+      "name": "The Blacker the Berry (feat. Assassin)",
+      "playcount": 25899,
+      "listeners": 4869,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Blacker+the+Berry+(feat.+Assassin)"
+    },
+    {
+      "name": "Alien Girl {Today W/ Her}",
+      "playcount": 27892,
+      "listeners": 4814,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Alien+Girl+%7BToday+W%2F+Her%7D"
+    },
+    {
+      "name": "She Needs Me ft. Javonte",
+      "playcount": 30298,
+      "listeners": 4773,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/She+Needs+Me+ft.+Javonte"
+    },
+    {
+      "name": "peekaboo (feat. Az Chike)",
+      "playcount": 19326,
+      "listeners": 4761,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/peekaboo+(feat.+Az+Chike)"
+    },
+    {
+      "name": "Far From Here feat. Schoolboy Q",
+      "playcount": 10739,
+      "listeners": 4760,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Far+From+Here+feat.+Schoolboy+Q"
+    },
+    {
+      "name": "Michael Jordan ft Schoolboy Q",
+      "playcount": 27903,
+      "listeners": 4759,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Michael+Jordan+ft+Schoolboy+Q"
+    },
+    {
+      "name": "LOVE. ft. Zacari",
+      "playcount": 12681,
+      "listeners": 4747,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/LOVE.+ft.+Zacari"
+    },
+    {
+      "name": "Faith feat. Bj The Chicago Kid & Punch",
+      "playcount": 10529,
+      "listeners": 4734,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Faith+feat.+Bj+The+Chicago+Kid+&+Punch"
+    },
+    {
+      "name": "3 Minutes of Watts (feat. Jay Rock)",
+      "playcount": 8374,
+      "listeners": 4720,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/3+Minutes+of+Watts+(feat.+Jay+Rock)"
+    },
+    {
+      "name": "Little Johnny",
+      "playcount": 17133,
+      "listeners": 4681,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Little+Johnny"
+    },
+    {
+      "name": "No Makeup (Her Vice)",
+      "playcount": 25674,
+      "listeners": 4656,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/No+Makeup+(Her+Vice)"
+    },
+    {
+      "name": "XXX",
+      "playcount": 36789,
+      "listeners": 4653,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/XXX"
+    },
+    {
+      "name": "Swimming Pools (Black Hippy Remix)",
+      "playcount": 43356,
+      "listeners": 4648,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Swimming+Pools+(Black+Hippy+Remix)"
+    },
+    {
+      "name": "Cut You Off {To Grow Closer}",
+      "playcount": 27203,
+      "listeners": 4643,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Cut+You+Off+%7BTo+Grow+Closer%7D"
+    },
+    {
+      "name": "Uncle Bobby & Jason Keaton feat. Javonte",
+      "playcount": 9275,
+      "listeners": 4636,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Uncle+Bobby+&+Jason+Keaton+feat.+Javonte"
+    },
+    {
+      "name": "Backseat Freestyle (Explicit)",
+      "playcount": 10741,
+      "listeners": 4605,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Backseat+Freestyle+(Explicit)"
+    },
+    {
+      "name": "Swimming Pools (Drank) (Clean)",
+      "playcount": 14605,
+      "listeners": 4601,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Swimming+Pools+(Drank)+(Clean)"
+    },
+    {
+      "name": "Poe Mans Dream (His Vice)",
+      "playcount": 23353,
+      "listeners": 4597,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Poe+Mans+Dream+(His+Vice)"
+    },
+    {
+      "name": "Bitch, Don’t Kill My Vibe (Remix) (feat. JAY Z)",
+      "playcount": 17606,
+      "listeners": 4597,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Bitch,+Don%E2%80%99t+Kill+My+Vibe+(Remix)+(feat.+JAY+Z)"
+    },
+    {
+      "name": "R.O.T.C {Interlude} ft Bj The Chicago Kid",
+      "playcount": 25336,
+      "listeners": 4570,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/R.O.T.C+%7BInterlude%7D+ft+Bj+The+Chicago+Kid"
+    },
+    {
+      "name": "Is It Love ft. Angela McCluskey",
+      "playcount": 25017,
+      "listeners": 4563,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Is+It+Love+ft.+Angela+McCluskey"
+    },
+    {
+      "name": "Do It Again",
+      "playcount": 14421,
+      "listeners": 4563,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Do+It+Again"
+    },
+    {
+      "name": "Barbed Wire ft Ash Riser",
+      "playcount": 24589,
+      "listeners": 4548,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Barbed+Wire+ft+Ash+Riser"
+    },
+    {
+      "name": "Opposites Attract {Tomorrow W/O Her} ft Javonte",
+      "playcount": 29173,
+      "listeners": 4519,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Opposites+Attract+%7BTomorrow+W%2FO+Her%7D+ft+Javonte"
+    },
+    {
+      "name": "How Many Drinks - Remix",
+      "playcount": 9481,
+      "listeners": 4442,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/How+Many+Drinks+-+Remix"
+    },
+    {
+      "name": "Now Or Never (Bonus Track)",
+      "playcount": 17886,
+      "listeners": 4401,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Now+Or+Never+(Bonus+Track)"
+    },
+    {
+      "name": "Hol'up",
+      "playcount": 9659,
+      "listeners": 4398,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Hol%27up"
+    },
+    {
+      "name": "Sing That Shit (20syl Juicy Remix)",
+      "playcount": 16452,
+      "listeners": 4360,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Sing+That+Shit+(20syl+Juicy+Remix)"
+    },
+    {
+      "name": "Kush & Corinthians (His Pain) (Feat. BJ The Chicago Kid)",
+      "playcount": 24252,
+      "listeners": 4347,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Kush+&+Corinthians+(His+Pain)+(Feat.+BJ+The+Chicago+Kid)"
+    },
+    {
+      "name": "Today",
+      "playcount": 17119,
+      "listeners": 4279,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Today"
+    },
+    {
+      "name": "Heaven & Hell ft Alori Joh",
+      "playcount": 21386,
+      "listeners": 4254,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Heaven+&+Hell+ft+Alori+Joh"
+    },
+    {
+      "name": "Control (feat. Jay Electronica & Big Sean)",
+      "playcount": 23189,
+      "listeners": 4248,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Control+(feat.+Jay+Electronica+&+Big+Sean)"
+    },
+    {
+      "name": "watch the party die",
+      "playcount": 60140,
+      "listeners": 4245,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/watch+the+party+die"
+    },
+    {
+      "name": "Growing Apart (to Get Closer) [feat. Jhené Aiko]",
+      "playcount": 22858,
+      "listeners": 4227,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Growing+Apart+(to+Get+Closer)+%5Bfeat.+Jhen%C3%A9+Aiko%5D"
+    },
+    {
+      "name": "Bitch, Dont Kill My Vibe",
+      "playcount": 39906,
+      "listeners": 4183,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Bitch,+Dont+Kill+My+Vibe"
+    },
+    {
+      "name": "Backseat (Freestyle)",
+      "playcount": 20107,
+      "listeners": 4176,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Backseat+(Freestyle)"
+    },
+    {
+      "name": "I Do This ft. Jay Rock",
+      "playcount": 23750,
+      "listeners": 4169,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/I+Do+This+ft.+Jay+Rock"
+    },
+    {
+      "name": "3 Minutes of Watts (feat. J-Rock)",
+      "playcount": 8188,
+      "listeners": 4152,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/3+Minutes+of+Watts+(feat.+J-Rock)"
+    },
+    {
+      "name": "Compton (feat Dr. Dre)",
+      "playcount": 24365,
+      "listeners": 4094,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Compton+(feat+Dr.+Dre)"
+    },
+    {
+      "name": "R.O.T.C (interlude) [feat. BJ The Chicago Kid]",
+      "playcount": 20249,
+      "listeners": 4091,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/R.O.T.C+(interlude)+%5Bfeat.+BJ+The+Chicago+Kid%5D"
+    },
+    {
+      "name": "Bitch Don't Kill My Vibe",
+      "playcount": 26562,
+      "listeners": 4078,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Bitch+Don%27t+Kill+My+Vibe"
+    },
+    {
+      "name": "Fight The Feeling",
+      "playcount": 10093,
+      "listeners": 4074,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Fight+The+Feeling"
+    },
+    {
+      "name": "Opposites Attract (Tomorrow W/O Her) [feat. Javonte]",
+      "playcount": 23083,
+      "listeners": 4069,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Opposites+Attract+(Tomorrow+W%2FO+Her)+%5Bfeat.+Javonte%5D"
+    },
+    {
+      "name": "Thanksgiving feat. Big Pooh",
+      "playcount": 8164,
+      "listeners": 3998,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Thanksgiving+feat.+Big+Pooh"
+    },
+    {
+      "name": "Beyonce",
+      "playcount": 17265,
+      "listeners": 3974,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Beyonce"
+    },
+    {
+      "name": "The Recipe (Feat Dr. Dre)",
+      "playcount": 28397,
+      "listeners": 3960,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Recipe+(Feat+Dr.+Dre)"
+    },
+    {
+      "name": "Far From Here ft. Schoolboy Q",
+      "playcount": 22489,
+      "listeners": 3938,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Far+From+Here+ft.+Schoolboy+Q"
+    },
+    {
+      "name": "H.O.C.",
+      "playcount": 17934,
+      "listeners": 3932,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/H.O.C."
+    },
+    {
+      "name": "- Ignorance Is Bliss",
+      "playcount": 20552,
+      "listeners": 3927,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/-+Ignorance+Is+Bliss"
+    },
+    {
+      "name": "dodger blue (feat. Wallie the Sensei, Roddy Ricch & Siete7x)",
+      "playcount": 12934,
+      "listeners": 3924,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/dodger+blue+(feat.+Wallie+the+Sensei,+Roddy+Ricch+&+Siete7x)"
+    },
+    {
+      "name": "She Needs Me {RMX} ft Dom Kennedy & Murs *BONUS",
+      "playcount": 25227,
+      "listeners": 3909,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/She+Needs+Me+%7BRMX%7D+ft+Dom+Kennedy+&+Murs+%2ABONUS"
+    },
+    {
+      "name": "Blessed (feat. Kendrick Lamar)",
+      "playcount": 10088,
+      "listeners": 3885,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Blessed+(feat.+Kendrick+Lamar)"
+    },
+    {
+      "name": "Sex With Society",
+      "playcount": 21262,
+      "listeners": 3883,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Sex+With+Society"
+    },
+    {
+      "name": "The Jig Is Up (Dump'n) Prod. by J.Cole & Canei Finch",
+      "playcount": 29587,
+      "listeners": 3839,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Jig+Is+Up+(Dump%27n)+Prod.+by+J.Cole+&+Canei+Finch"
+    },
+    {
+      "name": "Compton State of Mind",
+      "playcount": 14790,
+      "listeners": 3786,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Compton+State+of+Mind"
+    },
+    {
+      "name": "Money Trees (part. Jay Rock)",
+      "playcount": 24631,
+      "listeners": 3768,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Money+Trees+(part.+Jay+Rock)"
+    },
+    {
+      "name": "Real (feat Anna Wise of Sonnymoon)",
+      "playcount": 21343,
+      "listeners": 3742,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Real+(feat+Anna+Wise+of+Sonnymoon)"
+    },
+    {
+      "name": "She Needs Me (Remix) [Feat. Dom Kennedy & Murs]",
+      "playcount": 25320,
+      "listeners": 3740,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/She+Needs+Me+(Remix)+%5BFeat.+Dom+Kennedy+&+Murs%5D"
+    },
+    {
+      "name": "I'm Better",
+      "playcount": 52781,
+      "listeners": 3724,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/I%27m+Better"
+    },
+    {
+      "name": "No Make-Up",
+      "playcount": 27607,
+      "listeners": 3710,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/No+Make-Up"
+    },
+    {
+      "name": "M.A.A.D. City (Eprom Remix)",
+      "playcount": 15622,
+      "listeners": 3706,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/M.A.A.D.+City+(Eprom+Remix)"
+    },
+    {
+      "name": "Lmao",
+      "playcount": 14350,
+      "listeners": 3658,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Lmao"
+    },
+    {
+      "name": "Thanksgiving ft. Big Pooh",
+      "playcount": 16165,
+      "listeners": 3625,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Thanksgiving+ft.+Big+Pooh"
+    },
+    {
+      "name": "Compton's Finest",
+      "playcount": 7398,
+      "listeners": 3615,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Compton%27s+Finest"
+    },
+    {
+      "name": "HUMBLE. (Skrillex Remix)",
+      "playcount": 15851,
+      "listeners": 3601,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/HUMBLE.+(Skrillex+Remix)"
+    },
+    {
+      "name": "Keisha's Song",
+      "playcount": 24760,
+      "listeners": 3578,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Keisha%27s+Song"
+    },
+    {
+      "name": "Swimming Pools (Drank) [Extended]",
+      "playcount": 20716,
+      "listeners": 3554,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Swimming+Pools+(Drank)+%5BExtended%5D"
+    },
+    {
+      "name": "The Jig Is Up (Dump'n)",
+      "playcount": 31574,
+      "listeners": 3553,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Jig+Is+Up+(Dump%27n)"
+    },
+    {
+      "name": "P & P - ft. Ab Soul",
+      "playcount": 21513,
+      "listeners": 3531,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/P+&+P+-+ft.+Ab+Soul"
+    },
+    {
+      "name": "Bitch, Don’t Kill My Vibe (feat. Emeli Sandé) [International Remix]",
+      "playcount": 14141,
+      "listeners": 3519,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Bitch,+Don%E2%80%99t+Kill+My+Vibe+(feat.+Emeli+Sand%C3%A9)+%5BInternational+Remix%5D"
+    },
+    {
+      "name": "A1 Everything",
+      "playcount": 8877,
+      "listeners": 3501,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/A1+Everything"
+    },
+    {
+      "name": "I Do This {RMX} ft U.N.I Skeme, Brown (of Sore Losers) *BONUS",
+      "playcount": 17519,
+      "listeners": 3497,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/I+Do+This+%7BRMX%7D+ft+U.N.I+Skeme,+Brown+(of+Sore+Losers)+%2ABONUS"
+    },
+    {
+      "name": "Flower Child",
+      "playcount": 11325,
+      "listeners": 3462,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Flower+Child"
+    },
+    {
+      "name": "Now Or Never (feat Mary J. Blige)",
+      "playcount": 17909,
+      "listeners": 3446,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Now+Or+Never+(feat+Mary+J.+Blige)"
+    },
+    {
+      "name": "The Recipe (Black Hippy Remix)",
+      "playcount": 39372,
+      "listeners": 3411,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Recipe+(Black+Hippy+Remix)"
+    },
+    {
+      "name": "The Best Rapper Alive",
+      "playcount": 9915,
+      "listeners": 3407,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Best+Rapper+Alive"
+    },
+    {
+      "name": "- Alien Girl (Today With Her)",
+      "playcount": 16618,
+      "listeners": 3404,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/-+Alien+Girl+(Today+With+Her)"
+    },
+    {
+      "name": "I Do This (feat. Jay Rock)",
+      "playcount": 17677,
+      "listeners": 3388,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/I+Do+This+(feat.+Jay+Rock)"
+    },
+    {
+      "name": "The Relevant",
+      "playcount": 20084,
+      "listeners": 3382,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Relevant"
+    },
+    {
+      "name": "Swimming Pools [Drank] (Black Hippy Remix)",
+      "playcount": 17544,
+      "listeners": 3359,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Swimming+Pools+%5BDrank%5D+(Black+Hippy+Remix)"
+    },
+    {
+      "name": "Die Hard (feat. Blxst & Amanda Reifer)",
+      "playcount": 22994,
+      "listeners": 3334,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Die+Hard+(feat.+Blxst+&+Amanda+Reifer)"
+    },
+    {
+      "name": "Faith ft. Bj The Chicago Kid & Punch",
+      "playcount": 18134,
+      "listeners": 3327,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Faith+ft.+Bj+The+Chicago+Kid+&+Punch"
+    },
+    {
+      "name": "Cartoon & Cereal (Feat. Gunplay)",
+      "playcount": 36155,
+      "listeners": 3307,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Cartoon+&+Cereal+(Feat.+Gunplay)"
+    },
+    {
+      "name": "Skill Still Appeal",
+      "playcount": 11376,
+      "listeners": 3280,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Skill+Still+Appeal"
+    },
+    {
+      "name": "For the Homies",
+      "playcount": 13813,
+      "listeners": 3255,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/For+the+Homies"
+    },
+    {
+      "name": "Swimming Pools (Drank) [prod. by T-Minus]",
+      "playcount": 21102,
+      "listeners": 3253,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Swimming+Pools+(Drank)+%5Bprod.+by+T-Minus%5D"
+    },
+    {
+      "name": "She Needs Me (feat. Javonte)",
+      "playcount": 18960,
+      "listeners": 3250,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/She+Needs+Me+(feat.+Javonte)"
+    },
+    {
+      "name": "Super Bowl LIX Halftime Show",
+      "playcount": 6264,
+      "listeners": 3249,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Super+Bowl+LIX+Halftime+Show"
+    },
+    {
+      "name": "My Mind Drifts",
+      "playcount": 14564,
+      "listeners": 3245,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/My+Mind+Drifts"
+    },
+    {
+      "name": "Money Trees (ft. Jay Rock)",
+      "playcount": 32465,
+      "listeners": 3239,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Money+Trees+(ft.+Jay+Rock)"
+    },
+    {
+      "name": "Gang Member",
+      "playcount": 12955,
+      "listeners": 3185,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Gang+Member"
+    },
+    {
+      "name": "- Average Joe",
+      "playcount": 14155,
+      "listeners": 3174,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/-+Average+Joe"
+    },
+    {
+      "name": "Poetic Justice (ft. Drake)",
+      "playcount": 23463,
+      "listeners": 3141,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Poetic+Justice+(ft.+Drake)"
+    },
+    {
+      "name": "Uncle Bobby & Jason Keaton ft. Javonte",
+      "playcount": 13586,
+      "listeners": 3137,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Uncle+Bobby+&+Jason+Keaton+ft.+Javonte"
+    },
+    {
+      "name": "Blessed",
+      "playcount": 10013,
+      "listeners": 3113,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Blessed"
+    },
+    {
+      "name": "Good Morning America",
+      "playcount": 10085,
+      "listeners": 3098,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Good+Morning+America"
+    },
+    {
+      "name": "Now or Never (Bonus Track) (feat. Mary J. Blige)",
+      "playcount": 14994,
+      "listeners": 3092,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Now+or+Never+(Bonus+Track)+(feat.+Mary+J.+Blige)"
+    },
+    {
+      "name": "Sail - Remix",
+      "playcount": 6739,
+      "listeners": 3087,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Sail+-+Remix"
+    },
+    {
+      "name": "The Heart Pt. 2 (feat. Dash Snow)",
+      "playcount": 18456,
+      "listeners": 3065,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Heart+Pt.+2+(feat.+Dash+Snow)"
+    },
+    {
+      "name": "The Only Nigga",
+      "playcount": 13045,
+      "listeners": 3065,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Only+Nigga"
+    },
+    {
+      "name": "Opposites Attract (Tomorrow Without Her) (feat. Javonte)",
+      "playcount": 17590,
+      "listeners": 3051,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Opposites+Attract+(Tomorrow+Without+Her)+(feat.+Javonte)"
+    },
+    {
+      "name": "Humble. [Explicit]",
+      "playcount": 16088,
+      "listeners": 3040,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Humble.+%5BExplicit%5D"
+    },
+    {
+      "name": "Next to Me - Remix",
+      "playcount": 6959,
+      "listeners": 3027,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Next+to+Me+-+Remix"
+    },
+    {
+      "name": "Swimming Pools (Drank)(prod. by T-Minus)",
+      "playcount": 11387,
+      "listeners": 3025,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Swimming+Pools+(Drank)(prod.+by+T-Minus)"
+    },
+    {
+      "name": "Bitch, Don’t Kill My Vibe - International Remix / Edited Version",
+      "playcount": 8246,
+      "listeners": 3013,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Bitch,+Don%E2%80%99t+Kill+My+Vibe+-+International+Remix+%2F+Edited+Version"
+    },
+    {
+      "name": "Bitch I'm in the Club",
+      "playcount": 13798,
+      "listeners": 2995,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Bitch+I%27m+in+the+Club"
+    },
+    {
+      "name": "Yung Boys World",
+      "playcount": 9071,
+      "listeners": 2958,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Yung+Boys+World"
+    },
+    {
+      "name": "- H.O.C.",
+      "playcount": 13144,
+      "listeners": 2953,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/-+H.O.C."
+    },
+    {
+      "name": "- Cut You Off (To Grow Closer)",
+      "playcount": 12873,
+      "listeners": 2946,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/-+Cut+You+Off+(To+Grow+Closer)"
+    },
+    {
+      "name": "Money Trees ft. Jay Rock",
+      "playcount": 24087,
+      "listeners": 2945,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Money+Trees+ft.+Jay+Rock"
+    },
+    {
+      "name": "Enjoy",
+      "playcount": 5956,
+      "listeners": 2915,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Enjoy"
+    },
+    {
+      "name": "Want In Life",
+      "playcount": 11342,
+      "listeners": 2901,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Want+In+Life"
+    },
+    {
+      "name": "Silent Hill (feat. Kodak Black)",
+      "playcount": 18898,
+      "listeners": 2840,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Silent+Hill+(feat.+Kodak+Black)"
+    },
+    {
+      "name": "Money Trees (HD Lyrics)",
+      "playcount": 8712,
+      "listeners": 2800,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Money+Trees+(HD+Lyrics)"
+    },
+    {
+      "name": "She Needs Me (Remix) (feat. Dom Kennedy & Murs)",
+      "playcount": 15691,
+      "listeners": 2789,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/She+Needs+Me+(Remix)+(feat.+Dom+Kennedy+&+Murs)"
+    },
+    {
+      "name": "Faith (feat. BJ The Chicago Kid & Punch)",
+      "playcount": 15203,
+      "listeners": 2786,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Faith+(feat.+BJ+The+Chicago+Kid+&+Punch)"
+    },
+    {
+      "name": "Don't Understand",
+      "playcount": 9528,
+      "listeners": 2779,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Don%27t+Understand"
+    },
+    {
+      "name": "You Ain’t Gotta Lie (Momma Said)",
+      "playcount": 9662,
+      "listeners": 2777,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/You+Ain%E2%80%99t+Gotta+Lie+(Momma+Said)"
+    },
+    {
+      "name": "Bitch Dont Kill My Vibe",
+      "playcount": 10300,
+      "listeners": 2761,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Bitch+Dont+Kill+My+Vibe"
+    },
+    {
+      "name": "All The Stars - From \"Black Panther: The Album\"",
+      "playcount": 19345,
+      "listeners": 2716,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/All+The+Stars+-+From+%22Black+Panther:+The+Album%22"
+    },
+    {
+      "name": "Far From Here (feat. ScHoolboy Q)",
+      "playcount": 12534,
+      "listeners": 2697,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Far+From+Here+(feat.+ScHoolboy+Q)"
+    },
+    {
+      "name": "untitled 07 l levitate",
+      "playcount": 21136,
+      "listeners": 2676,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+07+l+levitate"
+    },
+    {
+      "name": "Bitch, Don't Kill My Vibe (feat. Lady Gaga)",
+      "playcount": 23149,
+      "listeners": 2670,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Bitch,+Don%27t+Kill+My+Vibe+(feat.+Lady+Gaga)"
+    },
+    {
+      "name": "The Recipe ft. Dr. Dre",
+      "playcount": 22473,
+      "listeners": 2668,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Recipe+ft.+Dr.+Dre"
+    },
+    {
+      "name": "Keishas Song (Her Pain)",
+      "playcount": 14071,
+      "listeners": 2667,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Keishas+Song+(Her+Pain)"
+    },
+    {
+      "name": "She Needs Me",
+      "playcount": 15887,
+      "listeners": 2621,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/She+Needs+Me"
+    },
+    {
+      "name": "The Recipe (feat. Dr Dre)",
+      "playcount": 22534,
+      "listeners": 2602,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Recipe+(feat.+Dr+Dre)"
+    },
+    {
+      "name": "Thanksgiving (feat. Big Pooh)",
+      "playcount": 11489,
+      "listeners": 2601,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Thanksgiving+(feat.+Big+Pooh)"
+    },
+    {
+      "name": "Own This City",
+      "playcount": 10813,
+      "listeners": 2598,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Own+This+City"
+    },
+    {
+      "name": "Best Rapper Under 25",
+      "playcount": 12638,
+      "listeners": 2578,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Best+Rapper+Under+25"
+    },
+    {
+      "name": "Somebody",
+      "playcount": 21824,
+      "listeners": 2565,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Somebody"
+    },
+    {
+      "name": "Poetic Justice ft. Drake",
+      "playcount": 24855,
+      "listeners": 2509,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Poetic+Justice+ft.+Drake"
+    },
+    {
+      "name": "To Pimp A Butterfly ALBUM REVIEW",
+      "playcount": 3334,
+      "listeners": 2495,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/To+Pimp+A+Butterfly+ALBUM+REVIEW"
+    },
+    {
+      "name": "Is It Love (feat. Angela McCluskey)",
+      "playcount": 16807,
+      "listeners": 2492,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Is+It+Love+(feat.+Angela+McCluskey)"
+    },
+    {
+      "name": "A Milli",
+      "playcount": 10103,
+      "listeners": 2476,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/A+Milli"
+    },
+    {
+      "name": "m.A.A.d city (ft. MC Eiht)",
+      "playcount": 21869,
+      "listeners": 2456,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/m.A.A.d+city+(ft.+MC+Eiht)"
+    },
+    {
+      "name": "Hiii Power",
+      "playcount": 14963,
+      "listeners": 2454,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Hiii+Power"
+    },
+    {
+      "name": "Swimming Pools (Drank) (Explicit Version)",
+      "playcount": 9178,
+      "listeners": 2423,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Swimming+Pools+(Drank)+(Explicit+Version)"
+    },
+    {
+      "name": "Backseat Freestyle (Prod. By Hit-Boy)",
+      "playcount": 10547,
+      "listeners": 2398,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Backseat+Freestyle+(Prod.+By+Hit-Boy)"
+    },
+    {
+      "name": "M.A.A.D. City",
+      "playcount": 17541,
+      "listeners": 2394,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/M.A.A.D.+City"
+    },
+    {
+      "name": "I Hate You",
+      "playcount": 16079,
+      "listeners": 2392,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/I+Hate+You"
+    },
+    {
+      "name": "Im Ghost",
+      "playcount": 4640,
+      "listeners": 2387,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Im+Ghost"
+    },
+    {
+      "name": "Growing Apart (To Get Closer) (feat. Jhene Aiko)",
+      "playcount": 12775,
+      "listeners": 2358,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Growing+Apart+(To+Get+Closer)+(feat.+Jhene+Aiko)"
+    },
+    {
+      "name": "Pray",
+      "playcount": 26343,
+      "listeners": 2356,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Pray"
+    },
+    {
+      "name": "Bitch Don't Kill My Vibe (Kill Them With Colour Remix)",
+      "playcount": 7643,
+      "listeners": 2355,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Bitch+Don%27t+Kill+My+Vibe+(Kill+Them+With+Colour+Remix)"
+    },
+    {
+      "name": "R.O.T.C (Interlude) (feat. Bj The Chicago Kid)",
+      "playcount": 11157,
+      "listeners": 2326,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/R.O.T.C+(Interlude)+(feat.+Bj+The+Chicago+Kid)"
+    },
+    {
+      "name": "Control",
+      "playcount": 16359,
+      "listeners": 2295,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Control"
+    },
+    {
+      "name": "Savior (feat. Baby Keem & Sam Dew)",
+      "playcount": 14948,
+      "listeners": 2295,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Savior+(feat.+Baby+Keem+&+Sam+Dew)"
+    },
+    {
+      "name": "Cartoons & Cereal",
+      "playcount": 23252,
+      "listeners": 2290,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Cartoons+&+Cereal"
+    },
+    {
+      "name": "Outrageous",
+      "playcount": 9261,
+      "listeners": 2280,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Outrageous"
+    },
+    {
+      "name": "Determined (feat. Ash Riser)",
+      "playcount": 12321,
+      "listeners": 2271,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Determined+(feat.+Ash+Riser)"
+    },
+    {
+      "name": "Uncle Bobby & Jason Keaton (feat. Javonte)",
+      "playcount": 10077,
+      "listeners": 2256,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Uncle+Bobby+&+Jason+Keaton+(feat.+Javonte)"
+    },
+    {
+      "name": "- The Heart Pt. 2 (Feat. Dash Snow)",
+      "playcount": 9956,
+      "listeners": 2246,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/-+The+Heart+Pt.+2+(Feat.+Dash+Snow)"
+    },
+    {
+      "name": "World Negatives",
+      "playcount": 8804,
+      "listeners": 2236,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/World+Negatives"
+    },
+    {
+      "name": "Westside, Right On Time (feat. Young Jeezy)",
+      "playcount": 23754,
+      "listeners": 2233,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Westside,+Right+On+Time+(feat.+Young+Jeezy)"
+    },
+    {
+      "name": "Backseat Freestyle [Explicit]",
+      "playcount": 16385,
+      "listeners": 2223,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Backseat+Freestyle+%5BExplicit%5D"
+    },
+    {
+      "name": "Catch A Fade",
+      "playcount": 5016,
+      "listeners": 2213,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Catch+A+Fade"
+    },
+    {
+      "name": "Cartoons & Cereal ft. Gunplay",
+      "playcount": 11596,
+      "listeners": 2208,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Cartoons+&+Cereal+ft.+Gunplay"
+    },
+    {
+      "name": "No Makeup (Her Vice) (Feat. Colin Munroe)",
+      "playcount": 15603,
+      "listeners": 2202,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/No+Makeup+(Her+Vice)+(Feat.+Colin+Munroe)"
+    },
+    {
+      "name": "The Heart Part 1",
+      "playcount": 15964,
+      "listeners": 2187,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/The+Heart+Part+1"
+    },
+    {
+      "name": "ADHD",
+      "playcount": 15626,
+      "listeners": 2178,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/ADHD"
+    },
+    {
+      "name": "Bitch Don't Kill My Vibe (Remix) feat. Jay-Z",
+      "playcount": 7903,
+      "listeners": 2175,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Bitch+Don%27t+Kill+My+Vibe+(Remix)+feat.+Jay-Z"
+    },
+    {
+      "name": "We Cry Together (feat. Taylour Paige)",
+      "playcount": 11537,
+      "listeners": 2152,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/We+Cry+Together+(feat.+Taylour+Paige)"
+    },
+    {
+      "name": "Humble (Skrillex Remix)",
+      "playcount": 8156,
+      "listeners": 2140,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Humble+(Skrillex+Remix)"
+    },
+    {
+      "name": "Bitch, Don’t Kill My Vibe [Explicit]",
+      "playcount": 15942,
+      "listeners": 2138,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Bitch,+Don%E2%80%99t+Kill+My+Vibe+%5BExplicit%5D"
+    },
+    {
+      "name": "F**k Your Ethnicity",
+      "playcount": 11105,
+      "listeners": 2094,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/F%2A%2Ak+Your+Ethnicity"
+    },
+    {
+      "name": "LOVE. (part. Zacari)",
+      "playcount": 10918,
+      "listeners": 2073,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/LOVE.+(part.+Zacari)"
+    },
+    {
+      "name": "LOYALTY. (part. Rihanna)",
+      "playcount": 13350,
+      "listeners": 2064,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/LOYALTY.+(part.+Rihanna)"
+    },
+    {
+      "name": "Ab-Soul's Outro (feat. Ab-Soul)",
+      "playcount": 10052,
+      "listeners": 2050,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Ab-Soul%27s+Outro+(feat.+Ab-Soul)"
+    },
+    {
+      "name": "LOYALTY. (ft. Rihanna)",
+      "playcount": 17113,
+      "listeners": 2041,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/LOYALTY.+(ft.+Rihanna)"
+    },
+    {
+      "name": "Imagine",
+      "playcount": 5367,
+      "listeners": 2034,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Imagine"
+    },
+    {
+      "name": "All the Stars (feat. SZA)",
+      "playcount": 27595,
+      "listeners": 2021,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/All+the+Stars+(feat.+SZA)"
+    },
+    {
+      "name": "mAAd City",
+      "playcount": 7259,
+      "listeners": 2008,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/mAAd+City"
+    },
+    {
+      "name": "Compton Chemistry",
+      "playcount": 6657,
+      "listeners": 2003,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Compton+Chemistry"
+    },
+    {
+      "name": "- Growing Apart (From Everythi",
+      "playcount": 9817,
+      "listeners": 2001,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/-+Growing+Apart+(From+Everythi"
+    },
+    {
+      "name": "Double XL (feat. Curren$y, Mickey Factz & Kendrick Lamar)",
+      "playcount": 4415,
+      "listeners": 2000,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Double+XL+(feat.+Curren$y,+Mickey+Factz+&+Kendrick+Lamar)"
+    },
+    {
+      "name": "Untitled 02 (06.23.2014)",
+      "playcount": 12349,
+      "listeners": 1990,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Untitled+02+(06.23.2014)"
+    },
+    {
+      "name": "untitled 02",
+      "playcount": 12821,
+      "listeners": 1989,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/untitled+02"
+    },
+    {
+      "name": "Mr. Morale (feat. Tanna Leone)",
+      "playcount": 12426,
+      "listeners": 1988,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Mr.+Morale+(feat.+Tanna+Leone)"
+    },
+    {
+      "name": "Growing Apart (To Get Closer) [feat. Jhene Aiko]",
+      "playcount": 11082,
+      "listeners": 1988,
+      "sourceUrl": "https://www.last.fm/music/Kendrick+Lamar/_/Growing+Apart+(To+Get+Closer)+%5Bfeat.+Jhene+Aiko%5D"
+    }
+  ],
+  "youtubeVideos": [
+    {
+      "videoId": "U8F5G5wR1mk",
+      "channelId": "UC3lBXcrKFnFAFkfVk5WuKcQ",
+      "channelTitle": "Kendrick Lamar",
+      "title": "Kendrick Lamar - tv off (Official Audio)",
+      "viewCount": 160764179,
+      "publicationDate": "2024-11-22T17:08:31Z",
+      "evidenceType": "official-audio",
+      "matchingConfidence": "medium",
+      "observationTiming": "cumulative-observation",
+      "sourceUrl": "https://www.youtube.com/watch?v=U8F5G5wR1mk"
+    },
+    {
+      "videoId": "HfWLgELllZs",
+      "channelId": "UC3lBXcrKFnFAFkfVk5WuKcQ",
+      "channelTitle": "Kendrick Lamar",
+      "title": "Kendrick Lamar - luther (Official Audio)",
+      "viewCount": 183743236,
+      "publicationDate": "2024-11-22T17:08:32Z",
+      "evidenceType": "official-audio",
+      "matchingConfidence": "medium",
+      "observationTiming": "cumulative-observation",
+      "sourceUrl": "https://www.youtube.com/watch?v=HfWLgELllZs"
+    },
+    {
+      "videoId": "cbHkzwa0QmM",
+      "channelId": "UC3lBXcrKFnFAFkfVk5WuKcQ",
+      "channelTitle": "Kendrick Lamar",
+      "title": "Kendrick Lamar - peekaboo (Official Audio)",
+      "viewCount": 59312181,
+      "publicationDate": "2024-11-22T17:08:31Z",
+      "evidenceType": "official-audio",
+      "matchingConfidence": "medium",
+      "observationTiming": "cumulative-observation",
+      "sourceUrl": "https://www.youtube.com/watch?v=cbHkzwa0QmM"
+    },
+    {
+      "videoId": "6nTcdw7bVdc",
+      "channelId": "UC3lBXcrKFnFAFkfVk5WuKcQ",
+      "channelTitle": "Kendrick Lamar",
+      "title": "Kendrick Lamar - Count Me Out (Official Audio)",
+      "viewCount": 57470160,
+      "publicationDate": "2022-05-13T04:01:51Z",
+      "evidenceType": "official-audio",
+      "matchingConfidence": "medium",
+      "observationTiming": "cumulative-observation",
+      "sourceUrl": "https://www.youtube.com/watch?v=6nTcdw7bVdc"
+    },
+    {
+      "videoId": "0nF69UTw99E",
+      "channelId": "UCprAFmT0C6O4X0ToEXpeFTQ",
+      "channelTitle": "Kendrick Lamar - Topic",
+      "title": "Money Trees",
+      "viewCount": 203156708,
+      "publicationDate": "2018-07-26T22:07:11Z",
+      "evidenceType": "artist-topic-upload",
+      "matchingConfidence": "high",
+      "observationTiming": "cumulative-observation",
+      "sourceUrl": "https://www.youtube.com/watch?v=0nF69UTw99E"
+    },
+    {
+      "videoId": "JocAXINz-YE",
+      "channelId": "UCprAFmT0C6O4X0ToEXpeFTQ",
+      "channelTitle": "Kendrick Lamar - Topic",
+      "title": "Alright",
+      "viewCount": 65889175,
+      "publicationDate": "2018-09-15T08:35:15Z",
+      "evidenceType": "artist-topic-upload",
+      "matchingConfidence": "high",
+      "observationTiming": "cumulative-observation",
+      "sourceUrl": "https://www.youtube.com/watch?v=JocAXINz-YE"
+    },
+    {
+      "videoId": "YwUQ_5iV9pY",
+      "channelId": "UC3lBXcrKFnFAFkfVk5WuKcQ",
+      "channelTitle": "Kendrick Lamar",
+      "title": "Kendrick Lamar - wacced out murals (Official Audio)",
+      "viewCount": 35029262,
+      "publicationDate": "2024-11-22T17:08:31Z",
+      "evidenceType": "official-audio",
+      "matchingConfidence": "medium",
+      "observationTiming": "cumulative-observation",
+      "sourceUrl": "https://www.youtube.com/watch?v=YwUQ_5iV9pY"
+    },
+    {
+      "videoId": "Ek7UvQPCQnE",
+      "channelId": "UC3lBXcrKFnFAFkfVk5WuKcQ",
+      "channelTitle": "Kendrick Lamar",
+      "title": "Kendrick Lamar - reincarnated (Official Audio)",
+      "viewCount": 21752574,
+      "publicationDate": "2024-11-22T17:08:31Z",
+      "evidenceType": "official-audio",
+      "matchingConfidence": "medium",
+      "observationTiming": "cumulative-observation",
+      "sourceUrl": "https://www.youtube.com/watch?v=Ek7UvQPCQnE"
+    },
+    {
+      "videoId": "9PumlOWjXMM",
+      "channelId": "UC3lBXcrKFnFAFkfVk5WuKcQ",
+      "channelTitle": "Kendrick Lamar",
+      "title": "Kendrick Lamar - hey now (Official Audio)",
+      "viewCount": 21472752,
+      "publicationDate": "2024-11-22T17:08:31Z",
+      "evidenceType": "official-audio",
+      "matchingConfidence": "medium",
+      "observationTiming": "cumulative-observation",
+      "sourceUrl": "https://www.youtube.com/watch?v=9PumlOWjXMM"
+    },
+    {
+      "videoId": "Lx3MGrafykU",
+      "channelId": "UC3lBXcrKFnFAFkfVk5WuKcQ",
+      "channelTitle": "Kendrick Lamar",
+      "title": "Kendrick Lamar - Die Hard ft. Blxst & Amanda Reifer (Official Audio)",
+      "viewCount": 37240790,
+      "publicationDate": "2022-05-13T04:01:51Z",
+      "evidenceType": "official-audio",
+      "matchingConfidence": "medium",
+      "observationTiming": "cumulative-observation",
+      "sourceUrl": "https://www.youtube.com/watch?v=Lx3MGrafykU"
+    },
+    {
+      "videoId": "qUx8EwR0Otg",
+      "channelId": "UCprAFmT0C6O4X0ToEXpeFTQ",
+      "channelTitle": "Kendrick Lamar - Topic",
+      "title": "LUST.",
+      "viewCount": 16046341,
+      "publicationDate": "2018-03-15T00:17:28Z",
+      "evidenceType": "artist-topic-upload",
+      "matchingConfidence": "high",
+      "observationTiming": "cumulative-observation",
+      "sourceUrl": "https://www.youtube.com/watch?v=qUx8EwR0Otg"
+    },
+    {
+      "videoId": "m-PO1_fzxVM",
+      "channelId": "UC3lBXcrKFnFAFkfVk5WuKcQ",
+      "channelTitle": "Kendrick Lamar",
+      "title": "Kendrick Lamar - heart pt. 6 (Official Audio)",
+      "viewCount": 16877505,
+      "publicationDate": "2024-11-22T17:08:32Z",
+      "evidenceType": "official-audio",
+      "matchingConfidence": "medium",
+      "observationTiming": "cumulative-observation",
+      "sourceUrl": "https://www.youtube.com/watch?v=m-PO1_fzxVM"
+    },
+    {
+      "videoId": "NYH6Oa4PXlY",
+      "channelId": "UC3lBXcrKFnFAFkfVk5WuKcQ",
+      "channelTitle": "Kendrick Lamar",
+      "title": "Kendrick Lamar - squabble up (Official Audio)",
+      "viewCount": 14680803,
+      "publicationDate": "2024-11-22T17:09:15Z",
+      "evidenceType": "official-audio",
+      "matchingConfidence": "medium",
+      "observationTiming": "cumulative-observation",
+      "sourceUrl": "https://www.youtube.com/watch?v=NYH6Oa4PXlY"
+    },
+    {
+      "videoId": "J87pJrxvJ5E",
+      "channelId": "UCprAFmT0C6O4X0ToEXpeFTQ",
+      "channelTitle": "Kendrick Lamar - Topic",
+      "title": "PRIDE.",
+      "viewCount": 151217864,
+      "publicationDate": "2018-03-15T00:16:40Z",
+      "evidenceType": "artist-topic-upload",
+      "matchingConfidence": "high",
+      "observationTiming": "cumulative-observation",
+      "sourceUrl": "https://www.youtube.com/watch?v=J87pJrxvJ5E"
+    },
+    {
+      "videoId": "c7y2ziOBA1s",
+      "channelId": "UC3lBXcrKFnFAFkfVk5WuKcQ",
+      "channelTitle": "Kendrick Lamar",
+      "title": "Kendrick Lamar - dodger blue (Official Audio)",
+      "viewCount": 14149937,
+      "publicationDate": "2024-11-22T17:08:32Z",
+      "evidenceType": "official-audio",
+      "matchingConfidence": "medium",
+      "observationTiming": "cumulative-observation",
+      "sourceUrl": "https://www.youtube.com/watch?v=c7y2ziOBA1s"
+    },
+    {
+      "videoId": "hl3-ZPg-JAA",
+      "channelId": "UC3lBXcrKFnFAFkfVk5WuKcQ",
+      "channelTitle": "Kendrick Lamar",
+      "title": "Kendrick Lamar - Rich Spirit (Official Audio)",
+      "viewCount": 17656715,
+      "publicationDate": "2022-05-13T04:01:51Z",
+      "evidenceType": "official-audio",
+      "matchingConfidence": "medium",
+      "observationTiming": "cumulative-observation",
+      "sourceUrl": "https://www.youtube.com/watch?v=hl3-ZPg-JAA"
+    }
+  ],
+  "coverage": [
+    {
+      "label": "Release metadata",
+      "level": "High",
+      "detail": "120 release groups returned by MusicBrainz."
+    },
+    {
+      "label": "Public performance",
+      "level": "Moderate",
+      "detail": "500 Last.fm track observations support relative demand analysis."
+    },
+    {
+      "label": "Ownership data",
+      "level": "Low",
+      "detail": "No rights contracts were retrieved. Model inputs remain user assumptions."
+    },
+    {
+      "label": "Historic revenue",
+      "level": "Not public",
+      "detail": "Enter known or hypothetical normalized annual cash flow to underwrite this catalog."
+    },
+    {
+      "label": "YouTube consumption",
+      "level": "Moderate",
+      "detail": "16 likely official uploads provide cumulative-view evidence."
+    },
+    {
+      "label": "Annual consumption",
+      "level": "Low",
+      "detail": "Annual audio streams from Last.fm listeners and YouTube views from matched official uploads are modeled with a disclosed calibration, not platform-reported run rates."
+    },
+    {
+      "label": "Normalized cash flow",
+      "level": "Low",
+      "detail": "Modeled from annual consumption × default rights economics. Edit the rates in the Evidence room or enter a known cash flow."
+    }
+  ]
+}

@@ -22,7 +22,7 @@ Public evidence → explicit assumptions → deterministic cash flow → DCF →
 - An optional server-side Last.fm adapter adds track-demand evidence, looked up by MusicBrainz ID.
 - An optional server-side YouTube adapter adds cumulative views for conservatively matched official uploads.
 - Last.fm listeners and YouTube views are annualized with a disclosed calibration and multiplied by default per-1,000-stream rates to pre-fill a modeled cash flow, labeled as modeled and fully editable.
-- A versioned stored snapshot makes the main demonstration reliable without live APIs.
+- A stored snapshot of Kendrick Lamar's public evidence (`data/kendrick-lamar-snapshot.json`) runs through the same model as a live lookup, so the homepage demonstration is reliable without live APIs and always matches the current model.
 - Pure TypeScript functions calculate cash flow, DCF, scenarios, sensitivity, concentration, and risk diagnostics.
 - Missing data stays visible as unknown; live catalogs without Last.fm or YouTube evidence require a user-entered cash-flow base.
 - DCF and transaction-derived market-multiple values are shown separately and reconciled without mechanical averaging.
@@ -48,7 +48,7 @@ The engine projects ten explicit annual periods and a Gordon-growth terminal val
 - MusicBrainz coverage varies and its live lightweight route does not perform recording-level normalization.
 - Last.fm is a demand signal, not a royalty or total-market stream count. The modeled annual stream range rests on a 29-artist calibration; individual artists can miss by up to 5×, and Last.fm under-represents mainstream pop, hip-hop, and Latin audiences.
 - Default payout rates are public-reporting averages, not any catalog's contract terms.
-- The demo cash-flow range is an illustrative stored analyst assumption, not a factual claim about artist earnings.
+- The demo's value is a modeled estimate from public evidence captured on the snapshot date, not a factual claim about artist earnings. Refresh the snapshot to update it.
 - Request throttling is process-local until production hosting adds durable edge infrastructure.
 
 ## Local development

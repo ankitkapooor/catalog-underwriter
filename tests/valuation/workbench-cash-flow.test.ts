@@ -61,30 +61,31 @@ test('a modeled cash flow is labeled wherever it drives the valuation', async ()
   assert.match(source, /buildModeledCashFlowEstimate\(/);
 });
 
-test('the stored Kendrick demonstration range is an explicit analyst assumption', async () => {
-  const source = await readFile(
-    new URL('../../data/demo-catalog.ts', import.meta.url),
-    'utf8',
-  );
-
-  assert.match(source, /low: 4_800_000/);
-  assert.match(source, /midpoint: 6_200_000/);
-  assert.match(source, /high: 7_100_000/);
-  assert.match(source, /methodologyVersion: 'public-underwrite-1\.0\.0'/);
-  assert.match(source, /Stored analyst scenario/);
-  assert.match(source, /Not derived from Last\.fm or MusicBrainz/);
-});
-
 test('the live artist route models cash flow only from annualized consumption', async () => {
   const source = await readFile(
     new URL('../../app/api/artists/[id]/route.ts', import.meta.url),
     'utf8',
   );
 
-  assert.match(source, /annualizeLastFmAudio\(lastFmSignals\)/);
-  assert.match(source, /audioAnnualization,\s*youtubeAnnualization,/);
+  assert.match(source, /modelPublicEconomics\(/);
+  assert.match(source, /lastFmTracks: lastFmSignals/);
+  assert.match(source, /defaultRightsEconomicsAssumptions/);
   assert.match(
     source,
-    /catalog\.publicCashFlowEstimate = buildModeledCashFlowEstimate\(\s*catalog\.publicConsumptionEstimate,\s*defaultRightsEconomicsAssumptions,/,
+    /catalog\.publicCashFlowEstimate = publicCashFlowEstimate/,
+  );
+});
+
+test('the homepage values the stored demo with its modeled cash flow', async () => {
+  const source = await readFile(
+    new URL('../../app/page.tsx', import.meta.url),
+    'utf8',
+  );
+
+  assert.match(source, /normalizedCashFlow: demoCashFlow\.midpoint/);
+  assert.match(source, /Evidence as of \{evidenceDate\}/);
+  assert.doesNotMatch(
+    source,
+    /calculateScenarios\(defaultValuationAssumptions\)/,
   );
 });
