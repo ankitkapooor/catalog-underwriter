@@ -624,7 +624,9 @@ export function UnderwritingWorkbench({
                 <div className="grid grid-cols-2 gap-px border-y border-ink/15 bg-ink/15 sm:grid-cols-4">
                   {[
                     [
-                      'Calculated recordings',
+                      catalog.isStoredDemo
+                        ? 'Calculated recordings'
+                        : 'Official recordings',
                       catalog.recordingCount.value?.toLocaleString() ??
                         'Unknown',
                     ],

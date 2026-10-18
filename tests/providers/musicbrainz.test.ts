@@ -30,10 +30,18 @@ function releaseGroups(count: number, start: number) {
 function mockCatalogFetch(
   total: number,
   failOffset?: number,
-): { offsets: number[] } {
+  recordingCount: number | 'fail' = 0,
+): { offsets: number[]; recordingQueries: string[] } {
   const offsets: number[] = [];
+  const recordingQueries: string[] = [];
   globalThis.fetch = async (input) => {
     const url = new URL(String(input));
+    if (url.pathname.endsWith('/recording')) {
+      recordingQueries.push(url.searchParams.get('query') ?? '');
+      return recordingCount === 'fail'
+        ? json({ error: 'Bad request' }, 400)
+        : json({ count: recordingCount, recordings: [] });
+    }
     if (url.pathname.endsWith(`/artist/${ARTIST_ID}`)) {
       return json({
         id: ARTIST_ID,
@@ -56,7 +64,7 @@ function mockCatalogFetch(
       ),
     });
   };
-  return { offsets };
+  return { offsets, recordingQueries };
 }
 
 const originalFetch = globalThis.fetch;
@@ -284,4 +292,31 @@ test('still fails the catalog when the first release-group page fails', async ()
     new MusicBrainzCatalogProvider(noSleep).getArtistCatalog(ARTIST_ID),
     { message: 'MusicBrainz returned 404.' },
   );
+});
+
+test('counts official, non-live recordings credited to the artist', async () => {
+  const { recordingQueries } = mockCatalogFetch(3, undefined, 649);
+
+  const catalog = await new MusicBrainzCatalogProvider(
+    noSleep,
+  ).getArtistCatalog(ARTIST_ID);
+
+  assert.equal(catalog.recordingCount.value, 649);
+  assert.equal(recordingQueries.length, 1);
+  assert.match(recordingQueries[0], new RegExp(`arid:${ARTIST_ID}`));
+  assert.match(recordingQueries[0], /status:official/);
+  assert.match(recordingQueries[0], /video:false/);
+  assert.match(recordingQueries[0], /NOT secondarytype:\(live/);
+  assert.match(catalog.recordingCount.note ?? '', /overstates distinct songs/);
+});
+
+test('a failed recording count stays unknown without failing the catalog', async () => {
+  mockCatalogFetch(3, undefined, 'fail');
+
+  const catalog = await new MusicBrainzCatalogProvider(
+    noSleep,
+  ).getArtistCatalog(ARTIST_ID);
+
+  assert.equal(catalog.releases.length, 3);
+  assert.equal(catalog.recordingCount.value, null);
 });

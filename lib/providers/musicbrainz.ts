@@ -192,6 +192,29 @@ export class MusicBrainzCatalogProvider implements MusicBrainzProvider {
     };
   }
 
+  /**
+   * Counts official, non-live, non-video recordings credited to the artist in
+   * one search request. Paging to deduplicate versions takes close to a
+   * minute under MusicBrainz's search throttling, so the raw count is kept
+   * and labeled as including alternate versions. A failed count stays
+   * unknown instead of failing the catalog.
+   */
+  private async countOfficialRecordings(id: string): Promise<number | null> {
+    const query = `arid:${id} AND status:official AND video:false AND NOT secondarytype:(live OR remix OR demo OR dj-mix)`;
+    const url = `${BASE_URL}/recording?query=${encodeURIComponent(query)}&limit=1&fmt=json`;
+    try {
+      const data = await fetchMusicBrainz<{ count?: number }>(
+        url,
+        this.requestOptions,
+      );
+      return typeof data.count === 'number' && data.count >= 0
+        ? data.count
+        : null;
+    } catch {
+      return null;
+    }
+  }
+
   async getArtistCatalog(id: string): Promise<CatalogSnapshot> {
     const url = `${BASE_URL}/artist/${encodeURIComponent(id)}?inc=genres&fmt=json`;
     const artist = await fetchMusicBrainz<MusicBrainzArtist>(
@@ -200,6 +223,7 @@ export class MusicBrainzCatalogProvider implements MusicBrainzProvider {
     );
     const { releaseGroups, total: releaseGroupTotal } =
       await this.browseReleaseGroups(id);
+    const officialRecordings = await this.countOfficialRecordings(id);
     const retrievedAt = new Date().toISOString();
     // A person's life-span is birth and death, not a career span.
     const lifeSpan = artist.type === 'Person' ? undefined : artist['life-span'];
@@ -238,13 +262,16 @@ export class MusicBrainzCatalogProvider implements MusicBrainzProvider {
         .map((genre) => genre.name),
       releases,
       recordingCount: {
-        value: null,
-        source: 'MusicBrainz live response',
-        sourceUrl: `https://musicbrainz.org/artist/${id}`,
+        value: officialRecordings,
+        source: 'MusicBrainz recording search',
+        sourceUrl: `https://musicbrainz.org/artist/${id}/recordings`,
         retrievedAt,
         confidence: 'low',
-        method: 'calculated',
-        note: 'Recording-level normalization is unavailable in this lightweight live lookup; unknown is not treated as zero.',
+        method: 'observed',
+        note:
+          officialRecordings == null
+            ? 'MusicBrainz did not return a recording count; unknown is not treated as zero.'
+            : 'Official, non-live, non-video MusicBrainz recordings credited to the artist. Features, clean edits, alternate mixes, and re-recordings each count separately, so this overstates distinct songs.',
       },
       weightedCatalogAge: {
         value: datedReleases.length
