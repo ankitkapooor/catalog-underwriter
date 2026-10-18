@@ -23,6 +23,13 @@ const annualConsumption: PublicConsumptionEstimate = {
   note: 'Test fixture',
 };
 
+const blankScenario = {
+  audioEffectiveRightsRevenuePerThousand: null,
+  youtubeEffectiveRightsRevenuePerThousand: null,
+  publishingRevenueAsShareOfRecorded: null,
+  otherRevenueAsShareOfRecorded: null,
+};
+
 test('missing annual evidence or economic assumptions does not create revenue', () => {
   assert.equal(
     estimateRightsRevenue(null, defaultRightsEconomicsAssumptions, 'base'),
@@ -31,10 +38,33 @@ test('missing annual evidence or economic assumptions does not create revenue', 
   assert.equal(
     estimateRightsRevenue(
       annualConsumption,
-      defaultRightsEconomicsAssumptions,
+      { low: blankScenario, base: blankScenario, high: blankScenario },
       'base',
     ),
     null,
+  );
+});
+
+test('default economics are complete and ordered from low to high', () => {
+  const { low, base, high } = defaultRightsEconomicsAssumptions;
+  for (const key of Object.keys(base) as Array<keyof typeof base>) {
+    const values = [low[key], base[key], high[key]];
+    assert.ok(
+      values.every((value) => value != null && value >= 0),
+      `${key} must have a default in every scenario`,
+    );
+    assert.ok(
+      (values[0] ?? 0) <= (values[1] ?? 0) &&
+        (values[1] ?? 0) <= (values[2] ?? 0),
+      `${key} must not decrease from low to high`,
+    );
+  }
+  assert.ok(
+    estimateRightsRevenue(
+      annualConsumption,
+      defaultRightsEconomicsAssumptions,
+      'base',
+    ),
   );
 });
 

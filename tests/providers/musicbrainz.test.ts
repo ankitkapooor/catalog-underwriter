@@ -3,8 +3,61 @@ import { afterEach, test } from 'node:test';
 
 import {
   fetchMusicBrainz,
+  MusicBrainzCatalogProvider,
   resetMusicBrainzThrottleForTests,
 } from '../../lib/providers/musicbrainz.ts';
+
+const ARTIST_ID = 'a74b1b7f-71a5-4011-9441-d0b5e4122711';
+const noSleep = { sleep: async () => undefined };
+
+function json(body: unknown, status = 200) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { 'content-type': 'application/json' },
+  });
+}
+
+function releaseGroups(count: number, start: number) {
+  return Array.from({ length: count }, (_, index) => ({
+    id: `rg-${start + index}`,
+    title: `Release ${start + index}`,
+    'first-release-date': `${2000 + ((start + index) % 20)}-01-01`,
+    'primary-type': 'Album',
+    'secondary-types': [],
+  }));
+}
+
+function mockCatalogFetch(
+  total: number,
+  failOffset?: number,
+): { offsets: number[] } {
+  const offsets: number[] = [];
+  globalThis.fetch = async (input) => {
+    const url = new URL(String(input));
+    if (url.pathname.endsWith(`/artist/${ARTIST_ID}`)) {
+      return json({
+        id: ARTIST_ID,
+        name: 'Radiohead',
+        country: 'GB',
+        'life-span': { begin: '1985', ended: false },
+        genres: [{ name: 'alternative rock', count: 10 }],
+      });
+    }
+    const offset = Number(url.searchParams.get('offset'));
+    offsets.push(offset);
+    if (offset === failOffset) return json({ error: 'Not found' }, 404);
+    const limit = Number(url.searchParams.get('limit'));
+    return json({
+      'release-group-count': total,
+      'release-group-offset': offset,
+      'release-groups': releaseGroups(
+        Math.max(0, Math.min(limit, total - offset)),
+        offset,
+      ),
+    });
+  };
+  return { offsets };
+}
 
 const originalFetch = globalThis.fetch;
 
@@ -143,4 +196,92 @@ test('does not retry an ordinary 404', async () => {
     { message: 'MusicBrainz returned 404.' },
   );
   assert.equal(calls, 1);
+});
+
+test('pages through release groups beyond the 25-item lookup cap', async () => {
+  const { offsets } = mockCatalogFetch(230);
+
+  const catalog = await new MusicBrainzCatalogProvider(
+    noSleep,
+  ).getArtistCatalog(ARTIST_ID);
+
+  assert.deepEqual(offsets, [0, 100, 200]);
+  assert.equal(catalog.releases.length, 230);
+  assert.equal(new Set(catalog.releases.map((r) => r.id)).size, 230);
+  assert.equal(
+    catalog.coverage.find((item) => item.label === 'Release metadata')?.detail,
+    '230 release groups returned by MusicBrainz.',
+  );
+});
+
+test('excludes bootleg-only release groups like the MusicBrainz website', async () => {
+  let browseUrl: URL | undefined;
+  globalThis.fetch = async (input) => {
+    const url = new URL(String(input));
+    if (url.pathname.endsWith('/release-group')) browseUrl = url;
+    return json({ id: ARTIST_ID, name: 'Radiohead', 'release-groups': [] });
+  };
+
+  await new MusicBrainzCatalogProvider(noSleep).getArtistCatalog(ARTIST_ID);
+
+  assert.equal(browseUrl?.searchParams.get('artist'), ARTIST_ID);
+  assert.equal(
+    browseUrl?.searchParams.get('release-group-status'),
+    'website-default',
+  );
+  assert.equal(browseUrl?.searchParams.get('limit'), '100');
+});
+
+test('reads active years from the MusicBrainz life-span field', async () => {
+  mockCatalogFetch(3);
+
+  const catalog = await new MusicBrainzCatalogProvider(
+    noSleep,
+  ).getArtistCatalog(ARTIST_ID);
+
+  assert.equal(catalog.activeYears, '1985–present');
+});
+
+test('does not present a solo artist birth year as active years', async () => {
+  globalThis.fetch = async (input) => {
+    const url = new URL(String(input));
+    if (url.pathname.endsWith('/release-group')) {
+      return json({ 'release-group-count': 0, 'release-groups': [] });
+    }
+    return json({
+      id: ARTIST_ID,
+      name: 'Kendrick Lamar',
+      type: 'Person',
+      'life-span': { begin: '1987-06-17', ended: false },
+    });
+  };
+
+  const catalog = await new MusicBrainzCatalogProvider(
+    noSleep,
+  ).getArtistCatalog(ARTIST_ID);
+
+  assert.equal(catalog.activeYears, undefined);
+});
+
+test('keeps loaded release groups when a later page fails', async () => {
+  mockCatalogFetch(230, 100);
+
+  const catalog = await new MusicBrainzCatalogProvider(
+    noSleep,
+  ).getArtistCatalog(ARTIST_ID);
+
+  assert.equal(catalog.releases.length, 100);
+  assert.equal(
+    catalog.coverage.find((item) => item.label === 'Release metadata')?.detail,
+    '100 of 230 release groups loaded from MusicBrainz; the rest were not retrieved.',
+  );
+});
+
+test('still fails the catalog when the first release-group page fails', async () => {
+  mockCatalogFetch(230, 0);
+
+  await assert.rejects(
+    new MusicBrainzCatalogProvider(noSleep).getArtistCatalog(ARTIST_ID),
+    { message: 'MusicBrainz returned 404.' },
+  );
 });

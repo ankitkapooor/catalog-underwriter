@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 
+import { CONSUMPTION_CALIBRATION_SOURCES } from '@/config/consumption-annualization';
+import { RIGHTS_ECONOMICS_SOURCES } from '@/config/rights-economics';
 import {
   METHODOLOGY_VERSION,
   VALUATION_ENGINE_VERSION,
@@ -15,7 +17,7 @@ const sections = [
   {
     number: '02',
     title: 'What remains unavailable',
-    body: 'Royalty statements, private ownership contracts, annual platform consumption, recoupment positions, negotiated distribution terms, and buyer bids are generally not public. The application labels those fields as unknown or user assumptions; it never treats missing information as zero and never annualizes cumulative observations silently.',
+    body: 'Royalty statements, private ownership contracts, platform-reported annual consumption, recoupment positions, negotiated distribution terms, and buyer bids are generally not public. The application labels those fields as unknown, modeled, or user assumptions; it never treats missing information as zero, and every annualization of a cumulative observation discloses its calibration.',
   },
   {
     number: '03',
@@ -25,17 +27,17 @@ const sections = [
   {
     number: '04',
     title: 'Observed consumption',
-    body: 'Last.fm observations support relative artist scale, track concentration, breadth, long-tail strength, and persistence. YouTube view counts add another cumulative demand signal. Both are explicitly labeled cumulative observations; neither is an annual stream count, royalty statement, or cash-flow estimate.',
+    body: 'Last.fm observations support relative artist scale, track concentration, breadth, long-tail strength, and persistence. YouTube view counts add another cumulative demand signal. Both are labeled cumulative observations; on their own neither is an annual stream count, royalty statement, or cash-flow estimate.',
   },
   {
     number: '05',
     title: 'Modeled consumption',
-    body: 'The PublicConsumptionEstimate layer is reserved for defensible current annual/run-rate observations or a disclosed modeled annualization. Cumulative Last.fm and YouTube totals remain separate and cannot populate annual audio or video ranges by themselves. When annualization evidence is missing, those ranges stay unavailable.',
+    body: 'Annual audio streams are modeled from Last.fm listeners summed across an artist’s top 25 tracks. A calibration on 29 artists, measured against each artist’s whole-catalog daily Spotify streams, puts the 10th / 50th / 90th percentiles at 65 / 150 / 445 annual Spotify streams per top-track listener, a range that holds 23 of the 29 artists; Spotify’s reported 65% share of global audio streams grosses that up to all platforms. Individual artists can miss by up to 5×, because Last.fm under-represents mainstream pop, hip-hop, and Latin audiences and over-represents indie and rock. Annual YouTube views take each matched official upload’s lifetime-average views per year (over at least one year) and scale them by the trailing-year ratio measured on 93 official videos: 0.35 / 0.75 / 2.05 (10th / 50th / 90th percentiles). Both ranges are labeled modeled annualizations, and the YouTube range is a floor because unmatched uploads are not counted.',
   },
   {
     number: '06',
     title: 'Economic assumptions and cash flow',
-    body: 'RightsEconomics is a separate bridge from annual consumption to estimated annual rights revenue. It models audio streaming, YouTube, publishing, and other categories separately under editable low, base, and high assumptions. It makes no fixed Spotify payout claim. Without annual consumption and complete economic assumptions, automatic cash flow stays unavailable and the user may enter a manual normalized annual cash flow.',
+    body: 'RightsEconomics bridges annual consumption to annual rights revenue, modeling audio streaming, YouTube, publishing, and other revenue separately. Defaults come from public payout reporting: $2.60 / $3.20 / $3.80 recorded revenue per 1,000 audio streams, $0.45 / $0.80 / $1.50 per 1,000 YouTube views, publishing at 24–31% of recorded revenue, and other revenue at 15–43%. Every value is editable; blanking one turns the estimate off. The resulting modeled cash flow pre-fills the valuation and is labeled as modeled; switching to Known cash flow replaces it with a verified or hypothetical figure.',
   },
   {
     number: '07',
@@ -155,6 +157,25 @@ export default function MethodologyPage() {
             >
               Sony transaction announcement <ExternalLink className="size-3" />
             </a>
+          </div>
+          <p className="eyebrow mt-7">Calibration and payout sources</p>
+          <div className="mt-4 flex flex-wrap gap-5 text-sm">
+            {[...CONSUMPTION_CALIBRATION_SOURCES, ...RIGHTS_ECONOMICS_SOURCES]
+              .filter(
+                (source, index, all) =>
+                  all.findIndex((other) => other.url === source.url) === index,
+              )
+              .map((source) => (
+                <a
+                  className="inline-flex items-center gap-1 underline underline-offset-4"
+                  href={source.url}
+                  key={source.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {source.label} <ExternalLink className="size-3" />
+                </a>
+              ))}
           </div>
         </aside>
 

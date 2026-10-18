@@ -14,6 +14,10 @@ const MUSICBRAINZ_HEADERS = {
 const MIN_REQUEST_INTERVAL_MS = 1_100;
 const RETRY_DELAYS_MS = [1_500, 3_000, 6_000] as const;
 const MAX_RETRIES = RETRY_DELAYS_MS.length;
+// Artist lookups with inc=release-groups stop at 25, so release groups are
+// browsed instead. Ten throttled pages keep prolific artists under ~12 seconds.
+const RELEASE_GROUP_PAGE_SIZE = 100;
+const MAX_RELEASE_GROUP_PAGES = 10;
 
 type Sleep = (milliseconds: number) => Promise<void>;
 type MusicBrainzRequestOptions = { sleep?: Sleep };
@@ -64,6 +68,14 @@ function exhaustedError(status: number): Error {
   return new Error(`MusicBrainz returned ${status}.`);
 }
 
+type MusicBrainzReleaseGroup = {
+  id: string;
+  title: string;
+  'first-release-date'?: string;
+  'primary-type'?: string;
+  'secondary-types'?: string[];
+};
+
 type MusicBrainzArtist = {
   id: string;
   name: string;
@@ -72,15 +84,13 @@ type MusicBrainzArtist = {
   disambiguation?: string;
   type?: string;
   score?: number;
-  lifeSpan?: { begin?: string; end?: string; ended?: boolean };
+  'life-span'?: { begin?: string; end?: string; ended?: boolean };
   genres?: Array<{ name: string; count: number }>;
-  'release-groups'?: Array<{
-    id: string;
-    title: string;
-    'first-release-date'?: string;
-    'primary-type'?: string;
-    'secondary-types'?: string[];
-  }>;
+};
+
+type MusicBrainzReleaseGroupBrowse = {
+  'release-group-count'?: number;
+  'release-groups'?: MusicBrainzReleaseGroup[];
 };
 
 export async function fetchMusicBrainz<T>(
@@ -133,17 +143,67 @@ const toSearchResult = (artist: MusicBrainzArtist): ArtistSearchResult => ({
 });
 
 export class MusicBrainzCatalogProvider implements MusicBrainzProvider {
+  private readonly requestOptions: MusicBrainzRequestOptions;
+
+  constructor(requestOptions: MusicBrainzRequestOptions = {}) {
+    this.requestOptions = requestOptions;
+  }
+
   async searchArtist(query: string) {
     const url = `${BASE_URL}/artist?query=${encodeURIComponent(query)}&fmt=json&limit=8`;
-    const data = await fetchMusicBrainz<{ artists: MusicBrainzArtist[] }>(url);
+    const data = await fetchMusicBrainz<{ artists: MusicBrainzArtist[] }>(
+      url,
+      this.requestOptions,
+    );
     return data.artists.map(toSearchResult);
   }
 
+  /**
+   * Browses the artist's release groups using MusicBrainz's website default,
+   * which leaves out bootleg-only and pseudo-release groups. A failed later
+   * page keeps the groups already loaded instead of failing the whole catalog.
+   */
+  private async browseReleaseGroups(id: string) {
+    const releaseGroups: MusicBrainzReleaseGroup[] = [];
+    let total = 0;
+
+    for (let page = 0; page < MAX_RELEASE_GROUP_PAGES; page += 1) {
+      const url = `${BASE_URL}/release-group?artist=${encodeURIComponent(id)}&release-group-status=website-default&limit=${RELEASE_GROUP_PAGE_SIZE}&offset=${page * RELEASE_GROUP_PAGE_SIZE}&fmt=json`;
+      let data: MusicBrainzReleaseGroupBrowse;
+      try {
+        data = await fetchMusicBrainz<MusicBrainzReleaseGroupBrowse>(
+          url,
+          this.requestOptions,
+        );
+      } catch (error) {
+        if (page === 0) throw error;
+        break;
+      }
+
+      const batch = data['release-groups'] ?? [];
+      total = data['release-group-count'] ?? total;
+      releaseGroups.push(...batch);
+      if (!batch.length || releaseGroups.length >= total) break;
+    }
+
+    return {
+      releaseGroups,
+      total: Math.max(total, releaseGroups.length),
+    };
+  }
+
   async getArtistCatalog(id: string): Promise<CatalogSnapshot> {
-    const url = `${BASE_URL}/artist/${encodeURIComponent(id)}?inc=release-groups+genres&fmt=json`;
-    const artist = await fetchMusicBrainz<MusicBrainzArtist>(url);
+    const url = `${BASE_URL}/artist/${encodeURIComponent(id)}?inc=genres&fmt=json`;
+    const artist = await fetchMusicBrainz<MusicBrainzArtist>(
+      url,
+      this.requestOptions,
+    );
+    const { releaseGroups, total: releaseGroupTotal } =
+      await this.browseReleaseGroups(id);
     const retrievedAt = new Date().toISOString();
-    const releases: CatalogRelease[] = (artist['release-groups'] ?? [])
+    // A person's life-span is birth and death, not a career span.
+    const lifeSpan = artist.type === 'Person' ? undefined : artist['life-span'];
+    const releases: CatalogRelease[] = releaseGroups
       .map((release) => ({
         id: release.id,
         title: release.title,
@@ -169,8 +229,8 @@ export class MusicBrainzCatalogProvider implements MusicBrainzProvider {
       isStoredDemo: false,
       artist: toSearchResult(artist),
       retrievedAt,
-      activeYears: artist.lifeSpan?.begin
-        ? `${artist.lifeSpan.begin.slice(0, 4)}–${artist.lifeSpan.end?.slice(0, 4) ?? 'present'}`
+      activeYears: lifeSpan?.begin
+        ? `${lifeSpan.begin.slice(0, 4)}–${lifeSpan.end?.slice(0, 4) ?? 'present'}`
         : undefined,
       genres: (artist.genres ?? [])
         .sort((a, b) => b.count - a.count)
@@ -202,7 +262,10 @@ export class MusicBrainzCatalogProvider implements MusicBrainzProvider {
         {
           label: 'Release metadata',
           level: releases.length ? 'High' : 'Unavailable',
-          detail: `${releases.length} release groups returned by MusicBrainz.`,
+          detail:
+            releases.length < releaseGroupTotal
+              ? `${releases.length} of ${releaseGroupTotal} release groups loaded from MusicBrainz; the rest were not retrieved.`
+              : `${releases.length} release groups returned by MusicBrainz.`,
         },
         {
           label: 'Public performance',

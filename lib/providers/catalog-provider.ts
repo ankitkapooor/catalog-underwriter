@@ -28,7 +28,10 @@ export interface CatalogProvider {
 export type MusicBrainzProvider = CatalogProvider;
 
 export interface LastFmProvider {
-  getTopTrackSignals(artistName: string): Promise<LastFmTrackSignal[]>;
+  getTopTrackSignals(
+    artistName: string,
+    musicBrainzId?: string,
+  ): Promise<LastFmTrackSignal[]>;
 }
 
 export interface YouTubeDataProvider {

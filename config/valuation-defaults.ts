@@ -1,6 +1,6 @@
 import type { ValuationAssumptions } from '@/lib/valuation/dcf';
 
-export const METHODOLOGY_VERSION = 'public-underwrite-1.0.0';
+export const METHODOLOGY_VERSION = 'public-underwrite-1.1.0';
 export const VALUATION_ENGINE_VERSION = 'dcf-1.0.0';
 export const PROVIDER_VERSION = 'public-providers-1.0.0';
 

@@ -1,32 +1,82 @@
-import { PUBLIC_CASH_FLOW_AUTOMATION_ENABLED } from '../../config/public-cash-flow-model.ts';
-import type { PublicCashFlowEstimate } from '../../types/catalog.ts';
+import {
+  MODELED_CASH_FLOW_NOTE,
+  PUBLIC_CASH_FLOW_METHODOLOGY_VERSION,
+} from '../../config/public-cash-flow-model.ts';
+import type {
+  ModelInput,
+  PublicCashFlowEstimate,
+  PublicConsumptionEstimate,
+} from '../../types/catalog.ts';
+import {
+  estimateRightsRevenue,
+  type RightsEconomicsAssumptions,
+} from './rights-economics.ts';
 
-export type PublicCashFlowEvidence = {
-  topTracks: Array<{
-    name: string;
-    playcount: number;
-    listeners: number;
-    sourceUrl?: string;
-  }>;
-  releaseCount: number;
-  weightedCatalogAge: number | null;
-  activeCareerYears: number | null;
-  retrievedAt: string;
-};
+const perThousand = (value: number | null) =>
+  value == null ? 'Blank' : `$${value.toFixed(2)} per 1,000`;
+const share = (value: number | null) =>
+  value == null ? 'Blank' : `${(value * 100).toFixed(0)}% of recorded`;
 
 /**
- * Legacy compatibility guard. Public demand and catalog metadata cannot
- * directly generate dollar cash flow, so production and test callers always
- * receive null. Keep the signature temporarily while downstream callers move
- * to PublicConsumptionEstimate and RightsEconomics.
+ * Builds the modeled annual cash-flow range from annual consumption and the
+ * low, base and high rights economics. Any missing input returns null so a
+ * blank assumption never turns into an implied payout.
  */
-export function estimatePublicCashFlow(
-  _evidence: PublicCashFlowEvidence,
+export function buildModeledCashFlowEstimate(
+  consumption: PublicConsumptionEstimate | null,
+  economics: RightsEconomicsAssumptions,
 ): PublicCashFlowEstimate | null {
-  if (PUBLIC_CASH_FLOW_AUTOMATION_ENABLED) {
-    throw new Error(
-      'Public cash-flow automation cannot be enabled without an evidence-backed replacement model.',
-    );
-  }
-  return null;
+  if (!consumption) return null;
+  const low = estimateRightsRevenue(consumption, economics, 'low');
+  const base = estimateRightsRevenue(consumption, economics, 'base');
+  const high = estimateRightsRevenue(consumption, economics, 'high');
+  if (!low || !base || !high) return null;
+
+  const revenues = [low, base, high].map(
+    (estimate) => estimate.normalizedAnnualRightsRevenue,
+  );
+  const inputs: ModelInput[] = [
+    ...consumption.inputs.filter(
+      (input) => input.layer === 'modeled-consumption',
+    ),
+    {
+      label: 'Audio rights revenue (base)',
+      value: perThousand(economics.base.audioEffectiveRightsRevenuePerThousand),
+      method: 'assumption',
+      layer: 'economic-assumption',
+    },
+    {
+      label: 'YouTube rights revenue (base)',
+      value: perThousand(
+        economics.base.youtubeEffectiveRightsRevenuePerThousand,
+      ),
+      method: 'assumption',
+      layer: 'economic-assumption',
+    },
+    {
+      label: 'Publishing revenue (base)',
+      value: share(economics.base.publishingRevenueAsShareOfRecorded),
+      method: 'assumption',
+      layer: 'economic-assumption',
+    },
+    {
+      label: 'Other revenue (base)',
+      value: share(economics.base.otherRevenueAsShareOfRecorded),
+      method: 'assumption',
+      layer: 'economic-assumption',
+    },
+  ];
+
+  return {
+    // Edited assumptions can cross scenarios, so the range is widened to
+    // contain every scenario while the midpoint stays on the base case.
+    low: Math.min(...revenues),
+    midpoint: base.normalizedAnnualRightsRevenue,
+    high: Math.max(...revenues),
+    confidence: 'low',
+    methodologyVersion: PUBLIC_CASH_FLOW_METHODOLOGY_VERSION,
+    inputs,
+    note: MODELED_CASH_FLOW_NOTE,
+    retrievedAt: consumption.retrievedAt,
+  };
 }

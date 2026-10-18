@@ -2,14 +2,23 @@ import { LastFmPerformanceProvider } from '@/lib/providers/lastfm';
 import { MusicBrainzCatalogProvider } from '@/lib/providers/musicbrainz';
 import type { LastFmTrackSignal } from '@/lib/providers/catalog-provider';
 import { YouTubeDataApiProvider } from '@/lib/providers/youtube';
+import {
+  annualizeLastFmAudio,
+  annualizeYouTubeViews,
+} from '@/lib/consumption/annualization';
 import { buildPublicConsumptionEstimate } from '@/lib/consumption/public-consumption';
 import { allowRequest } from '@/lib/server/rate-limit';
+import { buildModeledCashFlowEstimate } from '@/lib/valuation/public-cash-flow';
+import { defaultRightsEconomicsAssumptions } from '@/config/rights-economics';
 import type { TrackEvidence } from '@/types/catalog';
 
 const MUSICBRAINZ_ID =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
-function providerFailureDetail(provider: 'Last.fm' | 'YouTube', error: unknown) {
+function providerFailureDetail(
+  provider: 'Last.fm' | 'YouTube',
+  error: unknown,
+) {
   const reason =
     error instanceof Error && /returned \d{3}/.test(error.message)
       ? error.message
@@ -46,14 +55,13 @@ export async function GET(
     const catalog = await new MusicBrainzCatalogProvider().getArtistCatalog(id);
     const retrievedAt = new Date().toISOString();
     let lastFmSignals: LastFmTrackSignal[] = [];
-    catalog.publicCashFlowEstimate = null;
     const lastFmApiKey = process.env.LASTFM_API_KEY;
 
     if (lastFmApiKey) {
       try {
         lastFmSignals = await new LastFmPerformanceProvider(
           lastFmApiKey,
-        ).getTopTrackSignals(catalog.artist.name);
+        ).getTopTrackSignals(catalog.artist.name, catalog.artist.musicBrainzId);
         const total = lastFmSignals.reduce(
           (sum, track) => sum + track.playcount,
           0,
@@ -123,11 +131,44 @@ export async function GET(
       }
     }
 
+    const audioAnnualization = annualizeLastFmAudio(lastFmSignals);
+    const youtubeAnnualization = annualizeYouTubeViews(
+      catalog.youtubeVideos,
+      retrievedAt,
+    );
     catalog.publicConsumptionEstimate = buildPublicConsumptionEstimate({
       lastFmTracks: lastFmSignals,
       youtubeVideos: catalog.youtubeVideos,
+      audioAnnualization,
+      youtubeAnnualization,
       retrievedAt,
     });
+    catalog.publicCashFlowEstimate = buildModeledCashFlowEstimate(
+      catalog.publicConsumptionEstimate,
+      defaultRightsEconomicsAssumptions,
+    );
+
+    const annualCoverage = catalog.coverage.find(
+      (item) => item.label === 'Annual consumption',
+    );
+    if (annualCoverage && (audioAnnualization || youtubeAnnualization)) {
+      const modeled = [
+        audioAnnualization && 'audio streams from Last.fm listeners',
+        youtubeAnnualization && 'YouTube views from matched official uploads',
+      ]
+        .filter(Boolean)
+        .join(' and ');
+      annualCoverage.level = 'Low';
+      annualCoverage.detail = `Annual ${modeled} are modeled with a disclosed calibration, not platform-reported run rates.`;
+    }
+    const cashFlowCoverage = catalog.coverage.find(
+      (item) => item.label === 'Normalized cash flow',
+    );
+    if (cashFlowCoverage && catalog.publicCashFlowEstimate) {
+      cashFlowCoverage.level = 'Low';
+      cashFlowCoverage.detail =
+        'Modeled from annual consumption × default rights economics. Edit the rates in the Evidence room or enter a known cash flow.';
+    }
 
     return Response.json({ catalog });
   } catch (error) {

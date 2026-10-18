@@ -36,6 +36,7 @@ import {
   type RightsEconomicsScenarioAssumptions,
 } from '@/lib/valuation/rights-economics';
 import type { ValuationAssumptions } from '@/lib/valuation/dcf';
+import { buildModeledCashFlowEstimate } from '@/lib/valuation/public-cash-flow';
 import type { CatalogSnapshot } from '@/types/catalog';
 import { Button } from '@/components/ui/button';
 import {
@@ -80,6 +81,12 @@ const money = (value: number, digits = 1) =>
 const percent = (value: number, digits = 1) =>
   `${(value * 100).toFixed(digits)}%`;
 
+const count = (value: number) =>
+  new Intl.NumberFormat('en-US', {
+    notation: 'compact',
+    maximumFractionDigits: 1,
+  }).format(value);
+
 const marketObservations =
   transactions as unknown as MarketMultipleObservation[];
 const initialMarketMultiple =
@@ -95,6 +102,7 @@ function NumericAssumption({
   min,
   max,
   disabled = false,
+  tag = 'Assumption',
 }: {
   label: string;
   value: number;
@@ -104,15 +112,14 @@ function NumericAssumption({
   min?: number;
   max?: number;
   disabled?: boolean;
+  tag?: string;
 }) {
   const inputId = `assumption-${label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
   return (
     <div className="block border-b border-ink/12 py-3">
       <span className="mb-1.5 flex items-center justify-between gap-3 text-sm">
         <label htmlFor={inputId}>{label}</label>
-        <span className="font-mono text-xs text-muted-foreground">
-          Assumption
-        </span>
+        <span className="font-mono text-xs text-muted-foreground">{tag}</span>
       </span>
       <span className="flex items-center border border-ink/20 bg-paper">
         <Input
@@ -204,10 +211,11 @@ export function UnderwritingWorkbench({
     initialCatalog,
   );
   const [loadError, setLoadError] = useState('');
-  const [assumptions, setAssumptions] = useState<ValuationAssumptions>({
+  // The entered cash flow stays empty until the user types one; a modeled
+  // estimate is applied on top of it while modeled mode is on.
+  const [assumptionInputs, setAssumptions] = useState<ValuationAssumptions>({
     ...defaultValuationAssumptions,
-    normalizedCashFlow:
-      initialCatalog?.publicCashFlowEstimate?.midpoint ?? Number.NaN,
+    normalizedCashFlow: Number.NaN,
   });
   const [selectedScenario, setSelectedScenario] =
     useState<ScenarioName>('base');
@@ -224,6 +232,27 @@ export function UnderwritingWorkbench({
   const [rightsEconomics, setRightsEconomics] =
     useState<RightsEconomicsAssumptions>(defaultRightsEconomicsAssumptions);
   const [showDiagnostics, setShowDiagnostics] = useState(false);
+
+  // Live estimates follow edits to the rights economics; the stored demo keeps
+  // its analyst range.
+  const cashFlowEstimate = useMemo(
+    () =>
+      catalog && !catalog.isStoredDemo
+        ? buildModeledCashFlowEstimate(
+            catalog.publicConsumptionEstimate,
+            rightsEconomics,
+          )
+        : (catalog?.publicCashFlowEstimate ?? null),
+    [catalog, rightsEconomics],
+  );
+  const usingModeledCashFlow = !useKnownCashFlow && cashFlowEstimate != null;
+  const assumptions = useMemo<ValuationAssumptions>(
+    () =>
+      cashFlowEstimate && !useKnownCashFlow
+        ? { ...assumptionInputs, normalizedCashFlow: cashFlowEstimate.midpoint }
+        : assumptionInputs,
+    [assumptionInputs, cashFlowEstimate, useKnownCashFlow],
+  );
 
   useEffect(() => {
     if (initialCatalog || artistId === 'demo') return;
@@ -242,11 +271,6 @@ export function UnderwritingWorkbench({
         if (cancelled) return;
         setCatalog(nextCatalog);
         setUseKnownCashFlow(!nextCatalog.publicCashFlowEstimate);
-        setAssumptions((current) => ({
-          ...current,
-          normalizedCashFlow:
-            nextCatalog.publicCashFlowEstimate?.midpoint ?? Number.NaN,
-        }));
       })
       .catch((error: unknown) => {
         if (!cancelled)
@@ -382,8 +406,13 @@ export function UnderwritingWorkbench({
   ].filter((item): item is string => Boolean(item));
   const currentYear = new Date().getUTCFullYear();
   const changeCashFlowMode = (checked: boolean) => {
-    if (!checked && catalog.publicCashFlowEstimate) {
-      update('normalizedCashFlow', catalog.publicCashFlowEstimate.midpoint);
+    // Known mode starts from the modeled figure, to the nearest $10k, so it
+    // can be adjusted.
+    if (checked && !useKnownCashFlow && cashFlowEstimate) {
+      update(
+        'normalizedCashFlow',
+        Math.round(cashFlowEstimate.midpoint / 10_000) * 10_000,
+      );
     }
     setUseKnownCashFlow(checked);
   };
@@ -469,7 +498,13 @@ export function UnderwritingWorkbench({
           {active && (
             <div className="grid grid-cols-3 gap-6 sm:gap-10">
               <div>
-                <p className="eyebrow">Cash flow</p>
+                <p className="eyebrow">
+                  {!usingModeledCashFlow
+                    ? 'Cash flow'
+                    : catalog.isStoredDemo
+                      ? 'Stored cash flow'
+                      : 'Modeled cash flow'}
+                </p>
                 <p className="mt-1 font-display text-2xl font-semibold">
                   {money(assumptions.normalizedCashFlow)}
                 </p>
@@ -522,13 +557,30 @@ export function UnderwritingWorkbench({
                 ? publicEvidenceSummary.join(' · ')
                 : 'No release or demand observations were returned for this identity.'}
             </p>
-            <p className="mt-2 text-muted-foreground">
-              MusicBrainz, Last.fm, and YouTube populate the Evidence room with
-              catalog chronology, cumulative demand, and concentration signals.
-              They do not provide annual royalty statements, so no dollar
-              estimate is fabricated from cumulative API metrics. Enter a known
-              or hypothetical annual cash flow to run the valuation.
-            </p>
+            {cashFlowEstimate ? (
+              <p className="mt-2 text-muted-foreground">
+                The valuation starts from a{' '}
+                <strong className="font-semibold text-foreground">
+                  modeled annual cash flow of {money(cashFlowEstimate.low)}–
+                  {money(cashFlowEstimate.high)} (base{' '}
+                  {money(cashFlowEstimate.midpoint)})
+                </strong>
+                . Yearly listening is estimated from Last.fm listeners and
+                YouTube views, then multiplied by default per-1,000-stream
+                rates. It is an estimate, not a royalty statement: edit the
+                rates in the Evidence room or switch to Known cash flow to enter
+                verified figures.
+              </p>
+            ) : (
+              <p className="mt-2 text-muted-foreground">
+                MusicBrainz, Last.fm, and YouTube populate the Evidence room
+                with catalog chronology, cumulative demand, and concentration
+                signals. Without annual listening evidence and every payout
+                rate, no dollar estimate is fabricated from cumulative API
+                metrics. Enter a known or hypothetical annual cash flow to run
+                the valuation.
+              </p>
+            )}
           </section>
         )}
 
@@ -674,8 +726,8 @@ export function UnderwritingWorkbench({
                       </p>
                     )}
                     <p className="mt-3 text-xs leading-5 text-muted-foreground">
-                      Cumulative observation. Fan uploads are excluded and no
-                      annual run rate is inferred.
+                      Cumulative observation. Fan uploads are excluded; the
+                      modeled annual range sits under annual consumption.
                     </p>
                   </div>
                   <div className="border-t-2 border-ink pt-4">
@@ -684,11 +736,40 @@ export function UnderwritingWorkbench({
                       ?.audioStreamingEquivalent ||
                     catalog.publicConsumptionEstimate?.youtubeAnnualViews ? (
                       <>
-                        <p className="mt-2 font-display text-2xl font-semibold">
-                          Annual range available
-                        </p>
+                        <dl className="mt-3 space-y-2 text-sm">
+                          {(
+                            [
+                              [
+                                'Audio streams / yr',
+                                catalog.publicConsumptionEstimate
+                                  .audioStreamingEquivalent,
+                              ],
+                              [
+                                'YouTube views / yr',
+                                catalog.publicConsumptionEstimate
+                                  .youtubeAnnualViews,
+                              ],
+                            ] as const
+                          ).map(([label, range]) =>
+                            range ? (
+                              <div
+                                className="flex justify-between gap-3"
+                                key={label}
+                              >
+                                <dt className="text-muted-foreground">
+                                  {label}
+                                </dt>
+                                <dd className="font-mono">
+                                  {count(range.low)}–{count(range.high)}
+                                </dd>
+                              </div>
+                            ) : null,
+                          )}
+                        </dl>
                         <p className="mt-3 text-xs leading-5 text-muted-foreground">
-                          {catalog.publicConsumptionEstimate.note}
+                          Modeled annualization, calibrated against public
+                          Spotify and YouTube view histories. Inspect provenance
+                          for the method.
                         </p>
                       </>
                     ) : (
@@ -700,27 +781,29 @@ export function UnderwritingWorkbench({
                   </div>
                 </div>
                 <div className="mt-5 border-t-2 border-ink pt-4">
-                  <p className="eyebrow">Estimated · normalized cash flow</p>
-                  {catalog.publicCashFlowEstimate ? (
+                  <p className="eyebrow">
+                    {catalog.isStoredDemo ? 'Estimated' : 'Modeled'} ·
+                    normalized cash flow
+                  </p>
+                  {cashFlowEstimate ? (
                     <>
                       <p className="mt-2 font-display text-2xl font-semibold">
-                        {money(catalog.publicCashFlowEstimate.low)}–
-                        {money(catalog.publicCashFlowEstimate.high)}
+                        {money(cashFlowEstimate.low)}–
+                        {money(cashFlowEstimate.high)}
                       </p>
                       <p className="mt-1 text-sm text-muted-foreground">
-                        Base: {money(catalog.publicCashFlowEstimate.midpoint)} ·{' '}
-                        {catalog.publicCashFlowEstimate.confidence} confidence
+                        Base: {money(cashFlowEstimate.midpoint)} ·{' '}
+                        {cashFlowEstimate.confidence} confidence
                       </p>
                       <p className="mt-3 text-xs leading-5 text-muted-foreground">
-                        {catalog.publicCashFlowEstimate.note}
+                        {cashFlowEstimate.note}
                       </p>
                     </>
                   ) : (
                     <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                      Not calculated from public APIs. Last.fm and YouTube
-                      provide cumulative demand signals, not annual royalty cash
-                      flow. Enter a known or hypothetical annual cash flow to
-                      continue.
+                      Not calculated. A modeled cash flow needs annual listening
+                      evidence and every rights-economics rate below. Enter a
+                      known or hypothetical annual cash flow to continue.
                     </p>
                   )}
                 </div>
@@ -893,8 +976,9 @@ export function UnderwritingWorkbench({
                     Annual consumption → rights revenue
                   </h3>
                   <p className="mt-2 text-xs leading-5 text-muted-foreground">
-                    Editable scenario assumptions stay separate from observed
-                    demand. Blank values do not become implied payouts.
+                    Defaults come from public payout reporting (see Methodology)
+                    and drive the modeled cash flow. Edit them per scenario;
+                    blanking any value turns the estimate off.
                   </p>
                   <Select
                     value={economicsScenario}
@@ -1003,31 +1087,50 @@ export function UnderwritingWorkbench({
                 <div className="flex items-center justify-between py-4">
                   <div>
                     <p className="eyebrow">Operating mode</p>
-                    <p className="mt-1 font-semibold">Known cash flow</p>
+                    <p className="mt-1 font-semibold">
+                      {usingModeledCashFlow
+                        ? catalog.isStoredDemo
+                          ? 'Stored estimate'
+                          : 'Modeled cash flow'
+                        : 'Known cash flow'}
+                    </p>
                   </div>
                   <Switch
-                    checked={useKnownCashFlow}
+                    checked={!usingModeledCashFlow}
                     onCheckedChange={changeCashFlowMode}
-                    disabled={!catalog.publicCashFlowEstimate}
+                    disabled={!cashFlowEstimate}
                     aria-label="Use my own normalized annual cash flow"
                   />
                 </div>
                 <p className="border-y border-ink/12 py-3 text-xs leading-5 text-muted-foreground">
-                  {useKnownCashFlow
-                    ? 'User-entered cash flow is the valuation base. Catalog analytics remain available.'
-                    : (catalog.publicCashFlowEstimate?.note ??
-                      'The APIs populated the Evidence room, but they do not expose annual royalty cash flow. Enable Known cash flow to proceed.')}
+                  {usingModeledCashFlow
+                    ? cashFlowEstimate.note
+                    : cashFlowEstimate
+                      ? 'User-entered cash flow is the valuation base. Turn the switch off to return to the modeled estimate.'
+                      : 'No modeled estimate is available: it needs annual listening evidence and every rights-economics rate. Enter a known or hypothetical cash flow.'}
                 </p>
                 <NumericAssumption
                   label="Normalized annual cash flow"
-                  value={assumptions.normalizedCashFlow / 1_000_000}
+                  value={
+                    usingModeledCashFlow
+                      ? Math.round(assumptions.normalizedCashFlow / 10_000) /
+                        100
+                      : assumptions.normalizedCashFlow / 1_000_000
+                  }
                   onChange={(value) =>
                     update('normalizedCashFlow', value * 1_000_000)
                   }
                   suffix="$M"
                   step={0.1}
                   min={0}
-                  disabled={!useKnownCashFlow}
+                  disabled={usingModeledCashFlow}
+                  tag={
+                    usingModeledCashFlow
+                      ? catalog.isStoredDemo
+                        ? 'Stored'
+                        : 'Modeled'
+                      : 'Assumption'
+                  }
                 />
                 <p className="eyebrow mt-5 border-b border-ink/20 pb-2 text-foreground">
                   What are you buying?
@@ -1169,6 +1272,15 @@ export function UnderwritingWorkbench({
                         <p className="mt-2 font-display text-3xl font-semibold">
                           {active ? money(active.catalogValue) : '—'}
                         </p>
+                        {active && (
+                          <p className="mt-1 font-mono text-xs text-muted-foreground">
+                            {!usingModeledCashFlow
+                              ? 'On entered cash flow'
+                              : catalog.isStoredDemo
+                                ? 'On stored cash flow'
+                                : 'On modeled cash flow'}
+                          </p>
+                        )}
                       </div>
                       <div className="bg-paper p-4">
                         <p className="eyebrow">Market multiple value</p>
@@ -1376,15 +1488,18 @@ export function UnderwritingWorkbench({
                   Underwriting context
                 </p>
                 <div className="border-y border-ink/15 py-4">
-                  <p className="eyebrow">Automatic economic cash flow</p>
+                  <p className="eyebrow">
+                    {catalog.isStoredDemo ? 'Stored' : 'Modeled'} economic cash
+                    flow
+                  </p>
                   <p className="mt-2 font-display text-2xl font-semibold">
-                    {catalog.publicCashFlowEstimate
-                      ? `${money(catalog.publicCashFlowEstimate.low)}–${money(catalog.publicCashFlowEstimate.high)}`
-                      : 'Not inferred'}
+                    {cashFlowEstimate
+                      ? `${money(cashFlowEstimate.low)}–${money(cashFlowEstimate.high)}`
+                      : 'Not modeled'}
                   </p>
                   <p className="mt-2 text-xs leading-5 text-muted-foreground">
-                    {catalog.publicCashFlowEstimate?.note ??
-                      'Cumulative public demand metrics cannot establish annual royalty cash flow. Use verified financials or an explicit analyst assumption.'}
+                    {cashFlowEstimate?.note ??
+                      'A modeled estimate needs annual listening evidence and every rights-economics rate. Use verified financials or an explicit analyst assumption.'}
                   </p>
                 </div>
                 <div className="border-b border-ink/15 py-4">

@@ -12,11 +12,23 @@ MusicBrainz supplies catalog evidence. Last.fm supplies cumulative demand eviden
 
 ## Consumption and rights economics
 
-Last.fm supports relative artist scale, track concentration, catalog breadth, long-tail strength, and demand persistence. It never directly produces dollar cash flow. Cumulative Last.fm scrobbles and YouTube views remain labeled `cumulative-observation`; they are not treated as annual revenue.
+Last.fm supports relative artist scale, track concentration, catalog breadth, long-tail strength, and demand persistence. Cumulative Last.fm scrobbles and YouTube views remain labeled `cumulative-observation`; on their own they are not treated as annual revenue.
 
-`PublicConsumptionEstimate` holds annual audio-streaming-equivalent and YouTube-view ranges only when current annual/run-rate evidence or a disclosed modeled annualization is available. Missing evidence remains `null`.
+`PublicConsumptionEstimate` holds annual audio-streaming-equivalent and YouTube-view ranges when current annual/run-rate evidence or a disclosed modeled annualization is available. Missing evidence remains `null`. Live underwrites use two calibrated annualizations (`config/consumption-annualization.ts`), both labeled `modeled-annualization`:
 
-`RightsEconomics` models audio streaming, YouTube, publishing, and other revenue separately. Its low, base, and high assumptions are blank by default and editable by the user. It does not claim a fixed Spotify or platform payout. Automatic annual cash flow remains unavailable unless both annual consumption and the necessary rights-economic assumptions exist.
+- **Audio streams from Last.fm listeners.** Listeners are summed across the artist's top 25 Last.fm tracks and multiplied by 65 / 150 / 445 annual whole-catalog Spotify streams per top-track listener, then divided by Spotify's reported 65% share of global audio streams. The factors are the 10th / 50th / 90th percentiles across 29 artists, so the range holds 23 of them (an interquartile range held only 15), measured on 2026-10-18 by annualizing each artist's latest daily Spotify streams as lead artist on kworb.net and dividing by the Last.fm listeners of the same artist's top 25 tracks. Using only the top 25 in both calibration and production keeps the long tail inside the factor. Listeners predicted held-out artists better than scrobbles (typical error ×1.43 against ×1.53) because heavy-rotation fan bases inflate scrobbles. Individual artists still miss by up to 5×: Last.fm under-represents mainstream pop, hip-hop, and Latin audiences (Bad Bunny, Taylor Swift, Drake sit far above the median) and over-represents indie and rock (The Strokes, Radiohead sit far below).
+- **YouTube views from matched official uploads.** Each upload's lifetime views per year (over at least one year) is multiplied by 0.35 / 0.75 / 2.05, the 10th / 50th / 90th percentiles of the trailing-12-month-to-lifetime-average ratio measured on 93 official videos from 24 artists. Unmatched uploads are not counted, so the range is a floor.
+
+`RightsEconomics` models audio streaming, YouTube, publishing, and other revenue separately under editable low, base, and high assumptions (`config/rights-economics.ts`):
+
+| Assumption                               | Low   | Base  | High  | Basis                                                                                                                                             |
+| ---------------------------------------- | ----- | ----- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Recorded revenue per 1,000 audio streams | $2.60 | $3.20 | $3.80 | Spotify's $11B 2025 payout over ~65% of ~5T global streams ≈ $3.40 per 1,000 for masters and publishing, ≈ $2.60 for masters; other DSPs pay more |
+| Recorded revenue per 1,000 YouTube views | $0.45 | $0.80 | $1.50 | Industry sources' $0.60–$2.00 per 1,000 views for all rights holders, recording side ≈ 75%                                                        |
+| Publishing as share of recorded          | 24%   | 28%   | 31%   | Publishers ≈ 15% of streaming revenue against labels ≈ 52–55%                                                                                     |
+| Other revenue as share of recorded       | 15%   | 25%   | 43%   | Streaming ≈ 70% of recorded revenue (IFPI); catalogs see less new-release physical. Sync is excluded because the DCF applies its own uplift       |
+
+The modeled normalized cash flow is the low, base, and high rights revenue (`lib/valuation/public-cash-flow.ts`). It pre-fills the valuation with low confidence and is labeled as modeled throughout the workbench. Editing any rate updates it; blanking one turns it off. Switching to Known cash flow replaces it with a verified or hypothetical figure.
 
 ## Valuation methods
 
@@ -40,8 +52,8 @@ The reconciled indicative range spans the selected DCF result and the transactio
 
 ## Benchmark validation
 
-Curated catalog transactions are validation evidence, not calibration targets. The benchmark framework first checks that an automatic candidate has annual-consumption evidence, then applies a deliberately broad order-of-magnitude sanity band. It never fits Last.fm activity to transaction price.
+Curated catalog transactions are validation evidence, not calibration targets. The benchmark framework first checks that an automatic candidate has annual-consumption evidence, then applies a deliberately broad order-of-magnitude sanity band. It never fits Last.fm activity to transaction price; the annualization is calibrated against public stream counts instead.
 
-The stored demo cash-flow range is an illustrative analyst assumption. A live catalog without sufficient annual evidence requires a known or hypothetical cash-flow entry.
+The stored demo cash-flow range is an illustrative analyst assumption. A live catalog without Last.fm or YouTube evidence has no annual consumption and still requires a known or hypothetical cash-flow entry.
 
 See the in-product methodology page for the evidence policy and limitations.

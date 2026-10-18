@@ -115,8 +115,16 @@ export function buildPublicConsumptionEstimate(
   );
   appendAnnualizationInput('Annual YouTube views', youtubeAnnualization);
 
+  // Calibrated annualizations stay low confidence; medium needs both ranges
+  // and at least one observed current run rate.
+  const hasObservedRunRate = [audioAnnualization, youtubeAnnualization].some(
+    (annualization) =>
+      annualization?.observationTiming === 'current-annual-run-rate',
+  );
   const confidence: Confidence =
-    audioAnnualization && youtubeAnnualization ? 'medium' : 'low';
+    audioAnnualization && youtubeAnnualization && hasObservedRunRate
+      ? 'medium'
+      : 'low';
   const hasAnnualEvidence = Boolean(audioAnnualization || youtubeAnnualization);
 
   return {

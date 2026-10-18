@@ -2,7 +2,8 @@ import type { YouTubeVideoEvidence } from '../../types/catalog.ts';
 import type { YouTubeDataProvider } from './catalog-provider.ts';
 
 const YOUTUBE_API_BASE = 'https://www.googleapis.com/youtube/v3';
-const MAX_SEARCH_RESULTS = 25;
+// The search.list maximum. A search costs the same quota at any page size.
+const MAX_SEARCH_RESULTS = 50;
 
 type YouTubeSearchResponse = {
   items?: Array<{

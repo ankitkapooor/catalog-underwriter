@@ -19,11 +19,12 @@ Public evidence → explicit assumptions → deterministic cash flow → DCF →
 ```
 
 - MusicBrainz resolves ambiguous artist identities and returns public catalog structure.
-- An optional server-side Last.fm adapter adds relative track-demand evidence.
+- An optional server-side Last.fm adapter adds track-demand evidence, looked up by MusicBrainz ID.
 - An optional server-side YouTube adapter adds cumulative views for conservatively matched official uploads.
+- Last.fm listeners and YouTube views are annualized with a disclosed calibration and multiplied by default per-1,000-stream rates to pre-fill a modeled cash flow, labeled as modeled and fully editable.
 - A versioned stored snapshot makes the main demonstration reliable without live APIs.
 - Pure TypeScript functions calculate cash flow, DCF, scenarios, sensitivity, concentration, and risk diagnostics.
-- Missing data stays visible as unknown; live catalogs without annual-consumption evidence require a user-entered cash-flow base.
+- Missing data stays visible as unknown; live catalogs without Last.fm or YouTube evidence require a user-entered cash-flow base.
 - DCF and transaction-derived market-multiple values are shown separately and reconciled without mechanical averaging.
 
 ## Architecture
@@ -45,9 +46,9 @@ The engine projects ten explicit annual periods and a Gordon-growth terminal val
 
 - Public data cannot verify royalty income, rights ownership, recoupment, or private contract terms.
 - MusicBrainz coverage varies and its live lightweight route does not perform recording-level normalization.
-- Last.fm is a relative-demand signal, not a royalty or total-market stream count.
+- Last.fm is a demand signal, not a royalty or total-market stream count. The modeled annual stream range rests on a 29-artist calibration; individual artists can miss by up to 5×, and Last.fm under-represents mainstream pop, hip-hop, and Latin audiences.
+- Default payout rates are public-reporting averages, not any catalog's contract terms.
 - The demo cash-flow range is an illustrative stored analyst assumption, not a factual claim about artist earnings.
-- Last.fm and cumulative YouTube views never directly produce dollar cash flow.
 - Request throttling is process-local until production hosting adds durable edge infrastructure.
 
 ## Local development
@@ -64,7 +65,7 @@ Open `http://localhost:3000`. The stored demo works without API credentials.
 
 ## Environment variables
 
-`LASTFM_API_KEY` is optional. When present, the server retrieves Last.fm top-track signals for live artist underwrites. `YOUTUBE_API_KEY` is also optional and enables likely-official cumulative video evidence. Secrets remain server-side and `.env.local` is ignored by Git.
+`LASTFM_API_KEY` is optional. When present, the server retrieves Last.fm top-track signals for live artist underwrites, which also drive the modeled audio cash flow. `YOUTUBE_API_KEY` is also optional and enables likely-official cumulative video evidence. Without either key a live underwrite has no modeled cash flow. Secrets remain server-side and `.env.local` is ignored by Git.
 
 ## Testing
 

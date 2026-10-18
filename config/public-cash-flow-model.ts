@@ -1,15 +1,9 @@
 /**
- * Automatic public cash-flow estimation is intentionally disabled.
- *
- * Last.fm and MusicBrainz provide demand and catalog evidence, not annual
- * royalty income. A future automatic estimate may only be enabled after the
- * application has defensible annual-consumption evidence and explicit,
- * editable rights-holder economics.
+ * Live underwrites pre-fill a modeled cash flow when public evidence supports
+ * an annual consumption range. The estimate is annual consumption multiplied
+ * by the editable rights economics; it is never a royalty statement.
  */
-export const PUBLIC_CASH_FLOW_AUTOMATION_ENABLED = false as const;
+export const PUBLIC_CASH_FLOW_METHODOLOGY_VERSION = 'public-cash-flow-3.0.0';
 
-export const PUBLIC_CASH_FLOW_DISABLED_REASON =
-  'Automatic economic cash-flow estimate not yet available from sufficient public evidence.';
-
-export const PUBLIC_CASH_FLOW_METHODOLOGY_VERSION =
-  'public-cash-flow-disabled-2.0.0';
+export const MODELED_CASH_FLOW_NOTE =
+  'Modeled from public demand: Last.fm and YouTube observations are annualized with a disclosed calibration and multiplied by default rights economics. It is an estimate, not a royalty statement. Switch to Known cash flow to enter verified figures.';

@@ -18,7 +18,7 @@ test('the workbench does not silently substitute the former $1M fallback', async
   assert.match(source, /normalizedCashFlow:[\s\S]*Number\.NaN/);
   assert.match(
     source,
-    /no dollar[\s\S]*estimate is fabricated from cumulative API metrics/,
+    /no dollar\s+estimate\s+is\s+fabricated\s+from\s+cumulative\s+API\s+metrics/,
   );
 });
 
@@ -41,18 +41,24 @@ test('back-to-search controls use hard navigation', async () => {
 
   assert.equal(hardNavigationLinks?.length, 2);
   assert.match(source, /window\.location\.assign\('\/'\)/);
-  assert.doesNotMatch(
-    source,
-    /<Link[\s\S]{0,160}aria-label="Back to search"/,
-  );
+  assert.doesNotMatch(source, /<Link[\s\S]{0,160}aria-label="Back to search"/);
 });
 
-test('known or hypothetical cash flow remains an explicit user input', async () => {
+test('known or hypothetical cash flow can always override the modeled estimate', async () => {
   const source = await workbenchSource();
 
   assert.match(source, /Use my own normalized annual cash flow/);
-  assert.match(source, /disabled=\{!useKnownCashFlow\}/);
+  assert.match(source, /disabled=\{usingModeledCashFlow\}/);
   assert.match(source, /event\.target\.value === ''\s*\? Number\.NaN/);
+});
+
+test('a modeled cash flow is labeled wherever it drives the valuation', async () => {
+  const source = await workbenchSource();
+
+  assert.match(source, /'Modeled cash flow'/);
+  assert.match(source, /'On modeled cash flow'/);
+  assert.match(source, /modeled annual cash flow of/);
+  assert.match(source, /buildModeledCashFlowEstimate\(/);
 });
 
 test('the stored Kendrick demonstration range is an explicit analyst assumption', async () => {
@@ -69,12 +75,16 @@ test('the stored Kendrick demonstration range is an explicit analyst assumption'
   assert.match(source, /Not derived from Last\.fm or MusicBrainz/);
 });
 
-test('the live artist route never invokes the legacy public cash-flow estimator', async () => {
+test('the live artist route models cash flow only from annualized consumption', async () => {
   const source = await readFile(
     new URL('../../app/api/artists/[id]/route.ts', import.meta.url),
     'utf8',
   );
 
-  assert.doesNotMatch(source, /estimatePublicCashFlow/);
-  assert.match(source, /catalog\.publicCashFlowEstimate = null/);
+  assert.match(source, /annualizeLastFmAudio\(lastFmSignals\)/);
+  assert.match(source, /audioAnnualization,\s*youtubeAnnualization,/);
+  assert.match(
+    source,
+    /catalog\.publicCashFlowEstimate = buildModeledCashFlowEstimate\(\s*catalog\.publicConsumptionEstimate,\s*defaultRightsEconomicsAssumptions,/,
+  );
 });

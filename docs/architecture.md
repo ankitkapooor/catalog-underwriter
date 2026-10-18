@@ -29,7 +29,7 @@ Repository data
 
 The React components render and edit structured data. They never implement finance calculations. Provider adapters return the application-owned catalog model so external response shapes do not leak into the financial engine.
 
-The demo snapshot and every external field preserve provenance, retrieval time, confidence, method, and observation timing where applicable. Live requests continue with partial data when Last.fm or YouTube is unavailable. The application never substitutes fake values for missing evidence and never converts cumulative demand signals directly into cash flow.
+The demo snapshot and every external field preserve provenance, retrieval time, confidence, method, and observation timing where applicable. Live requests continue with partial data when Last.fm or YouTube is unavailable. The application never substitutes fake values for missing evidence. Cumulative demand signals reach cash flow only through the disclosed annualization calibration and editable rights economics, and the result is labeled as modeled.
 
 ## Runtime
 
