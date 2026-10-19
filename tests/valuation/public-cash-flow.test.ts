@@ -57,6 +57,18 @@ test('annual consumption × default economics gives an ordered modeled range', (
   assert.match(estimate.note, /not a royalty statement/);
 });
 
+test('the estimate records how much revenue the recordings earn', () => {
+  const estimate = buildModeledCashFlowEstimate(
+    consumption,
+    defaultRightsEconomicsAssumptions,
+  );
+
+  assert.ok(estimate?.masterRevenueMix);
+  // Recordings earn streaming plus other revenue; publishing is the rest:
+  // (1 + 0.25) / (1 + 0.28 + 0.25).
+  assert.ok(Math.abs(estimate.masterRevenueMix - 1.25 / 1.53) < 1e-9);
+});
+
 test('blanking any base assumption turns the modeled estimate off', () => {
   const estimate = buildModeledCashFlowEstimate(consumption, {
     ...defaultRightsEconomicsAssumptions,

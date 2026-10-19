@@ -79,6 +79,8 @@ export type PublicCashFlowEstimate = {
   low: number;
   midpoint: number;
   high: number;
+  /** Share of the base-case revenue earned by recordings rather than publishing. */
+  masterRevenueMix?: number;
   confidence: Confidence;
   methodologyVersion: string;
   inputs: PublicCashFlowModelInput[];

@@ -8,7 +8,10 @@ import type {
 import type { LastFmTrackSignal } from '../providers/catalog-provider.ts';
 import { buildModeledCashFlowEstimate } from '../valuation/public-cash-flow.ts';
 import type { RightsEconomicsAssumptions } from '../valuation/rights-economics.ts';
-import { annualizeLastFmAudio, annualizeYouTubeViews } from './annualization.ts';
+import {
+  annualizeLastFmAudio,
+  annualizeYouTubeViews,
+} from './annualization.ts';
 import { buildPublicConsumptionEstimate } from './public-consumption.ts';
 
 /** Last.fm top tracks as track evidence with relative demand shares. */

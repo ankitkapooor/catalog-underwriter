@@ -35,7 +35,10 @@ import {
   type RightsEconomicsAssumptions,
   type RightsEconomicsScenarioAssumptions,
 } from '@/lib/valuation/rights-economics';
-import type { ValuationAssumptions } from '@/lib/valuation/dcf';
+import {
+  calculateEconomicRightsShare,
+  type ValuationAssumptions,
+} from '@/lib/valuation/dcf';
 import { buildModeledCashFlowEstimate } from '@/lib/valuation/public-cash-flow';
 import type { CatalogSnapshot } from '@/types/catalog';
 import { Button } from '@/components/ui/button';
@@ -246,10 +249,18 @@ export function UnderwritingWorkbench({
     [catalog, rightsEconomics],
   );
   const usingModeledCashFlow = !useKnownCashFlow && cashFlowEstimate != null;
+  // A modeled estimate also sets the recordings/publishing split, so the
+  // rights shares weight the same revenue the estimate produced.
   const assumptions = useMemo<ValuationAssumptions>(
     () =>
       cashFlowEstimate && !useKnownCashFlow
-        ? { ...assumptionInputs, normalizedCashFlow: cashFlowEstimate.midpoint }
+        ? {
+            ...assumptionInputs,
+            normalizedCashFlow: cashFlowEstimate.midpoint,
+            masterRevenueMix:
+              cashFlowEstimate.masterRevenueMix ??
+              assumptionInputs.masterRevenueMix,
+          }
         : assumptionInputs,
     [assumptionInputs, cashFlowEstimate, useKnownCashFlow],
   );
@@ -358,20 +369,18 @@ export function UnderwritingWorkbench({
 
   const active = results.data?.[selectedScenario];
   const hasCashFlow = Number.isFinite(assumptions.normalizedCashFlow);
+  // The market approach prices the same interest as the DCF: cash flow
+  // weighted by the master and publishing shares, net of fees.
+  const economicCashFlow =
+    assumptions.normalizedCashFlow * calculateEconomicRightsShare(assumptions);
+  const hasEconomicCashFlow = hasCashFlow && Number.isFinite(economicCashFlow);
   const marketValue =
-    hasCashFlow && Number.isFinite(selectedMarketMultiple)
-      ? calculateMarketMultipleValue(
-          assumptions.normalizedCashFlow,
-          selectedMarketMultiple,
-        )
+    hasEconomicCashFlow && Number.isFinite(selectedMarketMultiple)
+      ? calculateMarketMultipleValue(economicCashFlow, selectedMarketMultiple)
       : null;
   const reconciliation =
-    active && hasCashFlow && marketRange
-      ? reconcileValuations(
-          active.catalogValue,
-          assumptions.normalizedCashFlow,
-          marketRange,
-        )
+    active && hasEconomicCashFlow && marketRange
+      ? reconcileValuations(active.catalogValue, economicCashFlow, marketRange)
       : null;
   const update = <K extends keyof ValuationAssumptions>(
     key: K,
@@ -1124,6 +1133,16 @@ export function UnderwritingWorkbench({
                 />
                 <p className="eyebrow mt-5 border-b border-ink/20 pb-2 text-foreground">
                   What are you buying?
+                </p>
+                <p className="border-b border-ink/12 py-3 text-xs leading-5 text-muted-foreground">
+                  Revenue split: {percent(assumptions.masterRevenueMix, 0)}{' '}
+                  recordings · {percent(1 - assumptions.masterRevenueMix, 0)}{' '}
+                  publishing (
+                  {usingModeledCashFlow && cashFlowEstimate.masterRevenueMix
+                    ? 'from the modeled revenue'
+                    : 'default assumption'}
+                  ). The shares below apply to each side; the market multiple
+                  uses the same weighted cash flow.
                 </p>
                 <NumericAssumption
                   label="Master rights share"

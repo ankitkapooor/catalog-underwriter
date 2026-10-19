@@ -22,6 +22,9 @@ const demoCashFlow = storedDemoCashFlow();
 const scenarios = calculateScenarios({
   ...defaultValuationAssumptions,
   normalizedCashFlow: demoCashFlow.midpoint,
+  masterRevenueMix:
+    demoCashFlow.masterRevenueMix ??
+    defaultValuationAssumptions.masterRevenueMix,
 });
 const concentration = calculateConcentration(
   demoCatalog.tracks.map((track) => track.demandShare),

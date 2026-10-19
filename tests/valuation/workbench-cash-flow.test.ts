@@ -89,3 +89,24 @@ test('the homepage values the stored demo with its modeled cash flow', async () 
     /calculateScenarios\(defaultValuationAssumptions\)/,
   );
 });
+
+test('the market approach and DCF value the same rights-weighted interest', async () => {
+  const source = await workbenchSource();
+
+  assert.match(
+    source,
+    /economicCashFlow =\s*assumptions\.normalizedCashFlow \* calculateEconomicRightsShare\(assumptions\)/,
+  );
+  assert.match(
+    source,
+    /calculateMarketMultipleValue\(economicCashFlow, selectedMarketMultiple\)/,
+  );
+  assert.match(
+    source,
+    /reconcileValuations\(active\.catalogValue, economicCashFlow, marketRange\)/,
+  );
+  assert.match(
+    source,
+    /masterRevenueMix:\s*cashFlowEstimate\.masterRevenueMix \?\?/,
+  );
+});

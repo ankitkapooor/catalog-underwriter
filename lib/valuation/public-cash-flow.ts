@@ -67,12 +67,21 @@ export function buildModeledCashFlowEstimate(
     },
   ];
 
+  // Other revenue (physical, downloads, neighbouring rights) belongs to the
+  // recordings, so only the publishing line counts against the master share.
+  const masterRevenueMix =
+    base.normalizedAnnualRightsRevenue > 0
+      ? (base.normalizedAnnualRightsRevenue - base.publishing) /
+        base.normalizedAnnualRightsRevenue
+      : undefined;
+
   return {
     // Edited assumptions can cross scenarios, so the range is widened to
     // contain every scenario while the midpoint stays on the base case.
     low: Math.min(...revenues),
     midpoint: base.normalizedAnnualRightsRevenue,
     high: Math.max(...revenues),
+    masterRevenueMix,
     confidence: 'low',
     methodologyVersion: PUBLIC_CASH_FLOW_METHODOLOGY_VERSION,
     inputs,
