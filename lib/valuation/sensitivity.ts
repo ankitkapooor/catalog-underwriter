@@ -7,10 +7,18 @@ export type SensitivityCell = {
   impliedMultiple: number | null;
 };
 
+// Centred on the 8.5% / +2% base case, spanning the bear and bull settings.
+export const SENSITIVITY_DISCOUNT_RATES = [
+  0.065, 0.075, 0.085, 0.095, 0.105, 0.115, 0.125,
+];
+export const SENSITIVITY_TERMINAL_GROWTH_RATES = [
+  -0.02, -0.01, 0, 0.01, 0.02, 0.03,
+];
+
 export function buildSensitivityMatrix(
   assumptions: ValuationAssumptions,
-  discountRates = [0.08, 0.09, 0.1, 0.11, 0.12, 0.13, 0.14],
-  terminalGrowthRates = [-0.04, -0.03, -0.02, -0.01, 0, 0.01],
+  discountRates = SENSITIVITY_DISCOUNT_RATES,
+  terminalGrowthRates = SENSITIVITY_TERMINAL_GROWTH_RATES,
 ): SensitivityCell[][] {
   return discountRates.map((discountRate) =>
     terminalGrowthRates.map((terminalGrowthRate) => {

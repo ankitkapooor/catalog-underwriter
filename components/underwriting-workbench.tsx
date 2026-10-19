@@ -13,14 +13,20 @@ import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 
 import transactions from '@/data/catalog-transactions.json';
 import { defaultRightsEconomicsAssumptions } from '@/config/rights-economics';
-import { defaultValuationAssumptions } from '@/config/valuation-defaults';
+import {
+  defaultValuationAssumptions,
+  scenarioAdjustments,
+} from '@/config/valuation-defaults';
 import { breakTheDeal, type RiskDiagnostic } from '@/lib/valuation/diagnostics';
 import { calculateConcentration } from '@/lib/valuation/concentration';
 import {
   calculateScenarios,
   type ScenarioName,
 } from '@/lib/valuation/scenarios';
-import { buildSensitivityMatrix } from '@/lib/valuation/sensitivity';
+import {
+  buildSensitivityMatrix,
+  SENSITIVITY_TERMINAL_GROWTH_RATES,
+} from '@/lib/valuation/sensitivity';
 import {
   calculateMarketMultipleValue,
   deriveMarketMultipleRange,
@@ -1518,7 +1524,9 @@ export function UnderwritingWorkbench({
                   <dl className="mt-3 space-y-3 text-sm">
                     <div className="flex justify-between gap-3">
                       <dt>Bear discount rate</dt>
-                      <dd className="font-mono">13.0%</dd>
+                      <dd className="font-mono">
+                        {percent(scenarioAdjustments.bear.discountRate)}
+                      </dd>
                     </div>
                     <div className="flex justify-between gap-3">
                       <dt>Base discount rate</dt>
@@ -1528,7 +1536,9 @@ export function UnderwritingWorkbench({
                     </div>
                     <div className="flex justify-between gap-3">
                       <dt>Bull discount rate</dt>
-                      <dd className="font-mono">8.5%</dd>
+                      <dd className="font-mono">
+                        {percent(scenarioAdjustments.bull.discountRate)}
+                      </dd>
                     </div>
                   </dl>
                 </div>
@@ -1557,7 +1567,7 @@ export function UnderwritingWorkbench({
                           <th className="p-3 text-left font-mono text-xs text-muted-foreground">
                             Discount ↓ / terminal →
                           </th>
-                          {[-0.04, -0.03, -0.02, -0.01, 0, 0.01].map((rate) => (
+                          {SENSITIVITY_TERMINAL_GROWTH_RATES.map((rate) => (
                             <th className="p-3 font-mono text-xs" key={rate}>
                               {percent(rate, 0)}
                             </th>
@@ -1576,7 +1586,7 @@ export function UnderwritingWorkbench({
                                   className="p-3 text-left font-mono"
                                   key={cell.terminalGrowthRate}
                                 >
-                                  {percent(cell.discountRate, 0)}
+                                  {percent(cell.discountRate)}
                                 </th>
                               ) : null,
                             )}

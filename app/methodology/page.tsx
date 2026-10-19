@@ -42,7 +42,7 @@ const sections = [
   {
     number: '07',
     title: 'Valuation',
-    body: 'The deterministic DCF projects annual cash flow for ten explicit years and discounts each year at the selected risk rate. A separate market approach multiplies normalized annual cash flow by an editable multiple whose starting range is derived from curated transactions with disclosed income multiples.',
+    body: 'The deterministic DCF projects annual cash flow for ten explicit years and discounts each year at the selected risk rate. Defaults follow how the catalog market prices income: the base case uses Citrin Cooperman’s 8.5% discount rate with +5% growth for five years and +2% after, about 17× annual cash flow, in line with 2024 multiples for older catalogs. The bear case uses Shot Tower’s 9.63% re-valuation rate (about 10.6×) and the bull case the 2021–22 peak (about 23.6×). A separate market approach multiplies the rights-weighted annual cash flow by an editable multiple whose starting range is derived from curated transactions with disclosed income multiples.',
   },
   {
     number: '08',

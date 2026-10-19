@@ -40,7 +40,7 @@ The application uses Vinext, React 19, TypeScript, Tailwind CSS, restyled shadcn
 
 ## Valuation methodology
 
-The engine projects ten explicit annual periods and a Gordon-growth terminal value. Master and publishing interests are weighted separately before fees. Terminal growth must be below the effective discount rate. See [docs/methodology.md](docs/methodology.md) and the in-product `/methodology` page.
+The engine projects ten explicit annual periods and a Gordon-growth terminal value. Default discount and growth rates are anchored to catalog-market practice (Citrin Cooperman's 8.5% discount rate; about 17× annual cash flow in the base case). Master and publishing interests are weighted separately before fees. Terminal growth must be below the effective discount rate. See [docs/methodology.md](docs/methodology.md) and the in-product `/methodology` page.
 
 ## Known limitations
 

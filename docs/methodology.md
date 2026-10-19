@@ -46,6 +46,16 @@ The DCF method:
 
 The implied DCF multiple is catalog interest value divided by the normalized annual cash-flow input.
 
+Default assumptions are anchored to how the catalog market prices income rather than fitted to individual deals (`config/valuation-defaults.ts`):
+
+| Case | Discount rate | Growth, years 1–5 / 6–10 / terminal | Value ÷ cash flow | Anchor                                                                                                                                            |
+| ---- | ------------- | ----------------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Bear | 9.6%          | +2% / +1% / +1%, 10% rights haircut | ≈10.6×            | Shot Tower's 9.63% weighted rate in its 2024 Hipgnosis re-valuation                                                                               |
+| Base | 8.5%          | +5% / +2% / +2%                     | ≈17.3×            | Citrin Cooperman's 8.5% Hipgnosis rate; IFPI recorded revenue growth of 4.8–6.4% a year; Citrin's 16.7–17.6× multiples for older catalogs in 2024 |
+| Bull | 7.5%          | +6% / +3% / +2.5%                   | ≈23.6×            | The 2021–22 peak, when iconic catalogs traded around 19–25×                                                                                       |
+
+Earlier defaults (10.5% with shrinking cash flows) valued catalogs at about 8.4×, roughly half of observed market multiples.
+
 The market method calculates normalized annual cash flow × the user-selected multiple. Initial multiple ranges are derived at runtime from the curated transaction dataset's disclosed income multiples, grouped into younger masters, mature masters, publishing, and combined masters + publishing. When a category has too few disclosed observations, the UI explicitly labels the broader cross-category proxy.
 
 The reconciled indicative range spans the selected DCF result and the transaction-derived market band. It is not a mechanical average.
