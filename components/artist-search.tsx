@@ -6,6 +6,7 @@ import { ArrowRight, Search } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { CatalogArtwork } from '@/components/underwrite/catalog-artwork';
 import type { ArtistSearchResult } from '@/types/catalog';
 
 export function ArtistSearch() {
@@ -60,32 +61,32 @@ export function ArtistSearch() {
   }
 
   return (
-    <div className="self-end border-t-2 border-ink pt-5">
+    <div className="min-w-0 rounded-[18px] border border-border bg-card p-5">
       <form onSubmit={search}>
-        <label htmlFor="artist-search" className="eyebrow text-foreground">
+        <label htmlFor="artist-search" className="text-sm font-semibold">
           Begin an underwrite
         </label>
         <div className="mt-3 flex gap-2">
           <div className="relative min-w-0 flex-1">
             <Search
               aria-hidden="true"
-              className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+              className="absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-muted-foreground"
             />
             <Input
               id="artist-search"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              className="h-12 rounded-none border-ink/25 bg-white pl-10 text-base shadow-none focus-visible:border-accent focus-visible:ring-accent/15"
-              placeholder="Search an artist…"
+              className="h-11 rounded-full border-transparent bg-secondary pl-10 text-base shadow-none focus-visible:border-accent focus-visible:bg-card focus-visible:ring-accent/15"
+              placeholder="Search artists"
               autoComplete="off"
             />
           </div>
           <Button
             disabled={status === 'loading'}
             type="submit"
-            className="h-12 rounded-none bg-ink px-4 text-paper hover:bg-accent"
+            className="h-11 rounded-full bg-foreground px-5 text-background hover:bg-accent"
           >
-            {status === 'loading' ? 'Resolving…' : 'Search'}{' '}
+            {status === 'loading' ? 'Resolving…' : 'Search'}
             <ArrowRight aria-hidden="true" />
           </Button>
         </div>
@@ -99,25 +100,28 @@ export function ArtistSearch() {
             {message}
           </p>
           {results.length > 0 && (
-            <ul className="mt-3 max-h-72 divide-y divide-ink/15 overflow-y-auto border-y border-ink/20 bg-paper">
+            <ul className="mt-2 max-h-80 overflow-y-auto">
               {results.map((artist) => (
                 <li key={artist.musicBrainzId}>
                   <button
                     type="button"
-                    className="flex w-full items-center justify-between gap-4 px-2 py-3 text-left transition-colors hover:bg-secondary/70 focus-visible:bg-secondary/70"
+                    className="flex w-full items-center gap-3 rounded-xl px-2 py-2 text-left transition-colors hover:bg-secondary focus-visible:bg-secondary"
                     onClick={() =>
                       router.push(`/artist/${artist.musicBrainzId}/underwrite`)
                     }
                   >
-                    <span>
-                      <span className="block font-semibold">{artist.name}</span>
-                      <span className="mt-0.5 block text-xs text-muted-foreground">
+                    <CatalogArtwork name={artist.name} size="small" />
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate font-semibold">
+                        {artist.name}
+                      </span>
+                      <span className="mt-0.5 block truncate text-xs text-muted-foreground">
                         {[artist.type, artist.country, artist.disambiguation]
                           .filter(Boolean)
                           .join(' · ') || 'No disambiguation available'}
                       </span>
                     </span>
-                    <span className="shrink-0 font-mono text-xs text-muted-foreground">
+                    <span className="shrink-0 rounded-full bg-secondary px-2 py-0.5 font-mono text-[11px] text-muted-foreground">
                       {artist.score}% match
                     </span>
                   </button>
@@ -128,11 +132,11 @@ export function ArtistSearch() {
         </div>
       )}
 
-      <p className="mt-3 text-sm text-muted-foreground">
-        Or explore the stored{' '}
+      <p className="mt-4 text-sm text-muted-foreground">
+        Or open the{' '}
         <button
           type="button"
-          className="underline underline-offset-4 hover:text-foreground"
+          className="font-medium text-foreground underline underline-offset-4 hover:text-accent"
           onClick={() => router.push('/artist/demo/underwrite')}
         >
           Kendrick Lamar demo

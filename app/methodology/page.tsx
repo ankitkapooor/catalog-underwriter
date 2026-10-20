@@ -62,124 +62,123 @@ const sections = [
 ];
 
 export default function MethodologyPage() {
+  const sources = [
+    ['MusicBrainz API', 'https://musicbrainz.org/doc/MusicBrainz_API'],
+    ['Last.fm top tracks', 'https://www.last.fm/api/show/artist.getTopTracks'],
+    [
+      'YouTube Data API',
+      'https://developers.google.com/youtube/v3/docs/videos/list',
+    ],
+    [
+      'Sony transaction announcement',
+      'https://www.sonymusic.com/sonymusic/smg-announces-acquisition-of-bruce-springsteens-music/',
+    ],
+  ];
+  const calibrationSources = [
+    ...CONSUMPTION_CALIBRATION_SOURCES,
+    ...RIGHTS_ECONOMICS_SOURCES,
+  ].filter(
+    (source, index, all) =>
+      all.findIndex((other) => other.url === source.url) === index,
+  );
+
+  const sourceGroups: Array<{
+    heading: string;
+    links: ReadonlyArray<{ label: string; url: string }>;
+  }> = [
+    {
+      heading: 'Primary public sources',
+      links: sources.map(([label, url]) => ({ label, url })),
+    },
+    { heading: 'Calibration and payout sources', links: calibrationSources },
+  ];
+
   return (
-    <main className="min-h-screen bg-paper">
-      <header className="border-b border-ink/15">
-        <div className="mx-auto flex min-h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
+    <main className="uw min-h-screen">
+      <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur-xl">
+        <div className="mx-auto flex min-h-14 max-w-[1200px] items-center gap-4 px-4 sm:px-6">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 font-semibold"
+            className="inline-flex items-center gap-2 font-semibold tracking-[-0.01em]"
           >
             <ArrowLeft className="size-4" /> Catalog Underwriter
           </Link>
-          <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
+          <span className="ml-auto rounded-full border border-border bg-card px-2.5 py-1 font-mono text-xs text-muted-foreground">
             {METHODOLOGY_VERSION}
           </span>
         </div>
       </header>
 
-      <article className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-18">
-        <div className="grid gap-8 border-b-2 border-ink pb-10 lg:grid-cols-[1fr_.65fr]">
+      <article className="mx-auto max-w-[1200px] px-4 sm:px-6">
+        <div className="grid items-end gap-8 pt-14 pb-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.65fr)]">
           <div>
-            <p className="eyebrow">Model notes</p>
-            <h1 className="mt-4 font-display text-5xl font-semibold tracking-[-0.04em] sm:text-7xl">
+            <p className="text-xs font-semibold tracking-[0.08em] text-muted-foreground uppercase">
+              Model notes
+            </p>
+            <h1 className="mt-3 text-[clamp(2.75rem,6vw,4.25rem)] leading-[1] font-semibold tracking-[-0.035em]">
               Methodology before output.
             </h1>
           </div>
-          <div className="self-end">
-            <p className="text-lg leading-8 text-muted-foreground">
+          <div>
+            <p className="font-display text-xl leading-8 text-muted-foreground">
               Catalog Underwriter starts with observable evidence, identifies
               what is missing, and exposes every material valuation assumption.
               The financial engine is deterministic.
             </p>
-            <dl className="mt-5 grid grid-cols-2 gap-4 border-t border-ink/15 pt-4 text-sm">
+            <dl className="mt-5 grid grid-cols-2 gap-4 border-t border-border pt-4 text-sm">
               <div>
-                <dt className="eyebrow">Methodology</dt>
-                <dd className="mt-1">{METHODOLOGY_VERSION}</dd>
+                <dt className="text-xs text-muted-foreground">Methodology</dt>
+                <dd className="mt-1 font-mono">{METHODOLOGY_VERSION}</dd>
               </div>
               <div>
-                <dt className="eyebrow">Engine</dt>
-                <dd className="mt-1">{VALUATION_ENGINE_VERSION}</dd>
+                <dt className="text-xs text-muted-foreground">Engine</dt>
+                <dd className="mt-1 font-mono">{VALUATION_ENGINE_VERSION}</dd>
               </div>
             </dl>
           </div>
         </div>
 
-        <div className="divide-y divide-ink/15">
+        <div className="rounded-[18px] border border-border bg-card px-5 sm:px-8">
           {sections.map((section) => (
             <section
-              className="grid gap-4 py-8 sm:grid-cols-[80px_280px_1fr] sm:py-10"
+              className="grid gap-3 border-b border-border py-7 last:border-b-0 sm:grid-cols-[56px_260px_minmax(0,1fr)] sm:gap-6"
               key={section.number}
             >
-              <p className="font-mono text-xs text-accent">{section.number}</p>
-              <h2 className="font-display text-2xl font-semibold">
+              <p className="font-display text-lg text-accent">
+                §{Number(section.number)}
+              </p>
+              <h2 className="font-display text-[22px] font-medium tracking-[-0.005em]">
                 {section.title}
               </h2>
-              <p className="max-w-2xl leading-7 text-muted-foreground">
+              <p className="max-w-[68ch] leading-7 text-muted-foreground">
                 {section.body}
               </p>
             </section>
           ))}
         </div>
 
-        <aside className="mt-8 border-y-2 border-ink py-7">
-          <p className="eyebrow">Primary public sources</p>
-          <div className="mt-4 flex flex-wrap gap-5 text-sm">
-            <a
-              className="inline-flex items-center gap-1 underline underline-offset-4"
-              href="https://musicbrainz.org/doc/MusicBrainz_API"
-              target="_blank"
-              rel="noreferrer"
-            >
-              MusicBrainz API <ExternalLink className="size-3" />
-            </a>
-            <a
-              className="inline-flex items-center gap-1 underline underline-offset-4"
-              href="https://www.last.fm/api/show/artist.getTopTracks"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Last.fm top tracks <ExternalLink className="size-3" />
-            </a>
-            <a
-              className="inline-flex items-center gap-1 underline underline-offset-4"
-              href="https://developers.google.com/youtube/v3/docs/videos/list"
-              target="_blank"
-              rel="noreferrer"
-            >
-              YouTube Data API <ExternalLink className="size-3" />
-            </a>
-            <a
-              className="inline-flex items-center gap-1 underline underline-offset-4"
-              href="https://www.sonymusic.com/sonymusic/smg-announces-acquisition-of-bruce-springsteens-music/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Sony transaction announcement <ExternalLink className="size-3" />
-            </a>
-          </div>
-          <p className="eyebrow mt-7">Calibration and payout sources</p>
-          <div className="mt-4 flex flex-wrap gap-5 text-sm">
-            {[...CONSUMPTION_CALIBRATION_SOURCES, ...RIGHTS_ECONOMICS_SOURCES]
-              .filter(
-                (source, index, all) =>
-                  all.findIndex((other) => other.url === source.url) === index,
-              )
-              .map((source) => (
-                <a
-                  className="inline-flex items-center gap-1 underline underline-offset-4"
-                  href={source.url}
-                  key={source.url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {source.label} <ExternalLink className="size-3" />
-                </a>
-              ))}
-          </div>
+        <aside className="mt-6 grid gap-5 rounded-[18px] border border-border bg-card p-5 sm:p-8">
+          {sourceGroups.map((group) => (
+            <div key={group.heading}>
+              <p className="text-sm font-semibold">{group.heading}</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {group.links.map((source) => (
+                  <a
+                    className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-sm hover:bg-secondary"
+                    href={source.url}
+                    key={source.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {source.label} <ExternalLink className="size-3" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
         </aside>
 
-        <p className="mt-7 text-xs leading-5 text-muted-foreground">
+        <p className="mt-8 border-t border-border py-6 text-xs leading-5 text-muted-foreground">
           Catalog Underwriter is an educational analytical tool. Estimates are
           not verified royalty statements, ownership interests, market offers,
           investment advice, or legal advice.

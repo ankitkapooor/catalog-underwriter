@@ -87,7 +87,7 @@ test('the homepage values the stored demo with its modeled cash flow', async () 
   );
 
   assert.match(source, /normalizedCashFlow: demoCashFlow\.midpoint/);
-  assert.match(source, /Evidence as of \{evidenceDate\}/);
+  assert.match(source, /evidence \{evidenceDate\}/);
   assert.doesNotMatch(
     source,
     /calculateScenarios\(defaultValuationAssumptions\)/,
