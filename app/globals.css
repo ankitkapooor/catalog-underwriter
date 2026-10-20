@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
@@ -135,5 +136,187 @@
 
   .financial-value {
     @apply font-display text-[clamp(3.8rem,8vw,7rem)] leading-none font-semibold tracking-[-0.06em];
+  }
+}
+
+/*
+ * Underwrite page: a music-app surface with a term-sheet body. The palette
+ * and fonts are scoped to .uw so the rest of the site keeps its own look.
+ */
+.uw {
+  --background: #f7f7f9;
+  --foreground: #1d1d1f;
+  --paper: #ffffff;
+  --ink: #1d1d1f;
+  --card: #ffffff;
+  --card-foreground: #1d1d1f;
+  --popover: #ffffff;
+  --popover-foreground: #1d1d1f;
+  --primary: #1d1d1f;
+  --primary-foreground: #ffffff;
+  --secondary: #efeff3;
+  --secondary-foreground: #1d1d1f;
+  --muted: #efeff3;
+  --muted-foreground: #6e6e76;
+  --accent: #e8344e;
+  --accent-foreground: #ffffff;
+  --positive: #1d8a4e;
+  --negative: #c8382f;
+  --destructive: #c8382f;
+  --border: #e4e4ea;
+  --input: #e4e4ea;
+  --ring: #e8344e;
+  --uw-track: #dcdce3;
+  background: var(--background);
+  color: var(--foreground);
+  font-family:
+    'Geist',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  font-size: 15px;
+}
+
+.uw .font-display {
+  font-family: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+}
+
+.uw .font-mono,
+.uw .eyebrow {
+  font-family: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.uw .eyebrow {
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.uw-badge {
+  margin-left: 0.5rem;
+  border-radius: 0.25rem;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 0.05rem 0.375rem;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 500;
+  vertical-align: 1px;
+}
+
+.uw-number {
+  width: 7ch;
+  border: 0;
+  border-bottom: 1px dashed var(--border);
+  background: transparent;
+  color: var(--foreground);
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.uw-number:focus-visible {
+  border-bottom-color: var(--accent);
+  outline: none;
+  box-shadow: none;
+}
+
+.uw-number:disabled {
+  color: var(--foreground);
+  opacity: 1;
+}
+
+.uw-track {
+  position: relative;
+  display: block;
+}
+
+.uw-track::after {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--default) * (100% - 14px) / 100 + 7px);
+  width: 2px;
+  height: 10px;
+  border-radius: 1px;
+  background: var(--accent);
+  content: '';
+  opacity: 0.8;
+  pointer-events: none;
+  transform: translate(-1px, -50%);
+}
+
+.uw-range {
+  width: 100%;
+  height: 4px;
+  margin: 8px 0;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--foreground) 0 var(--fill),
+    var(--uw-track) var(--fill) 100%
+  );
+  appearance: none;
+  cursor: pointer;
+}
+
+.uw-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.uw-range::-webkit-slider-thumb {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--foreground);
+  appearance: none;
+  transition: transform 0.12s;
+}
+
+.uw-range:hover::-webkit-slider-thumb {
+  transform: scale(1.25);
+}
+
+.uw-range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--foreground);
+}
+
+.uw-segmented {
+  display: inline-flex;
+  min-inline-size: auto;
+  margin: 0;
+  border: 0;
+  gap: 2px;
+  border-radius: 10px;
+  background: var(--border);
+  padding: 3px;
+}
+
+.uw-segmented button {
+  min-width: 5.75rem;
+  border-radius: 8px;
+  padding: 0.375rem 0.875rem;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.uw-segmented button[aria-pressed='true'] {
+  background: var(--card);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.12);
+}
+
+.uw-segmented button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .uw * {
+    transition: none !important;
   }
 }

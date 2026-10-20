@@ -29,10 +29,8 @@ test('live lookups lead with the API evidence instead of an unavailable valuatio
   assert.match(source, /MusicBrainz release groups/);
   assert.match(source, /Last\.fm top tracks/);
   assert.match(source, /matched YouTube uploads/);
-  assert.match(
-    source,
-    /defaultValue=\{catalog\.isStoredDemo \? 'underwrite' : 'evidence'\}/,
-  );
+  // The page opens on the valuation terms, with the evidence banner above.
+  assert.match(source, /<Tabs defaultValue="terms"/);
 });
 
 test('back-to-search controls use hard navigation', async () => {
@@ -47,9 +45,15 @@ test('back-to-search controls use hard navigation', async () => {
 test('known or hypothetical cash flow can always override the modeled estimate', async () => {
   const source = await workbenchSource();
 
-  assert.match(source, /Use my own normalized annual cash flow/);
+  assert.match(source, /Where the annual cash flow comes from/);
+  assert.match(source, /Known figure/);
   assert.match(source, /disabled=\{usingModeledCashFlow\}/);
-  assert.match(source, /event\.target\.value === ''\s*\? Number\.NaN/);
+  // A blank term stays unknown rather than becoming zero.
+  const term = await readFile(
+    new URL('../../components/underwrite/term.tsx', import.meta.url),
+    'utf8',
+  );
+  assert.match(term, /event\.target\.value === ''\s*\? Number\.NaN/);
 });
 
 test('a modeled cash flow is labeled wherever it drives the valuation', async () => {
